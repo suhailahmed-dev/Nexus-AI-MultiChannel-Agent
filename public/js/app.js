@@ -240,11 +240,32 @@ async function handleCreateClient(e) {
   }
 }
 
+function getDealClosingWhatsApp() {
+  return localStorage.getItem('nexus_deal_closing_whatsapp') || '+92 300 0000000';
+}
+
+function saveDealClosingWhatsApp(val) {
+  const input = document.getElementById('myDealClosingWhatsApp');
+  const number = (val || (input ? input.value : '')).trim();
+  if (!number) {
+    alert("Bhai apna valid WhatsApp number enter karein (e.g. +92 300 1234567)");
+    return;
+  }
+  localStorage.setItem('nexus_deal_closing_whatsapp', number);
+  if (input) input.value = number;
+  updateHubPitchPreview();
+  renderSprintLeads(currentSprintDay);
+  alert(`✅ Aapka WhatsApp deal-closing number (${number}) save ho gaya hai! Ab tamam outgoing emails aur pitches mein yeh number auto-include hoga.`);
+}
+
 function openOutreachModal(clientId) {
   const client = currentClientsCache.find(c => c.id === clientId) || { name: "Your Clinic", country: "USA", id: clientId };
   const origin = window.location.origin;
   const callDemoUrl = `${origin}/call-lab.html?client=${client.id}&view=client`;
   const waDemoUrl = `${origin}/demo-lab.html?client=${client.id}&view=client`;
+  const myWhatsApp = getDealClosingWhatsApp();
+  const cleanMyWhatsApp = myWhatsApp.replace(/[^0-9]/g, '');
+  const myWaDirectLink = cleanMyWhatsApp ? `https://wa.me/${cleanMyWhatsApp}` : '';
 
   const waScript = `Hi Dr. ${client.name},
 
@@ -258,6 +279,9 @@ Here is a 30-second live voice demo we customized for ${client.name}:
 👉 ${callDemoUrl}
 
 We are offering a 7-Day Free Pilot to 3 clinics this week (zero setup fee, no card required). Would you be open to testing it out?
+
+Reply right here or WhatsApp me directly:
+📲 ${myWhatsApp}
 
 Best regards,
 Suhail Ahmed
@@ -281,7 +305,8 @@ Would you be open to a quick 5-minute chat this week?
 Best regards,
 Suhail Ahmed
 Nexus AI Solutions
-WhatsApp: +92 300 0000000`;
+📲 Direct WhatsApp: ${myWhatsApp}
+👉 Chat on WhatsApp: ${myWaDirectLink}`;
 
   document.getElementById('outreachClientTitle').textContent = `Outreach Pitch for: ${client.name} (${client.country})`;
   document.getElementById('outreachWaText').value = waScript;
@@ -334,6 +359,9 @@ function getHubData() {
   const origin = window.location.origin;
   const voiceUrl = `${origin}/call-lab.html?client=${client.id}&view=client`;
   const waUrl = `${origin}/demo-lab.html?client=${client.id}&view=client`;
+  const myWhatsApp = getDealClosingWhatsApp();
+  const cleanMyWhatsApp = myWhatsApp.replace(/[^0-9]/g, '');
+  const myWaDirectLink = cleanMyWhatsApp ? `https://wa.me/${cleanMyWhatsApp}` : '';
 
   const subject = `Missed patient calls at ${businessName}? (30-sec demo inside)`;
 
@@ -356,7 +384,8 @@ Would you be open to a quick 5-minute chat this week?
 Best regards,
 Suhail Ahmed
 Nexus AI Solutions
-WhatsApp: +92 300 0000000`;
+📲 Direct WhatsApp: ${myWhatsApp}
+👉 Chat on WhatsApp: ${myWaDirectLink}`;
 
   const waMessage = `Hi Dr. ${businessName},
 
@@ -370,6 +399,9 @@ Here is a 30-second live voice demo customized for ${businessName}:
 👉 ${voiceUrl}
 
 We are offering an introductory 7-Day Free Pilot to 3 clinics this week (zero setup fee, no card required). Would you be open to testing it out?
+
+Reply right here or WhatsApp me directly:
+📲 ${myWhatsApp}
 
 Best regards,
 Suhail Ahmed
@@ -833,37 +865,75 @@ function switchSprintDay(dayNum) {
   renderSprintLeads(dayNum);
 }
 
+function getLeadSprintStatus(leadId) {
+  const stored = localStorage.getItem(`nexus_sprint_${leadId}`);
+  let status = { gmailSent: false, gmailTime: null, waSent: false, waTime: null };
+  if (stored) {
+    try {
+      const parsed = JSON.parse(stored);
+      if (parsed.sent && !parsed.gmailSent && !parsed.waSent) {
+        if (parsed.channel === 'gmail') {
+          status.gmailSent = true;
+          status.gmailTime = parsed.time;
+        } else if (parsed.channel === 'wa') {
+          status.waSent = true;
+          status.waTime = parsed.time;
+        }
+      } else {
+        status = { ...status, ...parsed };
+      }
+    } catch(e){}
+  }
+  return status;
+}
+
 function renderSprintLeads(dayNum) {
   const container = document.getElementById('sprintLeadsContainer');
   if (!container) return;
 
   const leads = SPRINT_LEADS[dayNum] || [];
-  let sentCount = 0;
+  let completedCount = 0;
+  let partialCount = 0;
 
   const html = leads.map(lead => {
-    const storedStatus = localStorage.getItem(`nexus_sprint_${lead.id}`);
-    let isSent = false;
-    let sentInfo = null;
+    const status = getLeadSprintStatus(lead.id);
 
-    if (storedStatus) {
-      try {
-        sentInfo = JSON.parse(storedStatus);
-        isSent = sentInfo.sent === true;
-      } catch(e){}
+    // Complete when WhatsApp is sent OR if lead has no phone and Gmail is sent
+    const isComplete = status.waSent || (!lead.phone && status.gmailSent);
+    const isGmailSent = status.gmailSent;
+    const isWaSent = status.waSent;
+
+    if (isComplete) {
+      completedCount++;
+    } else if (isGmailSent) {
+      partialCount++;
     }
 
-    if (isSent) sentCount++;
-
-    const cardOpacity = isSent ? "0.6" : "1";
-    const titleStrike = isSent ? "text-decoration: line-through; color: #94a3b8;" : "color: #fff;";
+    const cardOpacity = isComplete ? "0.6" : "1";
+    const titleStrike = isComplete ? "text-decoration: line-through; color: #94a3b8;" : "color: #fff;";
+    const borderStyle = isComplete ? "1px solid #10b981" : (isGmailSent ? "1px solid #3b82f6" : "1px solid rgba(59,130,246,0.3)");
 
     let badgeColor = "#2563eb";
     if (lead.badge.includes('Dubai')) badgeColor = "#059669";
     if (lead.badge.includes('Australia')) badgeColor = "#d97706";
     if (lead.badge.includes('Follow-Up')) badgeColor = "#9333ea";
 
+    // Status note under contact info
+    let statusNote = '';
+    if (isComplete) {
+      const sentVia = isGmailSent && isWaSent ? 'Gmail & WhatsApp' : (isWaSent ? 'WhatsApp' : 'Gmail');
+      statusNote = `<div style="font-size:11px; color:#34d399; font-weight:700; margin-top:6px;">✅ Deal Pitch Complete via ${sentVia} (${status.waTime || status.gmailTime})</div>`;
+    } else if (isGmailSent) {
+      statusNote = `<div style="font-size:11px; color:#38bdf8; font-weight:700; margin-top:6px;">✉️ Email Sent (${status.gmailTime}) • <span style="color:#25D366; font-weight:800;">💬 Click WA to follow up on WhatsApp →</span></div>`;
+    }
+
+    // Gmail button: disabled if Gmail was sent OR if lead is already complete
+    const isGmailBtnDisabled = isGmailSent || isComplete;
+    // WhatsApp button: disabled ONLY if WhatsApp was sent
+    const isWaBtnDisabled = isWaSent;
+
     return `
-      <div class="sprint-lead-card" style="background:#131b2e; border:1px solid ${isSent ? '#10b981' : 'rgba(59,130,246,0.3)'}; border-radius:12px; padding:14px; display:flex; justify-content:space-between; align-items:center; opacity:${cardOpacity}; transition: all 0.3s ease; gap:10px;">
+      <div class="sprint-lead-card" style="background:#131b2e; border:${borderStyle}; border-radius:12px; padding:14px; display:flex; justify-content:space-between; align-items:center; opacity:${cardOpacity}; transition: all 0.3s ease; gap:10px;">
         <div style="flex:1; min-width:0;">
           <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px; flex-wrap:wrap;">
             <span style="font-size:10px; font-weight:800; background:${badgeColor}; color:#fff; padding:2px 6px; border-radius:4px;">${lead.badge}</span>
@@ -875,7 +945,7 @@ function renderSprintLeads(dayNum) {
           <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">
             ${lead.city} • ${lead.niche}
           </div>
-          ${isSent ? `<div style="font-size:11px; color:#34d399; font-weight:700; margin-top:6px;">✅ Sent via ${sentInfo.channel === 'gmail' ? 'Gmail' : 'WhatsApp'} (${sentInfo.time})</div>` : ''}
+          ${statusNote}
         </div>
 
         <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0;">
@@ -883,21 +953,23 @@ function renderSprintLeads(dayNum) {
             ${lead.email ? `
               <button onclick="triggerSprintAction('${lead.id}', '${lead.name}', '${lead.clientId}', '${lead.email}', '${lead.phone}', 'gmail')" 
                 class="btn" 
-                style="background:${isSent ? '#475569' : '#ea4335'}; color:#fff; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:68px; justify-content:center; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
-                ${isSent && sentInfo.channel === 'gmail' ? '✓ Sent' : '✉️ Gmail'}
+                style="background:${isGmailBtnDisabled ? '#475569' : '#ea4335'}; color:${isGmailBtnDisabled ? '#94a3b8' : '#fff'}; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:74px; justify-content:center; ${isGmailBtnDisabled ? 'cursor:not-allowed; opacity:0.6;' : ''}"
+                ${isGmailBtnDisabled ? 'disabled' : ''}>
+                ${isGmailSent ? '✓ Email' : '✉️ Gmail'}
               </button>
             ` : ''}
 
             ${lead.phone ? `
               <button onclick="triggerSprintAction('${lead.id}', '${lead.name}', '${lead.clientId}', '${lead.email}', '${lead.phone}', 'wa')" 
                 class="btn" 
-                style="background:${isSent ? '#475569' : '#25D366'}; color:#fff; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:68px; justify-content:center; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
-                ${isSent && sentInfo.channel === 'wa' ? '✓ Sent' : '💬 WA'}
+                style="background:${isWaBtnDisabled ? '#475569' : '#25D366'}; color:${isWaBtnDisabled ? '#94a3b8' : '#fff'}; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:74px; justify-content:center; ${isWaBtnDisabled ? 'cursor:not-allowed; opacity:0.6;' : 'box-shadow:0 0 10px rgba(37,211,102,0.3);'}"
+                ${isWaBtnDisabled ? 'disabled' : ''}>
+                ${isWaSent ? '✓ WA' : '💬 WA'}
               </button>
             ` : ''}
           </div>
 
-          ${isSent ? `
+          ${(isGmailSent || isWaSent) ? `
             <button onclick="resetSprintLead('${lead.id}')" style="background:none; border:none; color:#94a3b8; font-size:11px; text-decoration:underline; cursor:pointer; padding:2px;">↺ Undo / Reset</button>
           ` : ''}
         </div>
@@ -909,21 +981,20 @@ function renderSprintLeads(dayNum) {
 
   // Update Progress Bar
   const total = leads.length;
-  const percent = total > 0 ? Math.round((sentCount / total) * 100) : 0;
+  const percent = total > 0 ? Math.round((completedCount / total) * 100) : 0;
 
-  document.getElementById('sprintProgressText').textContent = `${sentCount} / ${total} Completed`;
+  const extraNote = partialCount > 0 ? ` (${partialCount} via Email)` : '';
+  document.getElementById('sprintProgressText').textContent = `${completedCount} / ${total} Fully Completed${extraNote}`;
   document.getElementById('sprintPercentText').textContent = `${percent}%`;
   document.getElementById('sprintProgressBar').style.width = `${percent}%`;
 
   // Update all Sprint Tab counters and badges
   for (let d = 1; d <= 7; d++) {
     const dayLeads = SPRINT_LEADS[d] || [];
-    let dSent = 0;
+    let dDone = 0;
     dayLeads.forEach(l => {
-      const s = localStorage.getItem(`nexus_sprint_${l.id}`);
-      if (s) {
-        try { if (JSON.parse(s).sent) dSent++; } catch(e){}
-      }
+      const s = getLeadSprintStatus(l.id);
+      if (s.waSent || (!l.phone && s.gmailSent)) dDone++;
     });
     const tab = document.getElementById(`tabDay${d}`);
     if (tab) {
@@ -931,18 +1002,18 @@ function renderSprintLeads(dayNum) {
         tab.setAttribute('data-base-title', tab.textContent.trim());
       }
       const baseTitle = tab.getAttribute('data-base-title');
-      const isComplete = dSent === dayLeads.length && dayLeads.length > 0;
-      tab.innerHTML = `${baseTitle} <span style="font-size:10px; font-weight:700; opacity:0.9; margin-left:4px; padding:1px 5px; border-radius:4px; background:${isComplete ? '#10b981' : 'rgba(255,255,255,0.15)'}; color:#fff;">${dSent}/${dayLeads.length}${isComplete ? ' ✓' : ''}</span>`;
+      const isComplete = dDone === dayLeads.length && dayLeads.length > 0;
+      tab.innerHTML = `${baseTitle} <span style="font-size:10px; font-weight:700; opacity:0.9; margin-left:4px; padding:1px 5px; border-radius:4px; background:${isComplete ? '#10b981' : 'rgba(255,255,255,0.15)'}; color:#fff;">${dDone}/${dayLeads.length}${isComplete ? ' ✓' : ''}</span>`;
     }
   }
 
   // Show/Hide celebration banner
   const banner = document.getElementById('sprintCompleteBanner');
   if (banner) {
-    if (sentCount === total && total > 0) {
+    if (completedCount === total && total > 0) {
       banner.style.display = 'block';
       banner.innerHTML = `
-        <div style="font-size:16px; font-weight:800; color:#34d399;">🎉 MUBARAK HO! Day ${dayNum} Ka Mission Complete! (${sentCount}/${total} Sent)</div>
+        <div style="font-size:16px; font-weight:800; color:#34d399;">🎉 MUBARAK HO! Day ${dayNum} Ka Mission Complete! (${completedCount}/${total} Sent)</div>
         <div style="font-size:12px; color:#e2e8f0; margin-top:6px;">
           Aapne aaj ke saare ${total} international clients ko personalized demo bhej diya hai. Yeh contacts dashboard par auto-disable ho chuke hain taake dubara repeat na hon.
         </div>
@@ -969,6 +1040,10 @@ function quickLeadAction(businessName, clientId, email, phone, channel) {
   const voiceUrl = `${origin}/call-lab.html?client=${clientId}&view=client`;
   const waUrl = `${origin}/demo-lab.html?client=${clientId}&view=client`;
 
+  const myWhatsApp = getDealClosingWhatsApp();
+  const cleanMyWhatsApp = myWhatsApp.replace(/[^0-9]/g, '');
+  const myWaDirectLink = cleanMyWhatsApp ? `https://wa.me/${cleanMyWhatsApp}` : '';
+
   const client = currentClientsCache.find(c => c.id === clientId) || {
     name: businessName,
     country: "USA",
@@ -976,18 +1051,18 @@ function quickLeadAction(businessName, clientId, email, phone, channel) {
   };
 
   let subject = `Missed patient calls at ${businessName}? (30-sec demo inside)`;
-  let emailBody = `Hi ${businessName} Team,\n\nMost practices in ${client.country} lose $3,000 to $8,000 every month simply from patients hanging up when calls go to voicemail during lunch hours, busy front-desk times, or weekends.\n\nWe build custom 24/7 Voice & WhatsApp AI Receptionists that answer patient calls in 2 rings, answer treatment FAQs (tooth pain, insurance, cleanings), and schedule appointments directly on your calendar.\n\nI set up two quick 30-second live demos customized for ${businessName}:\n👉 🎙️ Live Voice Call Demo: ${voiceUrl}\n👉 💬 24/7 WhatsApp Booking Demo: ${waUrl}\n\n(Click either link above on your phone or computer to test how naturally the AI answers questions and books appointments into your calendar).\n\nWe are currently onboarding 3 clinics for an introductory 7-Day Free Pilot ($0 setup fee, no card required) so you can test it risk-free on your secondary line.\n\nWould you be open to a quick 5-minute chat this week?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions\nWhatsApp: +92 300 0000000`;
+  let emailBody = `Hi ${businessName} Team,\n\nMost practices in ${client.country} lose $3,000 to $8,000 every month simply from patients hanging up when calls go to voicemail during lunch hours, busy front-desk times, or weekends.\n\nWe build custom 24/7 Voice & WhatsApp AI Receptionists that answer patient calls in 2 rings, answer treatment FAQs (tooth pain, insurance, cleanings), and schedule appointments directly on your calendar.\n\nI set up two quick 30-second live demos customized for ${businessName}:\n👉 🎙️ Live Voice Call Demo: ${voiceUrl}\n👉 💬 24/7 WhatsApp Booking Demo: ${waUrl}\n\n(Click either link above on your phone or computer to test how naturally the AI answers questions and books appointments into your calendar).\n\nWe are currently onboarding 3 clinics for an introductory 7-Day Free Pilot ($0 setup fee, no card required) so you can test it risk-free on your secondary line.\n\nWould you be open to a quick 5-minute chat this week?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions\n📲 Direct WhatsApp: ${myWhatsApp}\n👉 Chat on WhatsApp: ${myWaDirectLink}`;
 
-  let waMessage = `Hi Dr. ${businessName},\n\nFound ${businessName} while researching top practices in ${client.country}.\n\nQuick question: When a patient calls with an appointment inquiry or toothache during lunch hours or late evening, does it go to voicemail?\n\nWe set up 24/7 Voice & WhatsApp AI Receptionists trained on dental treatments & emergencies that answer in 2 rings and schedule patients directly on your calendar.\n\nHere are your customized 30-second live demos:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering an introductory 7-Day Free Pilot to 3 clinics this week (zero setup fee, no card required). Would you be open to testing it out?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
+  let waMessage = `Hi Dr. ${businessName},\n\nFound ${businessName} while researching top practices in ${client.country}.\n\nQuick question: When a patient calls with an appointment inquiry or toothache during lunch hours or late evening, does it go to voicemail?\n\nWe set up 24/7 Voice & WhatsApp AI Receptionists trained on dental treatments & emergencies that answer in 2 rings and schedule patients directly on your calendar.\n\nHere are your customized 30-second live demos:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering an introductory 7-Day Free Pilot to 3 clinics this week (zero setup fee, no card required). Would you be open to testing it out?\n\nReply right here or message me on WhatsApp at ${myWhatsApp} to claim a spot!\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
 
   if (clientId.includes('realestate')) {
     subject = `Missed buyer inquiries at ${businessName}? (30-sec demo inside)`;
-    emailBody = `Hi ${businessName} Team,\n\nHigh-net-worth property buyers and investors browsing Dubai properties expect instant replies. Inquiries that wait more than 5 minutes lose 80% interest.\n\nWe build custom 24/7 AI Property Advisors that qualify buyer budgets, answer off-plan project questions, and schedule VIP site/Zoom visits automatically.\n\nI created two quick 30-second live demos for ${businessName}:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering a 7-Day Free Pilot ($0 setup fee) so you can test it on your leads risk-free.\n\nWould you be open to a quick 5-minute chat?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
-    waMessage = `Hi ${businessName} Team,\n\nWe set up 24/7 Voice & WhatsApp AI Property Advisors for Dubai luxury real estate that qualify buyers and book VIP viewings in under 10 seconds.\n\nTest the 30-second live demos here:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe're offering a 7-Day Free Pilot ($0 setup) to 3 agencies this week. Would you like to test it out?\n\nBest regards,\nSuhail Ahmed`;
+    emailBody = `Hi ${businessName} Team,\n\nHigh-net-worth property buyers and investors browsing Dubai properties expect instant replies. Inquiries that wait more than 5 minutes lose 80% interest.\n\nWe build custom 24/7 AI Property Advisors that qualify buyer budgets, answer off-plan project questions, and schedule VIP site/Zoom visits automatically.\n\nI created two quick 30-second live demos for ${businessName}:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering a 7-Day Free Pilot ($0 setup fee) so you can test it on your leads risk-free.\n\nWould you be open to a quick 5-minute chat?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions\n📲 Direct WhatsApp: ${myWhatsApp}\n👉 Chat on WhatsApp: ${myWaDirectLink}`;
+    waMessage = `Hi ${businessName} Team,\n\nWe set up 24/7 Voice & WhatsApp AI Property Advisors for Dubai luxury real estate that qualify buyers and book VIP viewings in under 10 seconds.\n\nTest the 30-second live demos here:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe're offering a 7-Day Free Pilot ($0 setup) to 3 agencies this week. Would you like to test it out?\n\nReply right here or message me on WhatsApp at ${myWhatsApp} to claim a spot!\n\nBest regards,\nSuhail Ahmed`;
   } else if (clientId.includes('medspa')) {
     subject = `Consultation bookings for ${businessName}? (30-sec demo)`;
-    emailBody = `Hi ${businessName} Team,\n\nClients calling for Botox, facials, or body contouring often call during evenings or lunch when phones are busy.\n\nOur 24/7 Voice & WhatsApp AI Receptionists answer instantly, explain treatment options, and book consultations directly onto your booking calendar.\n\nCheck your customized 30-second demos:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering an introductory 7-Day Free Pilot ($0 setup fee). Would you be open to a quick chat this week?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
-    waMessage = `Hi ${businessName} Team,\n\nQuick 30-second live demos of our 24/7 AI Receptionist customized for aesthetic clinics:\n👉 🎙️ Voice Call: ${voiceUrl}\n👉 💬 WhatsApp: ${waUrl}\n\nIt books consultations 24/7 so you never lose high-value patients. We're offering a 7-Day Free Pilot ($0 setup fee) this week if you'd like to test it out!\n\nBest regards,\nSuhail Ahmed`;
+    emailBody = `Hi ${businessName} Team,\n\nClients calling for Botox, facials, or body contouring often call during evenings or lunch when phones are busy.\n\nOur 24/7 Voice & WhatsApp AI Receptionists answer instantly, explain treatment options, and book consultations directly onto your booking calendar.\n\nCheck your customized 30-second demos:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering an introductory 7-Day Free Pilot ($0 setup fee). Would you be open to a quick chat this week?\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions\n📲 Direct WhatsApp: ${myWhatsApp}\n👉 Chat on WhatsApp: ${myWaDirectLink}`;
+    waMessage = `Hi ${businessName} Team,\n\nQuick 30-second live demos of our 24/7 AI Receptionist customized for aesthetic clinics:\n👉 🎙️ Voice Call: ${voiceUrl}\n👉 💬 WhatsApp: ${waUrl}\n\nIt books consultations 24/7 so you never lose high-value patients. We're offering a 7-Day Free Pilot ($0 setup fee) this week if you'd like to test it out!\n\nReply right here or message me on WhatsApp at ${myWhatsApp} to claim a spot!\n\nBest regards,\nSuhail Ahmed`;
   }
 
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
@@ -1016,14 +1091,21 @@ function quickLeadAction(businessName, clientId, email, phone, channel) {
 }
 
 function triggerSprintAction(leadId, businessName, clientId, email, phone, channel) {
-  // Save to localStorage immediately so it auto-disables
   const now = new Date();
   const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  localStorage.setItem(`nexus_sprint_${leadId}`, JSON.stringify({
-    sent: true,
-    time: timeStr,
-    channel: channel
-  }));
+
+  const status = getLeadSprintStatus(leadId);
+  if (channel === 'gmail') {
+    status.gmailSent = true;
+    status.gmailTime = timeStr;
+  } else if (channel === 'wa') {
+    status.waSent = true;
+    status.waTime = timeStr;
+  }
+  status.sent = true;
+
+  // Save to localStorage immediately
+  localStorage.setItem(`nexus_sprint_${leadId}`, JSON.stringify(status));
 
   // Re-render UI to update buttons and progress bar instantly
   renderSprintLeads(currentSprintDay);
@@ -1048,6 +1130,13 @@ function resetSprintState() {
 window.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('clientsGrid')) {
     loadDashboard();
+    
+    // Initialize Deal Closing WhatsApp Input from storage
+    const closingInput = document.getElementById('myDealClosingWhatsApp');
+    if (closingInput) {
+      closingInput.value = getDealClosingWhatsApp();
+    }
+
     setTimeout(updateHubPitchPreview, 500);
     renderSprintLeads(1);
   }
