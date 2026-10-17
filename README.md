@@ -44,16 +44,19 @@ Built with a native **7-Day Client Trial Funnel**, Nexus AI enables agencies to 
 ## ⚡ Core Engineering Capabilities
 
 1. **Multi-Tenant Agency Command Center (`http://localhost:3000`):**
-   - High-contrast operational dashboard tracking active client trials, captured customer leads, and business configurations.
+   - High-contrast, 100% mobile-responsive operational dashboard tracking active client trials, captured customer leads, and business configurations.
    - Dynamic 7-day countdown calculator with visual warning badges (`TRIAL ACTIVE`, `EXPIRED`, `PAID ENTERPRISE`).
+   - Integrated **Missed-Revenue Shock Calculator** demonstrating exact lost ROI to prospective business clients.
 
-2. **Bidirectional Voice Calling Lab (`/call-lab.html`):**
-   - Interactive browser-based voice receptionist simulator powered by Web Speech API & audio synthesis.
-   - Enables prospective clients to call their customized AI assistant directly from a browser and test real-time conversational latency.
+2. **Mobile-Resilient Voice Calling Lab (`/call-lab.html`):**
+   - Interactive browser-based voice receptionist simulator powered by Web Speech API, audio synthesizers, and Web Audio chimes.
+   - Interactive guided speech chips enabling low-friction voice testing across desktop and mobile devices.
+   - Client-safe pitch links with zero internal agency leakage.
 
-3. **WhatsApp Webhook Simulator & Cloud Adapter (`/demo-lab.html`):**
+3. **Guided WhatsApp Booking Simulator & Cloud Adapter (`/demo-lab.html`):**
    - True-to-life WhatsApp UI simulator with real-time typing indicators, automated message threading, and appointment confirmation cards.
-   - Cloud API webhook verification routes (`/api/whatsapp/webhook/:clientId`) for production Twilio or Meta Cloud API integration.
+   - Interactive quick-reply chips with a visual step tracker guiding users effortlessly through booking.
+   - Independent per-channel toggles for agile lead sprints and dynamic deal-closing WhatsApp dispatch (+92 309 3174020).
 
 4. **Structured Lead & Appointment Extraction:**
    - Automatically parses unstructured customer messages for critical conversion fields: `Full Name`, `Phone Number`, `Requested Service`, `Preferred Date/Time Slot`, and `Booking Notes`.
