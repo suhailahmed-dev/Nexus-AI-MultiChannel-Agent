@@ -141,6 +141,17 @@
             </div>
           </div>
 
+          <!-- Interactive Step-by-Step Flow Progress Tracker -->
+          <div id="bookingStepsBar" style="background:#075e54; padding:6px 12px; display:flex; justify-content:space-between; align-items:center; font-size:10px; color:#c7f9cc; border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span id="stepTab1" style="font-weight:800; color:#fff; background:rgba(255,255,255,0.25); padding:2px 8px; border-radius:10px; transition:all 0.3s;">1. Service</span>
+            <span>➔</span>
+            <span id="stepTab2" style="opacity:0.7; padding:2px 6px; transition:all 0.3s;">2. Time Slot</span>
+            <span>➔</span>
+            <span id="stepTab3" style="opacity:0.7; padding:2px 6px; transition:all 0.3s;">3. Details</span>
+            <span>➔</span>
+            <span id="stepTab4" style="opacity:0.7; padding:2px 6px; transition:all 0.3s;">4. ✅ Synced</span>
+          </div>
+
           <!-- Chat Messages Body -->
           <div class="phone-chat-body" id="phoneChatBody">
             <div class="phone-bubble model" id="welcomeMsg">
@@ -467,6 +478,22 @@
         if (voiceModeLink) voiceModeLink.href = `/call-lab.html?client=${clientId}${isClientView ? '&view=client' : ''}`;
         if (waModeLink) waModeLink.href = `/demo-lab.html?client=${clientId}${isClientView ? '&view=client' : ''}`;
 
+        // Initialize initial step tracker
+        updateStepTracker(1);
+
+        // Customize initial welcome bubble with interactive WhatsApp quick-reply chips
+        const welcomeMsg = document.getElementById('welcomeMsg');
+        if (welcomeMsg) {
+          welcomeMsg.remove();
+          const initialButtons = [
+            { label: "📅 1. Book Dental Consultation", text: "1" },
+            { label: "🚨 2. Emergency Tooth Pain / Relief", text: "2" },
+            { label: "💰 3. View Pricing & Insurance FAQs", text: "3" },
+            { label: "👨‍⚕️ 4. Speak with Clinic Staff", text: "4" }
+          ];
+          appendBubble('model', `Assalam-o-Alaikum! Welcome to **${clientData.name}**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated scheduling queue.\n\nPlease select how we can best assist you right now:`, initialButtons);
+        }
+
         if (isClientView) {
           const navActions = document.querySelector('.nav-actions');
           if (navActions) {
@@ -487,6 +514,36 @@
       }
     }
 
+    function updateStepTracker(step) {
+      const tabs = [
+        document.getElementById('stepTab1'),
+        document.getElementById('stepTab2'),
+        document.getElementById('stepTab3'),
+        document.getElementById('stepTab4')
+      ];
+
+      tabs.forEach((tab, index) => {
+        if (!tab) return;
+        const tabNum = index + 1;
+        if (tabNum === step) {
+          tab.style.fontWeight = '800';
+          tab.style.color = '#fff';
+          tab.style.background = 'rgba(255,255,255,0.25)';
+          tab.style.opacity = '1';
+        } else if (tabNum < step) {
+          tab.style.fontWeight = '700';
+          tab.style.color = '#34d399';
+          tab.style.background = 'transparent';
+          tab.style.opacity = '0.9';
+        } else {
+          tab.style.fontWeight = '500';
+          tab.style.color = '#c7f9cc';
+          tab.style.background = 'transparent';
+          tab.style.opacity = '0.5';
+        }
+      });
+    }
+
     function showAppointmentConfirmed(apt) {
       const card = document.getElementById('aptConfirmedCard');
       if (!card || !apt) return;
@@ -494,6 +551,9 @@
       document.getElementById('aptTitle').textContent = apt.service || 'Appointment Confirmed';
       document.getElementById('aptSlot').textContent = `📅 Slot: ${apt.slot} with ${apt.doctor || 'Attending Specialist'}`;
       card.style.display = 'block';
+
+      // Update step tracker to Completed (Step 4)
+      updateStepTracker(4);
 
       // Trigger celebration
       launchCelebration();
@@ -544,7 +604,14 @@
         });
 
         const data = await res.json();
-        loader.textContent = data.reply;
+        loader.remove(); // Remove temporary typing bubble
+
+        // Render AI bubble with interactive WhatsApp buttons
+        appendBubble('model', data.reply, data.buttons || []);
+
+        if (data.step) {
+          updateStepTracker(data.step);
+        }
 
         if (data.leadCaptured) {
           updateInspector(data.leadCaptured);
@@ -558,11 +625,60 @@
       }
     }
 
-    function appendBubble(role, text) {
+    function appendBubble(role, text, buttons = []) {
       const chat = document.getElementById('phoneChatBody');
       const bubble = document.createElement('div');
       bubble.className = `phone-bubble ${role}`;
-      bubble.textContent = text;
+
+      // Convert bold and newlines
+      const formattedText = text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\n/g, '<br>');
+      bubble.innerHTML = formattedText;
+
+      // Render interactive WhatsApp action buttons if provided
+      if (buttons && buttons.length > 0) {
+        const btnContainer = document.createElement('div');
+        btnContainer.style.display = 'flex';
+        btnContainer.style.flexDirection = 'column';
+        btnContainer.style.gap = '6px';
+        btnContainer.style.marginTop = '10px';
+        btnContainer.style.borderTop = '1px dashed rgba(0,0,0,0.15)';
+        btnContainer.style.paddingTop = '8px';
+
+        const label = document.createElement('div');
+        label.style.fontSize = '10px';
+        label.style.fontWeight = '800';
+        label.style.color = '#065f46';
+        label.style.textTransform = 'uppercase';
+        label.style.letterSpacing = '0.5px';
+        label.textContent = '⚡ Select An Option to Proceed:';
+        btnContainer.appendChild(label);
+
+        buttons.forEach(btn => {
+          const b = document.createElement('button');
+          b.style.background = '#ffffff';
+          b.style.color = '#075e54';
+          b.style.fontWeight = '700';
+          b.style.border = '1px solid #25D366';
+          b.style.borderRadius = '8px';
+          b.style.padding = '8px 12px';
+          b.style.fontSize = '11px';
+          b.style.textAlign = 'left';
+          b.style.cursor = 'pointer';
+          b.style.transition = 'all 0.2s';
+          b.style.boxShadow = '0 1px 3px rgba(0,0,0,0.08)';
+          b.textContent = btn.label;
+          b.onmouseover = () => { b.style.background = '#f0fdf4'; b.style.transform = 'translateY(-1px)'; };
+          b.onmouseout = () => { b.style.background = '#ffffff'; b.style.transform = 'translateY(0)'; };
+          b.onclick = () => {
+            sendQuickPrompt(btn.text);
+          };
+          btnContainer.appendChild(b);
+        });
+        bubble.appendChild(btnContainer);
+      }
+
       chat.appendChild(bubble);
       chat.scrollTop = chat.scrollHeight;
       return bubble;

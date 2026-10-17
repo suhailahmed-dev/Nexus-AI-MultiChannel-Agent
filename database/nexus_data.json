@@ -94,6 +94,54 @@
   ],
   "leads": [
     {
+      "id": "lead-1792269477041",
+      "client_id": "dental-us",
+      "customer_name": "David",
+      "customer_phone": "512-555-0199",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (This Friday at 2:00 PM)",
+      "urgency": "High",
+      "summary": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for This Friday at 2:00 PM",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "This Friday at 2:00 PM",
+        "service": "New Patient Comprehensive Smile & Dental Exam",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David",
+        "phone": "512-555-0199",
+        "timestamp": "01:37 am"
+      },
+      "created_at": "2026-10-17T20:37:57.041Z"
+    },
+    {
+      "id": "lead-1792269018390",
+      "client_id": "dental-us",
+      "customer_name": "Anonymous Visitor",
+      "customer_phone": "N/A",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (Tomorrow at 11:30 AM)",
+      "urgency": "High",
+      "summary": "I need appointment.",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "Tomorrow at 11:30 AM",
+        "service": "Cosmetic Smile & Treatment Consultation",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "Patient / Client",
+        "phone": "Confirmed on Record",
+        "timestamp": "01:30 am"
+      },
+      "created_at": "2026-10-17T20:30:18.390Z"
+    },
+    {
       "id": "lead-1792268280773",
       "client_id": "dental-us",
       "customer_name": "Anonymous Visitor",
@@ -798,6 +846,134 @@
       "role": "model",
       "text": "Welcome to Sydney Harbourside Dental Care. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
       "timestamp": "2026-10-17T20:21:54.849Z"
+    },
+    {
+      "id": "msg-1792269018364-qiy0",
+      "client_id": "dental-us",
+      "session_id": "voice-call-oweg7m",
+      "role": "user",
+      "text": "I need appointment.",
+      "timestamp": "2026-10-17T20:30:18.364Z"
+    },
+    {
+      "id": "msg-1792269018378-3byy",
+      "client_id": "dental-us",
+      "session_id": "voice-call-oweg7m",
+      "role": "model",
+      "text": "🎉 Wonderful! Your appointment is officially confirmed for **Tomorrow at 11:30 AM** with Dr. Mitchell & Clinical Team at Austin Premier Dental & Implants.\n\n✅ **Instant Automation Completed:**\n• Added directly to Clinic Calendar & EHR system\n• Confirmation SMS & calendar invite dispatched to your phone\n• Clinical team briefed\n\nWe look forward to welcoming you!",
+      "timestamp": "2026-10-17T20:30:18.378Z"
+    },
+    {
+      "id": "msg-1792269077291-3s8w",
+      "client_id": "dental-us",
+      "session_id": "demo-session-7whtpm",
+      "role": "user",
+      "text": "hi",
+      "timestamp": "2026-10-17T20:31:17.291Z"
+    },
+    {
+      "id": "msg-1792269077319-qdps",
+      "client_id": "dental-us",
+      "session_id": "demo-session-7whtpm",
+      "role": "model",
+      "text": "Welcome to Austin Premier Dental & Implants. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
+      "timestamp": "2026-10-17T20:31:17.319Z"
+    },
+    {
+      "id": "msg-1792269083423-te3a",
+      "client_id": "dental-us",
+      "session_id": "demo-session-7whtpm",
+      "role": "user",
+      "text": "wheb",
+      "timestamp": "2026-10-17T20:31:23.423Z"
+    },
+    {
+      "id": "msg-1792269083433-kx13",
+      "client_id": "dental-us",
+      "session_id": "demo-session-7whtpm",
+      "role": "model",
+      "text": "Welcome to Austin Premier Dental & Implants. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
+      "timestamp": "2026-10-17T20:31:23.433Z"
+    },
+    {
+      "id": "msg-1792269419386-5e5z",
+      "client_id": "dental-us",
+      "session_id": "test-session-1",
+      "role": "user",
+      "text": "hi what do you do?",
+      "timestamp": "2026-10-17T20:36:59.386Z"
+    },
+    {
+      "id": "msg-1792269419398-ypao",
+      "client_id": "dental-us",
+      "session_id": "test-session-1",
+      "role": "model",
+      "text": "Welcome to Austin Premier Dental & Implants. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
+      "timestamp": "2026-10-17T20:36:59.398Z"
+    },
+    {
+      "id": "msg-1792269449454-b9gc",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "user",
+      "text": "hi what do you do?",
+      "timestamp": "2026-10-17T20:37:29.454Z"
+    },
+    {
+      "id": "msg-1792269449475-pq0c",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Welcome to **Austin Premier Dental & Implants**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated booking queue.\n\nPlease select how we can best assist you right now (reply with a number or tap an option below):\n\n1️⃣ 📅 **Book an Appointment / Consultation**\n2️⃣ 🚨 **Emergency Tooth Pain / Urgent Relief**\n3️⃣ 💰 **Pricing & Special Promotional Offers**\n4️⃣ 👨‍⚕️ **Speak with Clinic Staff / Insurance Help**",
+      "timestamp": "2026-10-17T20:37:29.475Z"
+    },
+    {
+      "id": "msg-1792269457066-xm41",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "user",
+      "text": "1",
+      "timestamp": "2026-10-17T20:37:37.066Z"
+    },
+    {
+      "id": "msg-1792269457078-ikel",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "model",
+      "text": "📅 **Step 1 of 2: Select Your Preferred Time Slot**\n\nWe have 3 priority openings available with our Lead Specialist this week at **Austin Premier Dental & Implants**.\n\nPlease select the slot that suits your schedule best:",
+      "timestamp": "2026-10-17T20:37:37.078Z"
+    },
+    {
+      "id": "msg-1792269464065-7boz",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "user",
+      "text": "Friday at 2:00 PM",
+      "timestamp": "2026-10-17T20:37:44.065Z"
+    },
+    {
+      "id": "msg-1792269464076-wj7a",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "model",
+      "text": "🕒 **Slot Selected: This Friday at 2:00 PM**\n\nTo lock this reservation directly into our clinic calendar and dispatch your SMS confirmation code, please reply with your **Name & Phone Number**:\n\n*(Or tap 1-Click Quick Confirm below)*",
+      "timestamp": "2026-10-17T20:37:44.077Z"
+    },
+    {
+      "id": "msg-1792269476973-ahd7",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "user",
+      "text": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for This Friday at 2:00 PM",
+      "timestamp": "2026-10-17T20:37:56.973Z"
+    },
+    {
+      "id": "msg-1792269477032-wr3v",
+      "client_id": "dental-us",
+      "session_id": "test-session-2",
+      "role": "model",
+      "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Austin Premier Dental & Implants\n👤 **Patient:** David\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
+      "timestamp": "2026-10-17T20:37:57.032Z"
     }
   ],
   "settings": {
