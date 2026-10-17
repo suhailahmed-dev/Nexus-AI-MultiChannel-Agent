@@ -530,6 +530,22 @@
       "role": "model",
       "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
       "timestamp": "2026-10-17T19:23:27.025Z"
+    },
+    {
+      "id": "msg-1792267448029-y7zk",
+      "client_id": "dental-au",
+      "session_id": "voice-call-mncx5t",
+      "role": "user",
+      "text": "Hi, how much do Invisalign clear braces cost and can I book a free scan?",
+      "timestamp": "2026-10-17T20:04:08.029Z"
+    },
+    {
+      "id": "msg-1792267448055-n3md",
+      "client_id": "dental-au",
+      "session_id": "voice-call-mncx5t",
+      "role": "model",
+      "text": "Hello! Our comprehensive Invisalign packages start from £2,400 with 0% interest financing available from just £99/month. Professional Laser Whitening is also on a special offer at £350. Would you like to check available slots for a free preliminary smile scan?",
+      "timestamp": "2026-10-17T20:04:08.055Z"
     }
   ],
   "settings": {
