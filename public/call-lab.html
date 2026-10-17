@@ -165,6 +165,158 @@
       background: #3b82f6;
     }
 
+    /* Guided Step Tracker */
+    .call-step-tracker {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      background: rgba(0, 0, 0, 0.4);
+      padding: 6px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 10px;
+      width: 100%;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+    }
+
+    .step-pill {
+      font-size: 11px;
+      font-weight: 600;
+      color: #94a3b8;
+      padding: 3px 8px;
+      border-radius: 12px;
+      white-space: nowrap;
+      transition: all 0.25s ease;
+    }
+
+    .step-pill.active {
+      background: #2563eb;
+      color: #fff;
+      font-weight: 800;
+      box-shadow: 0 0 12px rgba(37, 99, 235, 0.5);
+    }
+
+    .step-pill.completed {
+      color: #34d399;
+      background: rgba(16, 185, 129, 0.15);
+    }
+
+    .step-arrow {
+      font-size: 10px;
+      color: #475569;
+    }
+
+    /* Microphone Status Badge */
+    .mic-status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #cbd5e1;
+      background: rgba(15, 23, 42, 0.6);
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: 6px;
+    }
+
+    .mic-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #94a3b8;
+      display: inline-block;
+      transition: all 0.2s;
+    }
+
+    .mic-dot.listening {
+      background: #10b981;
+      animation: pulseMic 1.2s infinite;
+    }
+
+    .mic-dot.speaking {
+      background: #3b82f6;
+      animation: pulseMic 0.8s infinite;
+    }
+
+    .mic-dot.denied {
+      background: #ef4444;
+    }
+
+    @keyframes pulseMic {
+      0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.8); }
+      70% { transform: scale(1.2); box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+
+    /* 1-Tap Voice Guided Prompts */
+    .voice-guide-container {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(59, 130, 246, 0.35);
+      border-radius: 16px;
+      padding: 12px;
+      margin: 8px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .voice-guide-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: #93c5fd;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .voice-chips-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-height: 155px;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .voice-chip-btn {
+      background: #1e293b;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #f8fafc;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 10px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      line-height: 1.3;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .voice-chip-btn:hover {
+      background: #2563eb;
+      border-color: #60a5fa;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .voice-chip-btn:active {
+      transform: scale(0.98);
+      background: #1d4ed8;
+    }
+
     /* Mobile Responsive Styles */
     @media (max-width: 768px) {
       .navbar {
@@ -369,10 +521,25 @@
       <div class="call-phone-mockup">
         <div class="call-inner">
           
+          <!-- Guided Step Tracker -->
+          <div class="call-step-tracker" id="callStepTracker">
+            <span class="step-pill active" id="cStep1">1. Topic</span>
+            <span class="step-arrow">➔</span>
+            <span class="step-pill" id="cStep2">2. Slot</span>
+            <span class="step-arrow">➔</span>
+            <span class="step-pill" id="cStep3">3. Confirm</span>
+            <span class="step-arrow">➔</span>
+            <span class="step-pill" id="cStep4">4. ✅ Booked</span>
+          </div>
+
           <div>
             <div class="caller-avatar" id="callerAvatar">🎙️</div>
             <div class="caller-title" id="callerName">Austin Premier Dental</div>
             <div class="caller-status" id="callStatusText">Ready to Call</div>
+            <div class="mic-status-pill" id="micStatusPill">
+              <span class="mic-dot" id="micDot"></span>
+              <span id="micStatusLabel">Tap Call Button to Talk</span>
+            </div>
           </div>
 
           <!-- Waveform Animation -->
@@ -387,13 +554,35 @@
 
           <!-- Live Conversation Subtitle Box -->
           <div class="voice-subtitles" id="voiceSubtitles">
-            <em>Click the green Call button below to start speaking with the AI Receptionist. You can speak into your microphone or tap the test buttons!</em>
+            <em>Click the green Call button below to connect with the AI Receptionist. You can speak into your microphone or tap the 1-tap voice prompts!</em>
+          </div>
+
+          <!-- 1-Tap Voice Guided Prompts -->
+          <div class="voice-guide-container" id="voiceGuideContainer">
+            <div class="voice-guide-title">
+              <span id="guideTitleText">💡 1-Tap Voice Guided Prompts</span>
+              <span id="guideStepCounter" style="font-size:10px; color:#38bdf8; font-weight:700;">Step 1 of 4</span>
+            </div>
+            <div class="voice-chips-grid" id="voiceChipsGrid">
+              <button class="voice-chip-btn" onclick="handleChipClick('I would like to book an appointment')">
+                <span>📅</span> 1. "I'd like to book an appointment"
+              </button>
+              <button class="voice-chip-btn" onclick="handleChipClick('I have severe emergency tooth pain and need relief')">
+                <span>🚨</span> 2. "Urgent tooth pain / Emergency relief"
+              </button>
+              <button class="voice-chip-btn" onclick="handleChipClick('What are your checkup prices and insurance plans?')">
+                <span>💰</span> 3. "Check pricing & insurance plans"
+              </button>
+              <button class="voice-chip-btn" onclick="handleChipClick('Can I speak with doctor or clinic front desk?')">
+                <span>👨‍⚕️</span> 4. "Speak with clinic staff"
+              </button>
+            </div>
           </div>
 
           <!-- Quick Text Input Fallback -->
-          <div style="width:100%; display:flex; gap:6px; margin: 10px 0;">
-            <input type="text" id="manualVoiceInput" class="form-control" style="font-size:12px; padding:8px 12px; background:rgba(0,0,0,0.4);" placeholder="Or type what you would say..." />
-            <button class="btn btn-secondary" style="padding:8px 12px; font-size:12px;" onclick="sendManualSpeech()">Send</button>
+          <div style="width:100%; display:flex; gap:6px; margin: 6px 0;">
+            <input type="text" id="manualVoiceInput" class="form-control" style="font-size:12px; padding:7px 10px; background:rgba(0,0,0,0.4);" placeholder="Or type what you would say..." />
+            <button class="btn btn-secondary" style="padding:7px 10px; font-size:12px;" onclick="sendManualSpeech()">Send</button>
           </div>
 
           <!-- Call Action Controls -->
@@ -536,8 +725,11 @@
     let clientData = null;
     let isCallActive = false;
     let recognition = null;
+    let isRecognitionRunning = false;
     let isSpeaking = false;
+    let currentStep = 1;
     let latestAppointment = null;
+    let recognitionRestartTimer = null;
 
     // Web Audio API Synthesizer for Phone Ring and Success Chimes
     const AudioFX = {
@@ -546,6 +738,9 @@
         if (!this.ctx) {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           if (AudioContext) this.ctx = new AudioContext();
+        }
+        if (this.ctx && this.ctx.state === 'suspended') {
+          this.ctx.resume();
         }
       },
       playRing() {
@@ -561,8 +756,8 @@
           osc2.frequency.value = 480;
 
           gain.gain.setValueAtTime(0.06, now);
-          gain.gain.setValueAtTime(0.06, now + 1.2);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+          gain.gain.setValueAtTime(0.06, now + 1.1);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.3);
 
           osc1.connect(gain);
           osc2.connect(gain);
@@ -570,8 +765,8 @@
 
           osc1.start(now);
           osc2.start(now);
-          osc1.stop(now + 1.4);
-          osc2.stop(now + 1.4);
+          osc1.stop(now + 1.3);
+          osc2.stop(now + 1.3);
         } catch(e) { console.log(e); }
       },
       playSuccessChime() {
@@ -722,6 +917,69 @@
       window.open(waUrl, '_blank');
     }
 
+    // UI Helper: Update Mic Status Badge
+    function updateMicBadge(state, text) {
+      const pill = document.getElementById('micStatusPill');
+      const dot = document.getElementById('micDot');
+      const label = document.getElementById('micStatusLabel');
+      if (!label || !dot) return;
+
+      label.textContent = text;
+      dot.className = 'mic-dot ' + (
+        state === 'listening' ? 'listening' :
+        state === 'speaking' ? 'speaking' :
+        state === 'denied' ? 'denied' : ''
+      );
+    }
+
+    // UI Helper: Step Progress Tracker
+    function setStep(stepNum) {
+      currentStep = stepNum;
+      for (let s = 1; s <= 4; s++) {
+        const pill = document.getElementById(`cStep${s}`);
+        if (!pill) continue;
+        pill.classList.remove('active', 'completed');
+        if (s < stepNum) {
+          pill.classList.add('completed');
+        } else if (s === stepNum) {
+          pill.classList.add('active');
+        }
+      }
+      const counter = document.getElementById('guideStepCounter');
+      if (counter) counter.textContent = `Step ${stepNum} of 4`;
+    }
+
+    // Clean text of markdown and emojis for speech synthesis
+    function cleanSpeechText(text) {
+      if (!text) return "";
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '$1')
+        .replace(/\*(.*?)\*/g, '$1')
+        .replace(/#{1,6}\s?/g, '')
+        .replace(/\[.*?\]\(.*?\)/g, '')
+        .replace(/[\u{1F300}-\u{1F9FF}]/gu, '')
+        .replace(/[\u{2600}-\u{26FF}]/gu, '')
+        .replace(/[\u{2700}-\u{27BF}]/gu, '')
+        .replace(/•/g, '')
+        .replace(/\n+/g, ' ')
+        .trim();
+    }
+
+    // Schedule Safe Recognition Restart (Mobile Keep-Alive)
+    function scheduleRecognitionRestart(delay = 200) {
+      if (recognitionRestartTimer) clearTimeout(recognitionRestartTimer);
+      if (!recognition || !isCallActive || isSpeaking || isRecognitionRunning) return;
+
+      recognitionRestartTimer = setTimeout(() => {
+        if (!isCallActive || isSpeaking || isRecognitionRunning) return;
+        try {
+          recognition.start();
+        } catch(e) {
+          // May already be active
+        }
+      }, delay);
+    }
+
     async function initVoiceLab() {
       try {
         const res = await fetch(`/api/clients/${clientId}`);
@@ -732,13 +990,20 @@
         document.getElementById('callerAvatar').textContent = clientData.name.charAt(0);
         document.title = `${clientData.name} — AI Voice Calling Receptionist`;
 
-        // Setup Web Speech Recognition if available
+        // Initialize Web Speech Recognition with mobile-resilient continuous=false
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (SpeechRecognition) {
           recognition = new SpeechRecognition();
-          recognition.continuous = true;
+          recognition.continuous = false; // Must be false for mobile Chrome & Safari keep-alive stability
           recognition.interimResults = false;
           recognition.lang = clientData.country === 'Pakistan' ? 'ur-PK' : 'en-US';
+
+          recognition.onstart = () => {
+            isRecognitionRunning = true;
+            if (!isSpeaking) {
+              updateMicBadge('listening', "🎙️ Listening... Speak naturally");
+            }
+          };
 
           recognition.onresult = (event) => {
             const transcript = event.results[event.results.length - 1][0].transcript.trim();
@@ -748,9 +1013,32 @@
           };
 
           recognition.onerror = (e) => {
-            console.log("Speech recognition error:", e.error);
+            console.warn("Speech recognition error:", e.error);
+            if (e.error === 'not-allowed') {
+              updateMicBadge('denied', "⚠️ Mic Blocked — Tap options below");
+            } else if (e.error === 'no-speech') {
+              if (isCallActive && !isSpeaking) {
+                scheduleRecognitionRestart(300);
+              }
+            } else if (isCallActive && !isSpeaking && e.error !== 'aborted') {
+              scheduleRecognitionRestart(500);
+            }
           };
+
+          recognition.onend = () => {
+            isRecognitionRunning = false;
+            if (isCallActive && !isSpeaking) {
+              scheduleRecognitionRestart(200);
+            } else if (!isCallActive) {
+              updateMicBadge('idle', "Tap Call Button to Talk");
+            }
+          };
+        } else {
+          updateMicBadge('unsupported', "💡 Tap guided options below to speak");
         }
+
+        // Render Step 1 guided prompts initially
+        renderVoiceChips(null, 1);
 
         // Check if viewing in client demo mode
         const isClientView = urlParams.get('view') === 'client';
@@ -819,51 +1107,174 @@
       launchCelebration();
     }
 
+    // Direct 1-Tap Chip Handler (Starts call automatically if not yet active)
+    function handleChipClick(phrase) {
+      if (phrase === 'Send Alert') {
+        sendLivePhoneAlert();
+        return;
+      }
+
+      if (!isCallActive) {
+        startCall();
+        setTimeout(() => {
+          processCallerSpeech(phrase);
+        }, 1400);
+      } else {
+        processCallerSpeech(phrase);
+      }
+    }
+
+    // Render Dynamic Voice Guidance Chips inside Phone Mockup
+    function renderVoiceChips(buttons, step) {
+      const container = document.getElementById('voiceChipsGrid');
+      if (!container) return;
+
+      // If backend returned custom buttons, render them
+      if (buttons && buttons.length > 0) {
+        container.innerHTML = buttons.map(b => {
+          let icon = '👉';
+          if (b.label.includes('Book') || b.label.includes('Slot') || b.label.includes('Add')) icon = '📅';
+          if (b.label.includes('Emergency') || b.label.includes('Pain')) icon = '🚨';
+          if (b.label.includes('Pricing') || b.label.includes('Offers')) icon = '💰';
+          if (b.label.includes('Staff') || b.label.includes('Doctor')) icon = '👨‍⚕️';
+          if (b.label.includes('Confirm') || b.label.includes('David') || b.label.includes('Quick')) icon = '👤';
+          if (b.label.includes('WhatsApp') || b.label.includes('Alert')) icon = '📲';
+
+          return `
+            <button class="voice-chip-btn" onclick="handleChipClick('${b.text.replace(/'/g, "\\'")}')">
+              <span>${icon}</span> ${b.label}
+            </button>
+          `;
+        }).join('');
+        return;
+      }
+
+      // Default contextual fallbacks by step
+      if (step === 2) {
+        container.innerHTML = `
+          <button class="voice-chip-btn" onclick="handleChipClick('This Friday at 2:00 PM works for me')">
+            <span>📅</span> "Friday at 2:00 PM works"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('Tomorrow morning at 10:00 AM works')">
+            <span>📅</span> "Tomorrow at 10:00 AM"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('Next Monday afternoon at 11:30 AM')">
+            <span>📅</span> "Monday at 11:30 AM"
+          </button>
+        `;
+      } else if (step === 3) {
+        container.innerHTML = `
+          <button class="voice-chip-btn" onclick="handleChipClick('My name is David Mitchell, phone number is 512-555-0199')">
+            <span>👤</span> "Confirm for David Mitchell (512-555-0199)"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('My name is Sarah Jenkins, phone 415-555-8392')">
+            <span>👤</span> "Confirm for Sarah Jenkins (415-555-8392)"
+          </button>
+        `;
+      } else if (step === 4) {
+        container.innerHTML = `
+          <button class="voice-chip-btn" onclick="sendLivePhoneAlert()">
+            <span>📲</span> "Send Booking Alert to My Real Phone"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('I would like to book another appointment')">
+            <span>🔄</span> "Book Another Appointment"
+          </button>
+        `;
+      } else {
+        // Step 1 Welcome Options
+        container.innerHTML = `
+          <button class="voice-chip-btn" onclick="handleChipClick('I would like to book an appointment')">
+            <span>📅</span> 1. "I'd like to book an appointment"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('I have severe emergency tooth pain and need relief')">
+            <span>🚨</span> 2. "Urgent tooth pain / Emergency relief"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('What are your checkup prices and insurance plans?')">
+            <span>💰</span> 3. "Check pricing & insurance plans"
+          </button>
+          <button class="voice-chip-btn" onclick="handleChipClick('Can I speak with doctor or clinic front desk?')">
+            <span>👨‍⚕️</span> 4. "Speak with clinic staff"
+          </button>
+        `;
+      }
+    }
+
+    // Call Initiator: User Touch Event activates Audio Context and Mic
     function startCall() {
+      if (isCallActive) return;
       isCallActive = true;
+
+      // 1. Synchronously Unlock Audio on iOS Safari and Android Chrome
+      AudioFX.init();
+      AudioFX.playRing();
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        // Prime synthesis context synchronously on user gesture
+        const prime = new SpeechSynthesisUtterance(' ');
+        prime.volume = 0.01;
+        window.speechSynthesis.speak(prime);
+      }
+
+      // 2. Request mic permission explicitly on Android / iOS
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ audio: true })
+          .then(stream => {
+            stream.getTracks().forEach(t => t.stop());
+            updateMicBadge('ready', "● Mic Connected");
+          })
+          .catch(err => {
+            console.warn("User media audio prompt:", err);
+            updateMicBadge('denied', "⚠️ Mic Blocked — Tap options below");
+          });
+      }
+
+      // 3. Update Call Controls
       document.getElementById('btnStartCall').style.display = 'none';
       document.getElementById('btnEndCall').style.display = 'flex';
       document.getElementById('callStatusText').textContent = "● Calling...";
       document.getElementById('callStatusText').style.color = "#38bdf8";
+      updateMicBadge('connecting', "● Connecting Call...");
+      setStep(1);
 
-      // Play telephone ringing sound
-      AudioFX.playRing();
-
+      // 4. Ring delay then connect
       setTimeout(() => {
         if (!isCallActive) return;
         document.getElementById('callStatusText').textContent = "● Connected (00:01)";
         document.getElementById('callStatusText').style.color = "#10b981";
 
         const welcomeText = clientData.country === 'Pakistan'
-          ? `Assalam-o-Alaikum! ${clientData.name} mein call karne ka shukriya. Main aapki AI Assistant hoon, main aapki kis tarah madad kar sakti hoon?`
+          ? `Assalam-o-Alaikum! ${clientData.name} mein call karne ka shukriya. Main aapki 24/7 AI Receptionist hoon. Main aapki appointment ya kisi sawal mein kis tarah madad kar sakti hoon?`
           : `Thank you for calling ${clientData.name}. I am your 24/7 AI receptionist. How may I assist with your appointment or questions today?`;
 
         speakAloud(welcomeText);
-
-        // Start listening to microphone
-        if (recognition) {
-          try { recognition.start(); } catch(e){}
-        }
-      }, 1500);
+      }, 1200);
     }
 
     function endCall() {
       isCallActive = false;
+      isSpeaking = false;
+      if (recognitionRestartTimer) clearTimeout(recognitionRestartTimer);
+
       document.getElementById('btnStartCall').style.display = 'flex';
       document.getElementById('btnEndCall').style.display = 'none';
       document.getElementById('callStatusText').textContent = "Call Ended";
       document.getElementById('callStatusText').style.color = "var(--text-muted)";
       document.getElementById('waveformBox').classList.remove('wave-active');
+      updateMicBadge('idle', "Tap Call Button to Talk");
 
       if (recognition) {
-        try { recognition.stop(); } catch(e){}
+        try { recognition.abort(); isRecognitionRunning = false; } catch(e){}
       }
-      window.speechSynthesis.cancel();
-      appendSubtitle("System", "Call ended. Lead data saved to Practice CRM.");
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      appendSubtitle("System", "Call ended. Lead data synced to Practice Calendar & CRM.");
     }
 
     async function processCallerSpeech(userText) {
       appendSubtitle("You (Caller)", userText);
+      updateMicBadge('thinking', "⚡ Processing your request...");
       document.getElementById('waveformBox').classList.add('wave-active');
 
       try {
@@ -878,6 +1289,16 @@
         });
 
         const data = await res.json();
+
+        // Advance step tracker
+        if (data.step) {
+          setStep(data.step);
+        }
+
+        // Render step-by-step guided prompt chips
+        renderVoiceChips(data.buttons, data.step);
+
+        // Speak AI reply aloud
         speakAloud(data.replyText);
 
         if (data.leadCaptured) {
@@ -887,29 +1308,60 @@
           showAppointmentConfirmed(data.appointment);
         }
       } catch (e) {
-        speakAloud("I apologize, could you please repeat that?");
+        console.error("Speech Process Error:", e);
+        speakAloud("I apologize, I didn't catch that clearly. Could you please select an option or repeat that?");
       }
     }
 
+    // High-Fidelity Mobile-Resilient Voice Speech Synthesis
     function speakAloud(text) {
       appendSubtitle(clientData?.name || "AI Receptionist", text);
       isSpeaking = true;
       document.getElementById('waveformBox').classList.add('wave-active');
+      updateMicBadge('speaking', "🔊 AI Receptionist Speaking...");
+
+      // Temporarily halt mic recognition to avoid acoustic echo feedback loop
+      if (recognition && isRecognitionRunning) {
+        try { recognition.abort(); isRecognitionRunning = false; } catch(e){}
+      }
 
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
+        const cleanText = cleanSpeechText(text);
+        const utterance = new SpeechSynthesisUtterance(cleanText);
+        window.currentUtterance = utterance; // Prevent iOS garbage collection bug
+
         utterance.rate = 1.0;
         utterance.pitch = 1.0;
+        if (clientData && clientData.country === 'Pakistan') {
+          utterance.lang = 'ur-PK';
+        } else {
+          utterance.lang = 'en-US';
+        }
 
-        // Try to pick a natural voice
+        // Voice selection
         const voices = window.speechSynthesis.getVoices();
-        const preferredVoice = voices.find(v => v.lang.includes('en-GB') || v.lang.includes('en-US') || v.name.includes('Natural'));
+        const preferredVoice = voices.find(v => 
+          (v.lang.includes('en-GB') || v.lang.includes('en-US')) && 
+          !v.name.includes('Google') || 
+          v.name.includes('Natural')
+        );
         if (preferredVoice) utterance.voice = preferredVoice;
 
         utterance.onend = () => {
           isSpeaking = false;
           document.getElementById('waveformBox').classList.remove('wave-active');
+          if (isCallActive) {
+            updateMicBadge('listening', "🎙️ Listening... Speak naturally");
+            scheduleRecognitionRestart(200);
+          }
+        };
+
+        utterance.onerror = (err) => {
+          console.warn("Speech synthesis error:", err);
+          isSpeaking = false;
+          document.getElementById('waveformBox').classList.remove('wave-active');
+          if (isCallActive) scheduleRecognitionRestart(200);
         };
 
         window.speechSynthesis.speak(utterance);
@@ -917,7 +1369,8 @@
         setTimeout(() => {
           isSpeaking = false;
           document.getElementById('waveformBox').classList.remove('wave-active');
-        }, 3000);
+          if (isCallActive) scheduleRecognitionRestart(200);
+        }, 2500);
       }
     }
 
@@ -931,29 +1384,14 @@
     }
 
     function simulateSpeech(phrase) {
-      if (!isCallActive) {
-        startCall();
-        setTimeout(() => {
-          processCallerSpeech(phrase);
-        }, 2200);
-      } else {
-        processCallerSpeech(phrase);
-      }
+      handleChipClick(phrase);
     }
 
     function sendManualSpeech() {
       const text = document.getElementById('manualVoiceInput').value.trim();
       if (!text) return;
-      if (!isCallActive) {
-        startCall();
-        setTimeout(() => {
-          document.getElementById('manualVoiceInput').value = '';
-          processCallerSpeech(text);
-        }, 2200);
-      } else {
-        document.getElementById('manualVoiceInput').value = '';
-        processCallerSpeech(text);
-      }
+      document.getElementById('manualVoiceInput').value = '';
+      handleChipClick(text);
     }
 
     function updateVoiceLead(lead) {
@@ -972,7 +1410,7 @@
     function copyVoicePitchLink() {
       const link = window.location.href;
       navigator.clipboard.writeText(link);
-      alert(`🔗 Shareable Voice Calling Agent Link Copied!\n\n${link}\n\nSend this to a client so they can literally call and speak with the AI Receptionist!`);
+      alert(`🔗 Shareable Voice Calling Agent Link Copied!\n\n${link}\n\nSend this to a client so they can call and speak with the AI Receptionist!`);
     }
 
     document.getElementById('manualVoiceInput').addEventListener('keypress', (e) => {

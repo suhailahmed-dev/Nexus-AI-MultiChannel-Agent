@@ -243,8 +243,8 @@ async function handleCreateClient(e) {
 function openOutreachModal(clientId) {
   const client = currentClientsCache.find(c => c.id === clientId) || { name: "Your Clinic", country: "USA", id: clientId };
   const origin = window.location.origin;
-  const callDemoUrl = `${origin}/call-lab.html?client=${client.id}`;
-  const waDemoUrl = `${origin}/demo-lab.html?client=${client.id}`;
+  const callDemoUrl = `${origin}/call-lab.html?client=${client.id}&view=client`;
+  const waDemoUrl = `${origin}/demo-lab.html?client=${client.id}&view=client`;
 
   const waScript = `Hi Dr. ${client.name},
 
@@ -332,8 +332,8 @@ function getHubData() {
 
   const businessName = customName || client.name;
   const origin = window.location.origin;
-  const voiceUrl = `${origin}/call-lab.html?client=${client.id}`;
-  const waUrl = `${origin}/demo-lab.html?client=${client.id}`;
+  const voiceUrl = `${origin}/call-lab.html?client=${client.id}&view=client`;
+  const waUrl = `${origin}/demo-lab.html?client=${client.id}&view=client`;
 
   const subject = `Missed patient calls at ${businessName}? (30-sec demo inside)`;
 

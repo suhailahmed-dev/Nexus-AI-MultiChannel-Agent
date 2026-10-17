@@ -94,6 +94,78 @@
   ],
   "leads": [
     {
+      "id": "lead-1792270279157",
+      "client_id": "dental-us",
+      "customer_name": "David",
+      "customer_phone": "512-555-0199",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (This Friday at 2:00 PM)",
+      "urgency": "High",
+      "summary": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for This Friday at 2:00 PM",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "This Friday at 2:00 PM",
+        "service": "New Patient Comprehensive Smile & Dental Exam",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David",
+        "phone": "512-555-0199",
+        "timestamp": "01:51 am"
+      },
+      "created_at": "2026-10-17T20:51:19.157Z"
+    },
+    {
+      "id": "lead-1792269828676",
+      "client_id": "dental-au",
+      "customer_name": "David",
+      "customer_phone": "512-555-0199",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (Tomorrow at 10:00 AM)",
+      "urgency": "High",
+      "summary": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for Tomorrow at 10:00 AM",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "Tomorrow at 10:00 AM",
+        "service": "New Patient Comprehensive Smile & Dental Exam",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Sydney Harbourside Dental Care",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David",
+        "phone": "512-555-0199",
+        "timestamp": "01:43 am"
+      },
+      "created_at": "2026-10-17T20:43:48.676Z"
+    },
+    {
+      "id": "lead-1792269626944",
+      "client_id": "dental-us",
+      "customer_name": "David Mitchell",
+      "customer_phone": "512-555-0199",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (This Friday at 2:00 PM)",
+      "urgency": "High",
+      "summary": "My phone number is 512-555-0199, please have staff call me",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "This Friday at 2:00 PM",
+        "service": "New Patient Comprehensive Smile & Dental Exam",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David Mitchell",
+        "phone": "512-555-0199",
+        "timestamp": "01:40 am"
+      },
+      "created_at": "2026-10-17T20:40:26.944Z"
+    },
+    {
       "id": "lead-1792269477041",
       "client_id": "dental-us",
       "customer_name": "David",
@@ -974,6 +1046,118 @@
       "role": "model",
       "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Austin Premier Dental & Implants\n👤 **Patient:** David\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
       "timestamp": "2026-10-17T20:37:57.032Z"
+    },
+    {
+      "id": "msg-1792269593110-rhu5",
+      "client_id": "dental-us",
+      "session_id": "demo-session-dfddjd",
+      "role": "user",
+      "text": "4",
+      "timestamp": "2026-10-17T20:39:53.110Z"
+    },
+    {
+      "id": "msg-1792269593122-sn9b",
+      "client_id": "dental-us",
+      "session_id": "demo-session-dfddjd",
+      "role": "model",
+      "text": "👨‍⚕️ I have alerted our Clinic Coordinator at **Austin Premier Dental & Implants**. To have someone call or text you directly, please confirm your phone number below:",
+      "timestamp": "2026-10-17T20:39:53.122Z"
+    },
+    {
+      "id": "msg-1792269626916-9kyr",
+      "client_id": "dental-us",
+      "session_id": "demo-session-dfddjd",
+      "role": "user",
+      "text": "My phone number is 512-555-0199, please have staff call me",
+      "timestamp": "2026-10-17T20:40:26.917Z"
+    },
+    {
+      "id": "msg-1792269626931-5baq",
+      "client_id": "dental-us",
+      "session_id": "demo-session-dfddjd",
+      "role": "model",
+      "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Austin Premier Dental & Implants\n👤 **Patient:** David Mitchell\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
+      "timestamp": "2026-10-17T20:40:26.932Z"
+    },
+    {
+      "id": "msg-1792269815410-qcu6",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "user",
+      "text": "3",
+      "timestamp": "2026-10-17T20:43:35.410Z"
+    },
+    {
+      "id": "msg-1792269815427-q20l",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "model",
+      "text": "💰 **Transparent Pricing & Current Offers at Sydney Harbourside Dental Care:**\n\n• New Patient Exam & Digital X-Rays: $89 (Regular $250)\n• Professional Laser Whitening: $299 Special\n• Invisalign Clear Braces: From $3,200 ($99/mo 0% interest)\n• We accept Delta, Cigna, MetLife, Aetna & all major PPOs!\n\n💡 *To lock in these promotional rates with zero waiting time, appointments are prioritized. Which slot works best for your visit?*",
+      "timestamp": "2026-10-17T20:43:35.427Z"
+    },
+    {
+      "id": "msg-1792269821021-avg4",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "user",
+      "text": "Tomorrow at 10:00 AM",
+      "timestamp": "2026-10-17T20:43:41.021Z"
+    },
+    {
+      "id": "msg-1792269821031-j41n",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "model",
+      "text": "🕒 **Slot Selected: Tomorrow at 10:00 AM**\n\nTo lock this reservation directly into our clinic calendar and dispatch your SMS confirmation code, please reply with your **Name & Phone Number**:\n\n*(Or tap 1-Click Quick Confirm below)*",
+      "timestamp": "2026-10-17T20:43:41.031Z"
+    },
+    {
+      "id": "msg-1792269828647-m3ow",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "user",
+      "text": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for Tomorrow at 10:00 AM",
+      "timestamp": "2026-10-17T20:43:48.647Z"
+    },
+    {
+      "id": "msg-1792269828665-t98g",
+      "client_id": "dental-au",
+      "session_id": "demo-session-is0kz6",
+      "role": "model",
+      "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Sydney Harbourside Dental Care\n👤 **Patient:** David\n📅 **Scheduled Slot:** Tomorrow at 10:00 AM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
+      "timestamp": "2026-10-17T20:43:48.665Z"
+    },
+    {
+      "id": "msg-1792270273009-uqys",
+      "client_id": "dental-us",
+      "session_id": "test-session-123",
+      "role": "user",
+      "text": "I want to book an appointment for Friday 2pm",
+      "timestamp": "2026-10-17T20:51:13.009Z"
+    },
+    {
+      "id": "msg-1792270273022-5e0k",
+      "client_id": "dental-us",
+      "session_id": "test-session-123",
+      "role": "model",
+      "text": "🕒 **Slot Selected: This Friday at 2:00 PM**\n\nTo lock this reservation directly into our clinic calendar and dispatch your SMS confirmation code, please reply with your **Name & Phone Number**:\n\n*(Or tap 1-Click Quick Confirm below)*",
+      "timestamp": "2026-10-17T20:51:13.022Z"
+    },
+    {
+      "id": "msg-1792270279105-pxrs",
+      "client_id": "dental-us",
+      "session_id": "test-session-123",
+      "role": "user",
+      "text": "My name is David Mitchell, phone 512-555-0199, please confirm my appointment for This Friday at 2:00 PM",
+      "timestamp": "2026-10-17T20:51:19.105Z"
+    },
+    {
+      "id": "msg-1792270279145-3b15",
+      "client_id": "dental-us",
+      "session_id": "test-session-123",
+      "role": "model",
+      "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Austin Premier Dental & Implants\n👤 **Patient:** David\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
+      "timestamp": "2026-10-17T20:51:19.145Z"
     }
   ],
   "settings": {
