@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WhatsApp AI Agent Simulator — Live Client Demo</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <div class="brand">
+      <a href="/" style="text-decoration:none; display:flex; align-items:center; gap:12px; color:#fff;">
+        <div class="brand-logo">N</div>
+        <div class="brand-text">
+          <h1>LIVE DEMO LAB</h1>
+          <p id="demoClientMeta">WhatsApp Sales Agent Simulation</p>
+        </div>
+      </a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="copyShareablePitchLink()">
+        🔗 Copy Shareable Client Pitch Link
+      </button>
+      <a href="/" class="btn btn-outline">← Back to Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="demo-viewport">
+
+      <!-- Smartphone Mockup -->
+      <div class="phone-mockup">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          
+          <!-- WhatsApp Header -->
+          <div class="phone-header">
+            <div class="phone-avatar" id="phoneAvatar">Z</div>
+            <div style="flex:1;">
+              <div style="font-weight:700; font-size:15px; display:flex; align-items:center; gap:4px;">
+                <span id="phoneClientName">Zahra Luxury Pret</span>
+                <span style="color:#25D366; font-size:14px;" title="Official Business Account">✓</span>
+              </div>
+              <div style="font-size:11px; opacity:0.85;">24/7 Verified AI Business Assistant</div>
+            </div>
+          </div>
+
+          <!-- Chat Messages Body -->
+          <div class="phone-chat-body" id="phoneChatBody">
+            <div class="phone-bubble model" id="welcomeMsg">
+              Assalam-o-Alaikum! Welcome! How can our AI assistant help you with our catalog, prices, or orders today?
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <div class="phone-input-bar">
+            <input type="text" id="phoneInput" class="form-control" style="border-radius:24px; padding:10px 16px; background:#fff; color:#000;" placeholder="Message (Urdu, Roman Urdu, English)..." />
+            <button class="btn btn-primary" id="phoneSendBtn" style="border-radius:50%; width:40px; height:40px; padding:0; display:flex; align-items:center; justify-content:center;">
+              ➤
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Real-Time AI Lead Inspector Panel -->
+      <div class="inspector-card">
+        <h3>🔍 Live AI Lead Extraction & Handoff Inspector</h3>
+        <p>
+          This panel visualizes what the AI Agent extracts behind the scenes in real-time. Notice how customer contact details, order intent, and urgent requests are instantly structured for the business owner.
+        </p>
+
+        <!-- Quick One-Click Simulation Buttons -->
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Quick Test Prompts (Click to test):</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Lawn suit ka price kya he aur COD available he?')">👗 Roman Urdu Price Check</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Mera naam Ali he, phone 0300-9876543, mujhe 2 medium suits order karne hain')">📦 Provide Order & Phone</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Mujhe urgently manager se baat karni he fraud ho gaya he')">🚨 Human Manager Handoff</button>
+          </div>
+        </div>
+
+        <div class="lead-box">
+          <h4>📊 Extracted Lead Intelligence</h4>
+          <div class="lead-row">
+            <span>Customer Name:</span>
+            <strong id="inspectName" style="color:#fff;">Waiting for input...</strong>
+          </div>
+          <div class="lead-row">
+            <span>Phone / WhatsApp:</span>
+            <strong id="inspectPhone" style="color:var(--accent-wa);">Waiting for input...</strong>
+          </div>
+          <div class="lead-row">
+            <span>Detected Intent:</span>
+            <span class="badge badge-trial" id="inspectIntent">Inquiry</span>
+          </div>
+          <div class="lead-row">
+            <span>Urgency Level:</span>
+            <span id="inspectUrgency" style="font-weight:700;">Normal</span>
+          </div>
+          <div class="lead-row">
+            <span>Human Takeover Needed:</span>
+            <span id="inspectHuman" style="color:var(--text-muted);">No</span>
+          </div>
+          <div class="lead-row" style="border:none;">
+            <span>Latest Summary:</span>
+            <span id="inspectSummary" style="color:#d1d5db; font-style:italic; max-width:260px; text-align:right;">-</span>
+          </div>
+        </div>
+
+        <div style="margin-top:20px; padding:16px; background:var(--bg-card); border-radius:10px; font-size:13px; color:var(--text-muted); line-height:1.5;">
+          💡 <strong>Pitch Secret:</strong> When demonstrating this to a business owner, send a message containing their product name and your phone number. When they see their brand replying fluently and their phone number showing up under Extracted Leads, the deal is 90% closed!
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const clientId = urlParams.get('client') || 'fashion-pk';
+    const sessionId = 'demo-session-' + Math.random().toString(36).substr(2, 6);
+
+    let clientData = null;
+
+    async function initDemo() {
+      try {
+        const res = await fetch(`/api/clients/${clientId}`);
+        clientData = await res.json();
+
+        document.getElementById('phoneClientName').textContent = clientData.name;
+        document.getElementById('demoClientMeta').textContent = `${clientData.name} (${clientData.country})`;
+        document.getElementById('phoneAvatar').textContent = clientData.name.charAt(0);
+        document.title = `${clientData.name} — AI WhatsApp Agent`;
+
+        const isClientView = urlParams.get('view') === 'client';
+        if (isClientView) {
+          const navActions = document.querySelector('.nav-actions');
+          if (navActions) {
+            navActions.innerHTML = `
+              <a href="https://api.whatsapp.com/send?text=Hi%20Suhail,%20I%20tested%20the%20AI%20WhatsApp%20demo%20and%20want%20to%20activate%20our%207-Day%20Free%20Pilot." target="_blank" class="btn" style="background:#25D366; color:#fff; font-weight:700; text-decoration:none; padding:8px 16px; border-radius:8px;">
+                💬 Activate 7-Day Free Pilot ($0 Setup)
+              </a>
+            `;
+          }
+          const brandLink = document.querySelector('.brand a');
+          if (brandLink) {
+            brandLink.removeAttribute('href');
+            brandLink.style.cursor = 'default';
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    async function handleSend() {
+      const input = document.getElementById('phoneInput');
+      const text = input.value.trim();
+      if (!text) return;
+
+      appendBubble('user', text);
+      input.value = '';
+
+      const loader = appendBubble('model', 'Typing...');
+
+      try {
+        const res = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientId: clientId,
+            sessionId: sessionId,
+            message: text
+          })
+        });
+
+        const data = await res.json();
+        loader.textContent = data.reply;
+
+        if (data.leadCaptured) {
+          updateInspector(data.leadCaptured);
+        }
+      } catch (err) {
+        loader.textContent = "Error: Unable to connect to agent.";
+      }
+    }
+
+    function appendBubble(role, text) {
+      const chat = document.getElementById('phoneChatBody');
+      const bubble = document.createElement('div');
+      bubble.className = `phone-bubble ${role}`;
+      bubble.textContent = text;
+      chat.appendChild(bubble);
+      chat.scrollTop = chat.scrollHeight;
+      return bubble;
+    }
+
+    function sendQuickPrompt(text) {
+      document.getElementById('phoneInput').value = text;
+      handleSend();
+    }
+
+    function updateInspector(lead) {
+      document.getElementById('inspectName').textContent = lead.customer_name;
+      document.getElementById('inspectPhone').textContent = lead.customer_phone;
+      document.getElementById('inspectIntent').textContent = lead.intent;
+      document.getElementById('inspectUrgency').textContent = lead.urgency;
+      document.getElementById('inspectSummary').textContent = lead.summary;
+
+      if (lead.requires_human) {
+        document.getElementById('inspectHuman').innerHTML = `<span style="color:#f43f5e; font-weight:800;">YES (ALERT TRIGGERED)</span>`;
+      } else {
+        document.getElementById('inspectHuman').innerHTML = `<span style="color:#10b981;">No (AI Handling)</span>`;
+      }
+    }
+
+    function copyShareablePitchLink() {
+      const link = window.location.href;
+      navigator.clipboard.writeText(link);
+      alert(`🔗 Shareable Client Demo Link Copied!\n\n${link}\n\nYou can send this link directly to the business owner on WhatsApp or Email so they can test their custom AI Agent!`);
+    }
+
+    document.getElementById('phoneSendBtn').addEventListener('click', handleSend);
+    document.getElementById('phoneInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') handleSend();
+    });
+
+    initDemo();
+  </script>
+</body>
+</html>

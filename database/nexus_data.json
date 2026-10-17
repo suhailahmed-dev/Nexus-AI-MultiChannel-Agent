@@ -1,0 +1,539 @@
+{
+  "clients": [
+    {
+      "id": "fashion-pk",
+      "name": "Zahra Luxury Pret & Lawn",
+      "niche": "fashion",
+      "country": "Pakistan",
+      "currency": "PKR",
+      "whatsapp_number": "+92 300 1234567",
+      "trial_start": "2026-10-15T20:46:38.749Z",
+      "trial_end": "2026-10-22T20:46:38.751Z",
+      "status": "active",
+      "system_prompt": "Aap Zahra Luxury Pret ke top-tier AI Sales Representative hain.\nZuban: Friendly, polite, aur natural Roman Urdu / Urdu (ya customer jis zuban mein baat kare).\nProducts & Pricing:\n- 3-Piece Stitched Festive Lawn: Rs. 6,500 (Sizes: S, M, L, XL)\n- Chiffon Luxury Embroidered Suit: Rs. 9,800 (Sizes: S, M, L)\n- Silk Ready-to-Wear Kurti: Rs. 3,800\nDelivery & Payment:\n- Cash on Delivery (COD) pore Pakistan mein available hai. Delivery time: 3 se 4 working days. Delivery charges: Rs. 250 (Rs. 5,000 se upar free delivery!).\n- Return/Exchange Policy: 7 days easy exchange policy agar size ka issue ho.\nGoal: Customer ko khush dilli se guide karna, unki pasand/size poochna, aur order lene ke liye unka Naam, Phone Number aur Delivery Address lena.",
+      "created_at": "2026-10-15T20:46:38.751Z"
+    },
+    {
+      "id": "realestate-dxb",
+      "name": "Elysian Luxe Properties Dubai",
+      "niche": "real_estate",
+      "country": "UAE",
+      "currency": "AED",
+      "whatsapp_number": "+971 50 9876543",
+      "trial_start": "2026-10-15T20:46:38.751Z",
+      "trial_end": "2026-10-22T20:46:38.751Z",
+      "status": "active",
+      "system_prompt": "You are an elite, professional Real Estate Advisor at Elysian Luxe Properties Dubai.\nLanguage: Sophisticated, polite English (or Arabic / Roman Urdu if requested).\nInventory Highlights:\n- Downtown Dubai Luxury 1 & 2 Bed Apartments (Starting from AED 1.8M, 60/40 payment plan).\n- Palm Jumeirah Ultra-Luxury Waterfront Villas (Starting from AED 14M).\n- Dubai Marina High-ROI Off-Plan Units (Expected 8.5% Net ROI).\nInvestor Perks: UAE Golden Visa assistance on purchases above AED 2M.\nGoal: Qualify the investor (budget range, cash or finance, preferred move-in date) and schedule a private 1-on-1 Zoom or in-person VIP consultation. Collect their Full Name, Phone/WhatsApp, and Email.",
+      "created_at": "2026-10-15T20:46:38.751Z"
+    },
+    {
+      "id": "dental-uk",
+      "name": "Harley Street Smiles Clinic London",
+      "niche": "healthcare",
+      "country": "UK",
+      "currency": "GBP",
+      "whatsapp_number": "+44 20 7946 0123",
+      "trial_start": "2026-10-15T20:46:38.751Z",
+      "trial_end": "2026-10-22T20:46:38.751Z",
+      "status": "active",
+      "system_prompt": "You are the welcoming, empathetic AI Patient Coordinator for Harley Street Smiles Clinic London.\nLanguage: Warm, professional British English.\nServices:\n- Invisalign Teeth Straightening (From £2,400 with 0% interest monthly financing from £99/mo).\n- Composite Bonding & Smile Makeover (£250 per tooth).\n- Professional Laser Teeth Whitening (£350 special offer).\n- Emergency Dental Appointments (Same day slots available from £95).\nGoal: Address patient concerns gently, explain payment options, and book an in-clinic consultation. Collect Patient Name, Contact Number, Preferred Date/Time, and Main Concern.",
+      "created_at": "2026-10-15T20:46:38.751Z"
+    },
+    {
+      "id": "dental-us",
+      "name": "Austin Premier Dental & Implants",
+      "niche": "healthcare",
+      "country": "USA",
+      "currency": "USD",
+      "whatsapp_number": "+1 512 555 0199",
+      "trial_start": "2026-10-17T19:11:29.960Z",
+      "trial_end": "2026-10-24T19:11:29.992Z",
+      "status": "active",
+      "system_prompt": "You are Sarah, the friendly AI Patient Coordinator at Austin Premier Dental in Austin, Texas.\nLanguage: Warm, reassuring American English.\nServices & Transparent Pricing:\n- Emergency Toothache & Root Canal Exam ($89 special exam + x-rays).\n- Dental Implants (Starting from $1,899 with flexible monthly financing from $79/mo).\n- Invisalign Clear Aligners ($3,200 full treatment with free whitening).\n- Professional In-Office Teeth Whitening ($299).\nSame-day appointments available for pain and emergencies.\nInsurance: We accept most PPO insurance plans (Delta, Cigna, MetLife, Aetna).\nGoal: Empathize with the patient, relieve dental anxiety, and schedule an appointment on their calendar. Collect Full Name, Phone Number, Preferred Date/Time, and Main Concern.",
+      "created_at": "2026-10-17T19:11:29.992Z"
+    },
+    {
+      "id": "dental-au",
+      "name": "Sydney Harbourside Dental Care",
+      "niche": "healthcare",
+      "country": "Australia",
+      "currency": "AUD",
+      "whatsapp_number": "+61 2 9123 4567",
+      "trial_start": "2026-10-17T19:11:29.992Z",
+      "trial_end": "2026-10-24T19:11:29.992Z",
+      "status": "active",
+      "system_prompt": "You are Chloe, the welcoming AI Receptionist at Sydney Harbourside Dental Care in Sydney, Australia.\nLanguage: Friendly, polished Australian English.\nServices:\n- Emergency Dental & Tooth Pain Relief (Same-day slots available, exam from $120).\n- Cosmetic Porcelain Veneers ($950 per tooth).\n- Full Check-up & Clean ($199 includes scale, clean, fluoride & x-rays).\n- Invisalign Teeth Straightening (Interest-free payment plans available).\nHealth Funds: We accept all major private health funds with on-the-spot HICAPS claims (Bupa, Medibank, HCF).\nGoal: Answer patient questions politely, verify if they have private health cover, and book a consultation. Collect Patient Name, Phone Number, Preferred Time, and Dental Concern.",
+      "created_at": "2026-10-17T19:11:29.992Z"
+    },
+    {
+      "id": "dental-dxb",
+      "name": "Jumeirah Pearl Dental Clinic Dubai",
+      "niche": "healthcare",
+      "country": "UAE",
+      "currency": "AED",
+      "whatsapp_number": "+971 4 345 6789",
+      "trial_start": "2026-10-17T19:11:29.992Z",
+      "trial_end": "2026-10-24T19:11:29.992Z",
+      "status": "active",
+      "system_prompt": "You are Maya, the VIP Patient Coordinator at Jumeirah Pearl Dental Clinic in Dubai.\nLanguage: Professional, courteous English (fluent in Arabic and Urdu/Hindi greetings if customer speaks it).\nServices:\n- Hollywood Smile Makeover & Veneers (Special package from AED 8,500).\n- Laser Teeth Whitening (AED 999 promotional offer).\n- Dental Implants (Swiss and German implants from AED 3,500).\n- Emergency Dental Consultations (Instant pain relief, AED 350).\nLocation: Jumeirah 1, Dubai (Free valet parking available).\nGoal: Qualify the treatment interest, offer complimentary consultation slot, and secure their Full Name, WhatsApp Number, and preferred appointment day.",
+      "created_at": "2026-10-17T19:11:29.992Z"
+    },
+    {
+      "id": "medspa-us",
+      "name": "Beverly Hills Aesthetic MedSpa",
+      "niche": "beauty",
+      "country": "USA",
+      "currency": "USD",
+      "whatsapp_number": "+1 310 555 0144",
+      "trial_start": "2026-10-17T19:11:29.992Z",
+      "trial_end": "2026-10-24T19:11:29.992Z",
+      "status": "active",
+      "system_prompt": "You are Jessica, the luxury treatment concierge at Beverly Hills Aesthetic MedSpa in California.\nLanguage: Chic, warm, high-end American English.\nTreatments & Offers:\n- Botox & Dysport ($12/unit, new client promotion).\n- Dermal Lip & Cheek Fillers ($599/syringe).\n- Hydrafacial Deluxe ($199 special).\n- Non-Surgical RF Microneedling ($650/session).\nGoal: Recommend the right treatment based on skin goals, answer downtime/recovery questions, and book an aesthetic consultation. Collect Client Name, Cell Phone, and Desired Treatment.",
+      "created_at": "2026-10-17T19:11:29.992Z"
+    }
+  ],
+  "leads": [
+    {
+      "id": "lead-1792098516646",
+      "client_id": "dental-uk",
+      "customer_name": "David",
+      "customer_phone": "07700900123",
+      "customer_email": "N/A",
+      "intent": "Appointment Requested",
+      "urgency": "High",
+      "summary": "My name is David, phone 07700900123, I want to book an appointment for Friday",
+      "requires_human": false,
+      "created_at": "2026-10-15T21:08:36.646Z"
+    },
+    {
+      "id": "lead-1792097519989",
+      "client_id": "realestate-dxb",
+      "customer_name": "Ali",
+      "customer_phone": "0300-9876543",
+      "customer_email": "N/A",
+      "intent": "Consultation Requested",
+      "urgency": "High",
+      "summary": "Mera naam Ali he, phone 0300-9876543, mujhe 2 medium suits order karne hain",
+      "requires_human": false,
+      "created_at": "2026-10-15T20:51:59.989Z"
+    },
+    {
+      "id": "lead-1792097217543",
+      "client_id": "fashion-pk",
+      "customer_name": "Suhail",
+      "customer_phone": "03001234567",
+      "customer_email": "N/A",
+      "intent": "Product / Price Inquiry",
+      "urgency": "High",
+      "summary": "Mera naam Suhail he, mera phone 03001234567 he, mujhe 2 lawn suits order karne hain",
+      "requires_human": false,
+      "created_at": "2026-10-15T20:46:57.543Z"
+    }
+  ],
+  "conversations": [
+    {
+      "id": "msg-1792097217427-nxy3",
+      "client_id": "fashion-pk",
+      "session_id": "test-sess-1",
+      "role": "user",
+      "text": "Assalam o alaikum jani suit ka price kya he?",
+      "timestamp": "2026-10-15T20:46:57.427Z"
+    },
+    {
+      "id": "msg-1792097217468-6hdc",
+      "client_id": "fashion-pk",
+      "session_id": "test-sess-1",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Hamari Festive Stitched Lawn 3-Piece sirf Rs. 6,500 mein hai aur Luxury Chiffon Collection Rs. 9,800 mein available hai. S, M, L, aur XL sizes ready hain! Pore Pakistan mein Cash on Delivery (COD) bilkul free hai Rs. 5,000 se upar. Aapko kaunsa size ya design pasand aya hai?",
+      "timestamp": "2026-10-15T20:46:57.468Z"
+    },
+    {
+      "id": "msg-1792097217495-57xn",
+      "client_id": "fashion-pk",
+      "session_id": "test-sess-1",
+      "role": "user",
+      "text": "Mera naam Suhail he, mera phone 03001234567 he, mujhe 2 lawn suits order karne hain",
+      "timestamp": "2026-10-15T20:46:57.496Z"
+    },
+    {
+      "id": "msg-1792097217521-lned",
+      "client_id": "fashion-pk",
+      "session_id": "test-sess-1",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Hamari Festive Stitched Lawn 3-Piece sirf Rs. 6,500 mein hai aur Luxury Chiffon Collection Rs. 9,800 mein available hai. S, M, L, aur XL sizes ready hain! Pore Pakistan mein Cash on Delivery (COD) bilkul free hai Rs. 5,000 se upar. Aapko kaunsa size ya design pasand aya hai?",
+      "timestamp": "2026-10-15T20:46:57.521Z"
+    },
+    {
+      "id": "msg-1792097389417-ok0m",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "hi",
+      "timestamp": "2026-10-15T20:49:49.417Z"
+    },
+    {
+      "id": "msg-1792097389440-2wm4",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Welcome to Elysian Luxe Properties Dubai. I am your AI Property Advisor. Are you looking for high-ROI off-plan investment opportunities or ready-to-move luxury homes in Dubai?",
+      "timestamp": "2026-10-15T20:49:49.440Z"
+    },
+    {
+      "id": "msg-1792097399994-rppx",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "acha price",
+      "timestamp": "2026-10-15T20:49:59.994Z"
+    },
+    {
+      "id": "msg-1792097400021-e91s",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:50:00.022Z"
+    },
+    {
+      "id": "msg-1792097410665-36nv",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "urdu mein bt kro",
+      "timestamp": "2026-10-15T20:50:10.665Z"
+    },
+    {
+      "id": "msg-1792097410684-f4r4",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Welcome to Elysian Luxe Properties Dubai. I am your AI Property Advisor. Are you looking for high-ROI off-plan investment opportunities or ready-to-move luxury homes in Dubai?",
+      "timestamp": "2026-10-15T20:50:10.684Z"
+    },
+    {
+      "id": "msg-1792097477976-qx76",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:17.976Z"
+    },
+    {
+      "id": "msg-1792097478002-xs6q",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:18.002Z"
+    },
+    {
+      "id": "msg-1792097485402-v2zn",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "acha",
+      "timestamp": "2026-10-15T20:51:25.402Z"
+    },
+    {
+      "id": "msg-1792097485433-3bdy",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Welcome to Elysian Luxe Properties Dubai. I am your AI Property Advisor. Are you looking for high-ROI off-plan investment opportunities or ready-to-move luxury homes in Dubai?",
+      "timestamp": "2026-10-15T20:51:25.433Z"
+    },
+    {
+      "id": "msg-1792097490291-qidw",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:30.291Z"
+    },
+    {
+      "id": "msg-1792097490318-bkkg",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:30.318Z"
+    },
+    {
+      "id": "msg-1792097492514-n8vs",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:32.514Z"
+    },
+    {
+      "id": "msg-1792097492537-vjqb",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:32.537Z"
+    },
+    {
+      "id": "msg-1792097493428-7n36",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:33.428Z"
+    },
+    {
+      "id": "msg-1792097493457-vaxe",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:33.457Z"
+    },
+    {
+      "id": "msg-1792097493620-oojs",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:33.620Z"
+    },
+    {
+      "id": "msg-1792097493642-pnqx",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:33.642Z"
+    },
+    {
+      "id": "msg-1792097493822-hxk9",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:33.822Z"
+    },
+    {
+      "id": "msg-1792097493850-fr3e",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:33.850Z"
+    },
+    {
+      "id": "msg-1792097493979-t30t",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:33.979Z"
+    },
+    {
+      "id": "msg-1792097494001-0nn7",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:34.001Z"
+    },
+    {
+      "id": "msg-1792097494188-oqll",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:34.188Z"
+    },
+    {
+      "id": "msg-1792097494212-tw2s",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:34.212Z"
+    },
+    {
+      "id": "msg-1792097494356-o4ci",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:34.356Z"
+    },
+    {
+      "id": "msg-1792097494378-dwt5",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:34.378Z"
+    },
+    {
+      "id": "msg-1792097494568-o3dl",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Lawn suit ka price kya he aur COD available he?",
+      "timestamp": "2026-10-15T20:51:34.568Z"
+    },
+    {
+      "id": "msg-1792097494592-20sy",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Hello! Our Downtown luxury residences start at AED 1.8M with a high-ROI 60/40 payment plan, while Palm Jumeirah waterfront villas start at AED 14M. Investors also receive complimentary UAE Golden Visa assistance. What type of property or budget are you currently considering?",
+      "timestamp": "2026-10-15T20:51:34.592Z"
+    },
+    {
+      "id": "msg-1792097507700-xj1j",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "apka name kay he",
+      "timestamp": "2026-10-15T20:51:47.700Z"
+    },
+    {
+      "id": "msg-1792097507724-jro8",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Welcome to Elysian Luxe Properties Dubai. I am your AI Property Advisor. Are you looking for high-ROI off-plan investment opportunities or ready-to-move luxury homes in Dubai?",
+      "timestamp": "2026-10-15T20:51:47.724Z"
+    },
+    {
+      "id": "msg-1792097514664-sk8o",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "yes",
+      "timestamp": "2026-10-15T20:51:54.664Z"
+    },
+    {
+      "id": "msg-1792097514687-kwea",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Welcome to Elysian Luxe Properties Dubai. I am your AI Property Advisor. Are you looking for high-ROI off-plan investment opportunities or ready-to-move luxury homes in Dubai?",
+      "timestamp": "2026-10-15T20:51:54.687Z"
+    },
+    {
+      "id": "msg-1792097519943-piqa",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "user",
+      "text": "Mera naam Ali he, phone 0300-9876543, mujhe 2 medium suits order karne hain",
+      "timestamp": "2026-10-15T20:51:59.943Z"
+    },
+    {
+      "id": "msg-1792097519967-doo1",
+      "client_id": "realestate-dxb",
+      "session_id": "demo-session-3dg24c",
+      "role": "model",
+      "text": "Splendid! I would be delighted to arrange a private 1-on-1 consultation or a virtual walkthrough with our Senior Property Consultant. May I have your **Full Name**, **WhatsApp Number**, and preferred time?",
+      "timestamp": "2026-10-15T20:51:59.967Z"
+    },
+    {
+      "id": "msg-1792098507915-4uxg",
+      "client_id": "dental-uk",
+      "session_id": "test-v-1",
+      "role": "user",
+      "text": "Hi, I would like to know the cost of Invisalign braces please",
+      "timestamp": "2026-10-15T21:08:27.915Z"
+    },
+    {
+      "id": "msg-1792098507937-3r67",
+      "client_id": "dental-uk",
+      "session_id": "test-v-1",
+      "role": "model",
+      "text": "Hello! Our comprehensive Invisalign packages start from £2,400 with 0% interest financing available from just £99/month. Professional Laser Whitening is also on a special offer at £350. Would you like to check available slots for a free preliminary smile scan?",
+      "timestamp": "2026-10-15T21:08:27.937Z"
+    },
+    {
+      "id": "msg-1792098516608-pnhb",
+      "client_id": "dental-uk",
+      "session_id": "test-v-1",
+      "role": "user",
+      "text": "My name is David, phone 07700900123, I want to book an appointment for Friday",
+      "timestamp": "2026-10-15T21:08:36.608Z"
+    },
+    {
+      "id": "msg-1792098516629-seks",
+      "client_id": "dental-uk",
+      "session_id": "test-v-1",
+      "role": "model",
+      "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-15T21:08:36.629Z"
+    },
+    {
+      "id": "msg-1792098589828-pdsx",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "user",
+      "text": "Assist with your appointment or questions today.",
+      "timestamp": "2026-10-15T21:09:49.828Z"
+    },
+    {
+      "id": "msg-1792098589858-vl1l",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "model",
+      "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-15T21:09:49.858Z"
+    },
+    {
+      "id": "msg-1792098602131-uop8",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "user",
+      "text": "Consultation with our lead cosmetic dentist at Harley Street. Please share your full name, mobile number and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-15T21:10:02.131Z"
+    },
+    {
+      "id": "msg-1792098602158-aoei",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-15T21:10:02.158Z"
+    },
+    {
+      "id": "msg-1792098614921-fl0t",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "user",
+      "text": "How may we assist with your smile makeover, teeth whitening or dental check up today.",
+      "timestamp": "2026-10-15T21:10:14.921Z"
+    },
+    {
+      "id": "msg-1792098614954-mvin",
+      "client_id": "dental-uk",
+      "session_id": "voice-call-r3izng",
+      "role": "model",
+      "text": "Hello! Our comprehensive Invisalign packages start from £2,400 with 0% interest financing available from just £99/month. Professional Laser Whitening is also on a special offer at £350. Would you like to check available slots for a free preliminary smile scan?",
+      "timestamp": "2026-10-15T21:10:14.954Z"
+    },
+    {
+      "id": "msg-1792265007002-8hfc",
+      "client_id": "dental-us",
+      "session_id": "voice-call-52k5bj",
+      "role": "user",
+      "text": "hey I have a server tooth pain can I book appointment tomorrow",
+      "timestamp": "2026-10-17T19:23:27.002Z"
+    },
+    {
+      "id": "msg-1792265007025-wd1h",
+      "client_id": "dental-us",
+      "session_id": "voice-call-52k5bj",
+      "role": "model",
+      "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-17T19:23:27.025Z"
+    }
+  ],
+  "settings": {
+    "agency_name": "Nexus AI Agency",
+    "google_sheets_webhook": ""
+  }
+}

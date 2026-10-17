@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice AI Calling Agent Simulator — Live Client Demo</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    .call-screen-container {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .call-phone-mockup {
+      width: 380px;
+      height: 720px;
+      background: #111827;
+      border-radius: 44px;
+      padding: 16px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.7), 0 0 0 4px #374151;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .call-inner {
+      flex: 1;
+      background: radial-gradient(circle at 50% 20%, #1e293b, #0f172a);
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px 24px 30px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .caller-avatar {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-wa), var(--accent-indigo));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      font-weight: 800;
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+      margin-top: 10px;
+    }
+
+    .caller-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-top: 16px;
+    }
+
+    .caller-status {
+      font-size: 13px;
+      color: var(--accent-emerald);
+      margin-top: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    /* Waveform Animation */
+    .waveform-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      height: 60px;
+      margin: 20px 0;
+    }
+
+    .wave-bar {
+      width: 5px;
+      height: 12px;
+      background: var(--accent-wa);
+      border-radius: 4px;
+      transition: height 0.15s ease;
+    }
+
+    .wave-active .wave-bar {
+      animation: waveDance 1s infinite ease-in-out alternate;
+    }
+
+    .wave-active .wave-bar:nth-child(2) { animation-delay: 0.2s; }
+    .wave-active .wave-bar:nth-child(3) { animation-delay: 0.4s; }
+    .wave-active .wave-bar:nth-child(4) { animation-delay: 0.1s; }
+    .wave-active .wave-bar:nth-child(5) { animation-delay: 0.3s; }
+    .wave-active .wave-bar:nth-child(6) { animation-delay: 0.5s; }
+
+    @keyframes waveDance {
+      0% { height: 10px; }
+      100% { height: 50px; background: #6366f1; }
+    }
+
+    /* Live Voice Subtitle Box */
+    .voice-subtitles {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+      color: #e2e8f0;
+      max-height: 160px;
+      overflow-y: auto;
+      width: 100%;
+      text-align: left;
+    }
+
+    /* Call Action Buttons */
+    .call-controls {
+      display: flex;
+      gap: 20px;
+      width: 100%;
+      justify-content: center;
+      margin-top: 10px;
+    }
+
+    .btn-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+      color: #fff;
+    }
+
+    .btn-call-start {
+      background: #10b981;
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+    }
+
+    .btn-call-start:hover {
+      transform: scale(1.08);
+      background: #059669;
+    }
+
+    .btn-call-end {
+      background: #ef4444;
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+    }
+
+    .btn-call-end:hover {
+      transform: scale(1.08);
+      background: #dc2626;
+    }
+
+    .btn-mic-toggle {
+      background: #3b82f6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navbar -->
+  <nav class="navbar">
+    <div class="brand">
+      <a href="/" style="text-decoration:none; display:flex; align-items:center; gap:12px; color:#fff;">
+        <div class="brand-logo">🎙️</div>
+        <div class="brand-text">
+          <h1>AI VOICE CALLING RECEPTIONIST</h1>
+          <p id="callClientMeta">24/7 Human-Grade Telephony Agent</p>
+        </div>
+      </a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn btn-secondary" onclick="copyVoicePitchLink()">
+        🔗 Copy Shareable Pitch Link
+      </button>
+      <a href="/" class="btn btn-outline">← Back to Dashboard</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="call-screen-container">
+
+      <!-- Smartphone Call Mockup -->
+      <div class="call-phone-mockup">
+        <div class="call-inner">
+          
+          <div>
+            <div class="caller-avatar" id="callerAvatar">🎙️</div>
+            <div class="caller-title" id="callerName">Harley Street Smiles</div>
+            <div class="caller-status" id="callStatusText">Ready to Call</div>
+          </div>
+
+          <!-- Waveform Animation -->
+          <div class="waveform-box" id="waveformBox">
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+            <div class="wave-bar"></div>
+          </div>
+
+          <!-- Live Conversation Subtitle Box -->
+          <div class="voice-subtitles" id="voiceSubtitles">
+            <em>Click the green Call button below to start speaking with the AI Receptionist. You can speak into your microphone in English or Roman Urdu!</em>
+          </div>
+
+          <!-- Quick Text Input Fallback -->
+          <div style="width:100%; display:flex; gap:6px; margin: 10px 0;">
+            <input type="text" id="manualVoiceInput" class="form-control" style="font-size:12px; padding:8px 12px; background:rgba(0,0,0,0.4);" placeholder="Or type what you would say..." />
+            <button class="btn btn-secondary" style="padding:8px 12px; font-size:12px;" onclick="sendManualSpeech()">Send</button>
+          </div>
+
+          <!-- Call Action Controls -->
+          <div class="call-controls">
+            <button class="btn-circle btn-call-start" id="btnStartCall" onclick="startCall()" title="Start Call">
+              📞
+            </button>
+            <button class="btn-circle btn-call-end" id="btnEndCall" style="display:none;" onclick="endCall()" title="End Call">
+              📴
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Real-Time Voice Intelligence Inspector -->
+      <div class="inspector-card">
+        <h3 id="inspectorTitle">📞 Live Voice Call Intelligence & Booking</h3>
+        <p id="inspectorDesc">
+          This demonstrates what a real phone client (USA, UK, Dubai, Australia) experiences when an AI answers their business line. Notice how naturally the receptionist addresses questions, detects speech, and logs the appointment details automatically.
+        </p>
+
+        <!-- Quick 1-Click Simulation Buttons -->
+        <div style="margin-bottom:20px;">
+          <div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Quick Voice Simulation Phrases:</div>
+          <div style="display:flex; flex-wrap:wrap; gap:8px;">
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="simulateSpeech('Hi, how much do Invisalign clear braces cost and can I book a free scan?')">🦷 Pricing & Booking Inquiry</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="simulateSpeech('My name is David, phone 07700900123, I would like to book for this Friday afternoon.')">📅 Provide Appointment Info</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="simulateSpeech('I have severe tooth pain and need an emergency appointment right now.')">🚨 Emergency Extraction</button>
+          </div>
+        </div>
+
+        <div class="lead-box">
+          <h4 id="leadBoxTitle">📊 Extracted Call Data (Saved to Agency CRM)</h4>
+          <div class="lead-row">
+            <span>Patient / Caller Name:</span>
+            <strong id="vLeadName" style="color:#fff;">-</strong>
+          </div>
+          <div class="lead-row">
+            <span>Phone / Caller ID:</span>
+            <strong id="vLeadPhone" style="color:var(--accent-wa);">-</strong>
+          </div>
+          <div class="lead-row">
+            <span>Call Intent:</span>
+            <span class="badge badge-trial" id="vLeadIntent">Consultation</span>
+          </div>
+          <div class="lead-row">
+            <span>Urgency:</span>
+            <span id="vLeadUrgency" style="font-weight:700;">Normal</span>
+          </div>
+          <div class="lead-row">
+            <span>Requires Human Staff:</span>
+            <span id="vLeadHuman" style="color:var(--text-muted);">No</span>
+          </div>
+        </div>
+
+        <div id="agencyPitchTip" style="margin-top:20px; padding:16px; background:var(--bg-card); border-radius:10px; font-size:13px; color:var(--text-muted); line-height:1.5;">
+          💡 <strong>High-Ticket Pitch:</strong> Tell dental clinics or real estate agencies in the UK/USA: <em>"Your receptionist misses 30% of incoming calls during lunch and after 6 PM. Our AI Voice Receptionist never takes lunch, answers on ring 1, and books appointments 24/7."</em> Clients pay $1,500 setup + $500/month for this without hesitation!
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const clientId = urlParams.get('client') || 'dental-uk';
+    const sessionId = 'voice-call-' + Math.random().toString(36).substr(2, 6);
+
+    let clientData = null;
+    let isCallActive = false;
+    let recognition = null;
+    let isSpeaking = false;
+
+    async function initVoiceLab() {
+      try {
+        const res = await fetch(`/api/clients/${clientId}`);
+        clientData = await res.json();
+
+        document.getElementById('callerName').textContent = clientData.name;
+        document.getElementById('callClientMeta').textContent = `${clientData.name} (${clientData.country}) — 24/7 AI Receptionist`;
+        document.getElementById('callerAvatar').textContent = clientData.name.charAt(0);
+        document.title = `${clientData.name} — AI Voice Calling Receptionist`;
+
+        // Setup Web Speech Recognition if available
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (SpeechRecognition) {
+          recognition = new SpeechRecognition();
+          recognition.continuous = true;
+          recognition.interimResults = false;
+          recognition.lang = clientData.country === 'Pakistan' ? 'ur-PK' : 'en-US';
+
+          recognition.onresult = (event) => {
+            const transcript = event.results[event.results.length - 1][0].transcript.trim();
+            if (transcript && !isSpeaking) {
+              processCallerSpeech(transcript);
+            }
+          };
+
+          recognition.onerror = (e) => {
+            console.log("Speech recognition error:", e.error);
+          };
+        }
+
+        // Check if viewing in client demo mode
+        const isClientView = urlParams.get('view') === 'client';
+        if (isClientView) {
+          const navActions = document.querySelector('.nav-actions');
+          if (navActions) {
+            navActions.innerHTML = `
+              <a href="https://api.whatsapp.com/send?text=Hi%20Suhail,%20I%20tested%20the%20AI%20Voice%20Receptionist%20demo%20and%20want%20to%20activate%20our%207-Day%20Free%20Pilot." target="_blank" class="btn" style="background:#25D366; color:#fff; font-weight:700; text-decoration:none; padding:8px 16px; border-radius:8px;">
+                💬 Activate 7-Day Free Pilot ($0 Setup)
+              </a>
+            `;
+          }
+          const brandLink = document.querySelector('.brand a');
+          if (brandLink) {
+            brandLink.removeAttribute('href');
+            brandLink.style.cursor = 'default';
+          }
+
+          document.getElementById('inspectorTitle').textContent = `📞 24/7 AI Receptionist: ${clientData.name}`;
+          document.getElementById('inspectorDesc').textContent = `Experience how your callers are greeted with zero delay. The AI answers patient treatment questions, collects emergency symptoms, and books scheduled appointments directly into your office calendar.`;
+          document.getElementById('leadBoxTitle').textContent = `📅 Real-Time Appointment & Intake Capture`;
+
+          const tipElem = document.getElementById('agencyPitchTip');
+          if (tipElem) {
+            tipElem.style.background = 'linear-gradient(135deg, rgba(37,99,235,0.15), rgba(16,185,129,0.15))';
+            tipElem.style.border = '1px solid rgba(16,185,129,0.4)';
+            tipElem.innerHTML = `
+              <div style="font-size:14px; font-weight:800; color:#34d399; margin-bottom:8px;">
+                🎁 Exclusive 7-Day Free Pilot ($0 Setup Fee)
+              </div>
+              <div style="font-size:12px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">
+                Test this AI receptionist on your secondary phone line for 7 days with zero upfront commitment. We guarantee zero missed calls during lunch breaks, busy hours, and weekends.
+              </div>
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <a href="https://api.whatsapp.com/send?text=Hi%20Suhail,%20we%20reviewed%20the%20AI%20demo%20and%20want%20to%20start%20the%20free%20pilot." target="_blank" class="btn" style="background:#25D366; color:#fff; font-weight:700; font-size:12px; text-decoration:none; padding:7px 14px; border-radius:6px;">
+                  💬 WhatsApp Us to Claim
+                </a>
+                <a href="mailto:contact@nexusai.com?subject=Activate%207-Day%20Free%20Pilot" class="btn btn-secondary" style="font-size:12px; text-decoration:none; padding:7px 14px; border-radius:6px;">
+                  ✉️ Email Setup Request
+                </a>
+              </div>
+            `;
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    function startCall() {
+      isCallActive = true;
+      document.getElementById('btnStartCall').style.display = 'none';
+      document.getElementById('btnEndCall').style.display = 'flex';
+      document.getElementById('callStatusText').textContent = "● Connected (00:01)";
+      document.getElementById('callStatusText').style.color = "#10b981";
+
+      const welcomeText = clientData.country === 'Pakistan'
+        ? `Assalam-o-Alaikum! ${clientData.name} mein call karne ka shukriya. Main aapki AI Assistant hoon, main aapki kis tarah madad kar sakti hoon?`
+        : `Thank you for calling ${clientData.name}. I am your AI receptionist. How may I assist with your appointment or questions today?`;
+
+      speakAloud(welcomeText);
+
+      // Start listening to microphone
+      if (recognition) {
+        try { recognition.start(); } catch(e){}
+      }
+    }
+
+    function endCall() {
+      isCallActive = false;
+      document.getElementById('btnStartCall').style.display = 'flex';
+      document.getElementById('btnEndCall').style.display = 'none';
+      document.getElementById('callStatusText').textContent = "Call Ended";
+      document.getElementById('callStatusText').style.color = "var(--text-muted)";
+      document.getElementById('waveformBox').classList.remove('wave-active');
+
+      if (recognition) {
+        try { recognition.stop(); } catch(e){}
+      }
+      window.speechSynthesis.cancel();
+      appendSubtitle("System", "Call ended. Lead data saved to Agency CRM.");
+    }
+
+    async function processCallerSpeech(userText) {
+      appendSubtitle("You (Caller)", userText);
+      document.getElementById('waveformBox').classList.add('wave-active');
+
+      try {
+        const res = await fetch('/api/voice/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            clientId: clientId,
+            sessionId: sessionId,
+            transcript: userText
+          })
+        });
+
+        const data = await res.json();
+        speakAloud(data.replyText);
+
+        if (data.leadCaptured) {
+          updateVoiceLead(data.leadCaptured);
+        }
+      } catch (e) {
+        speakAloud("I apologize, could you please repeat that?");
+      }
+    }
+
+    function speakAloud(text) {
+      appendSubtitle(clientData?.name || "AI Receptionist", text);
+      isSpeaking = true;
+      document.getElementById('waveformBox').classList.add('wave-active');
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+
+        // Try to pick a natural voice
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find(v => v.lang.includes('en-GB') || v.lang.includes('en-US') || v.name.includes('Natural'));
+        if (preferredVoice) utterance.voice = preferredVoice;
+
+        utterance.onend = () => {
+          isSpeaking = false;
+          document.getElementById('waveformBox').classList.remove('wave-active');
+        };
+
+        window.speechSynthesis.speak(utterance);
+      } else {
+        setTimeout(() => {
+          isSpeaking = false;
+          document.getElementById('waveformBox').classList.remove('wave-active');
+        }, 3000);
+      }
+    }
+
+    function appendSubtitle(speaker, text) {
+      const box = document.getElementById('voiceSubtitles');
+      const div = document.createElement('div');
+      div.style.marginBottom = "8px";
+      div.innerHTML = `<strong>${speaker}:</strong> ${text}`;
+      box.appendChild(div);
+      box.scrollTop = box.scrollHeight;
+    }
+
+    function simulateSpeech(phrase) {
+      if (!isCallActive) startCall();
+      setTimeout(() => {
+        processCallerSpeech(phrase);
+      }, 1000);
+    }
+
+    function sendManualSpeech() {
+      const text = document.getElementById('manualVoiceInput').value.trim();
+      if (!text) return;
+      if (!isCallActive) startCall();
+      document.getElementById('manualVoiceInput').value = '';
+      processCallerSpeech(text);
+    }
+
+    function updateVoiceLead(lead) {
+      document.getElementById('vLeadName').textContent = lead.customer_name;
+      document.getElementById('vLeadPhone').textContent = lead.customer_phone;
+      document.getElementById('vLeadIntent').textContent = lead.intent;
+      document.getElementById('vLeadUrgency').textContent = lead.urgency;
+
+      if (lead.requires_human) {
+        document.getElementById('vLeadHuman').innerHTML = `<span style="color:#f43f5e; font-weight:800;">YES (DOCTOR ALERTED)</span>`;
+      } else {
+        document.getElementById('vLeadHuman').innerHTML = `<span style="color:#10b981;">No (Handled by AI)</span>`;
+      }
+    }
+
+    function copyVoicePitchLink() {
+      const link = window.location.href;
+      navigator.clipboard.writeText(link);
+      alert(`🔗 Shareable Voice Calling Agent Link Copied!\n\n${link}\n\nSend this to a client so they can literally call and speak with the AI Receptionist!`);
+    }
+
+    document.getElementById('manualVoiceInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') sendManualSpeech();
+    });
+
+    initVoiceLab();
+  </script>
+</body>
+</html>
