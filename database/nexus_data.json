@@ -1158,6 +1158,54 @@
       "role": "model",
       "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Austin Premier Dental & Implants\n👤 **Patient:** David\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to 512-555-0199\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
       "timestamp": "2026-10-17T20:51:19.145Z"
+    },
+    {
+      "id": "msg-1792270684775-6xc0",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "user",
+      "text": "11",
+      "timestamp": "2026-10-17T20:58:04.775Z"
+    },
+    {
+      "id": "msg-1792270684790-5gvo",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Welcome to **Jumeirah Pearl Dental Clinic Dubai**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated booking queue.\n\nPlease select how we can best assist you right now (reply with a number or tap an option below):\n\n1️⃣ 📅 **Book an Appointment / Consultation**\n2️⃣ 🚨 **Emergency Tooth Pain / Urgent Relief**\n3️⃣ 💰 **Pricing & Special Promotional Offers**\n4️⃣ 👨‍⚕️ **Speak with Clinic Staff / Insurance Help**",
+      "timestamp": "2026-10-17T20:58:04.790Z"
+    },
+    {
+      "id": "msg-1792270737752-rhw7",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "user",
+      "text": "3",
+      "timestamp": "2026-10-17T20:58:57.752Z"
+    },
+    {
+      "id": "msg-1792270737769-rmtf",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "model",
+      "text": "💰 **Transparent Pricing & Current Offers at Jumeirah Pearl Dental Clinic Dubai:**\n\n• New Patient Exam & Digital X-Rays: $89 (Regular $250)\n• Professional Laser Whitening: $299 Special\n• Invisalign Clear Braces: From $3,200 ($99/mo 0% interest)\n• We accept Delta, Cigna, MetLife, Aetna & all major PPOs!\n\n💡 *To lock in these promotional rates with zero waiting time, appointments are prioritized. Which slot works best for your visit?*",
+      "timestamp": "2026-10-17T20:58:57.769Z"
+    },
+    {
+      "id": "msg-1792270796287-co3x",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "user",
+      "text": "nikal bhosdi ke",
+      "timestamp": "2026-10-17T20:59:56.287Z"
+    },
+    {
+      "id": "msg-1792270796300-6wkm",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-o6cmzt",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Welcome to **Jumeirah Pearl Dental Clinic Dubai**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated booking queue.\n\nPlease select how we can best assist you right now (reply with a number or tap an option below):\n\n1️⃣ 📅 **Book an Appointment / Consultation**\n2️⃣ 🚨 **Emergency Tooth Pain / Urgent Relief**\n3️⃣ 💰 **Pricing & Special Promotional Offers**\n4️⃣ 👨‍⚕️ **Speak with Clinic Staff / Insurance Help**",
+      "timestamp": "2026-10-17T20:59:56.300Z"
     }
   ],
   "settings": {
