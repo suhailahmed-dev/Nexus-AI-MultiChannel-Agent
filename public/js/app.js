@@ -241,7 +241,9 @@ async function handleCreateClient(e) {
 }
 
 function getDealClosingWhatsApp() {
-  return localStorage.getItem('nexus_deal_closing_whatsapp') || '+92 300 0000000';
+  const val = localStorage.getItem('nexus_deal_closing_whatsapp');
+  if (val && val !== '+92 300 0000000') return val;
+  return '+92 309 3174020';
 }
 
 function saveDealClosingWhatsApp(val) {

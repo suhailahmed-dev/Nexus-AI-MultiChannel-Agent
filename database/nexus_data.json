@@ -1210,6 +1210,7 @@
   ],
   "settings": {
     "agency_name": "Nexus AI Agency",
+    "agency_whatsapp": "+92 309 3174020",
     "google_sheets_webhook": ""
   }
 }
