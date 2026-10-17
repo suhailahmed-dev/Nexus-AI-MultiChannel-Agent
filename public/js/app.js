@@ -393,8 +393,14 @@ function updateHubPitchPreview() {
 
 function launchDirectGmail() {
   const data = getHubData();
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.targetEmail)}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)}`;
-  window.open(gmailUrl, '_blank');
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    const mailtoUrl = `mailto:${encodeURIComponent(data.targetEmail)}?subject=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)}`;
+    window.location.href = mailtoUrl;
+  } else {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(data.targetEmail)}&su=${encodeURIComponent(data.subject)}&body=${encodeURIComponent(data.emailBody)}`;
+    window.open(gmailUrl, '_blank');
+  }
 }
 
 function launchDirectWhatsApp() {
@@ -406,7 +412,12 @@ function launchDirectWhatsApp() {
   } else {
     waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(data.waMessage)}`;
   }
-  window.open(waUrl, '_blank');
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  if (isMobile) {
+    window.location.href = waUrl;
+  } else {
+    window.open(waUrl, '_blank');
+  }
 }
 
 function launchDirectMailto() {
@@ -852,27 +863,27 @@ function renderSprintLeads(dayNum) {
     if (lead.badge.includes('Follow-Up')) badgeColor = "#9333ea";
 
     return `
-      <div style="background:#131b2e; border:1px solid ${isSent ? '#10b981' : 'rgba(59,130,246,0.3)'}; border-radius:10px; padding:12px; display:flex; justify-content:space-between; align-items:center; opacity:${cardOpacity}; transition: all 0.3s ease;">
-        <div style="flex:1; padding-right:10px;">
-          <div style="display:flex; align-items:center; gap:6px; margin-bottom:2px;">
+      <div class="sprint-lead-card" style="background:#131b2e; border:1px solid ${isSent ? '#10b981' : 'rgba(59,130,246,0.3)'}; border-radius:12px; padding:14px; display:flex; justify-content:space-between; align-items:center; opacity:${cardOpacity}; transition: all 0.3s ease; gap:10px;">
+        <div style="flex:1; min-width:0;">
+          <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px; flex-wrap:wrap;">
             <span style="font-size:10px; font-weight:800; background:${badgeColor}; color:#fff; padding:2px 6px; border-radius:4px;">${lead.badge}</span>
             <span style="font-weight:700; font-size:13px; ${titleStrike}">${lead.name}</span>
           </div>
-          <div style="font-size:11px; color:#93c5fd; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:240px;">
+          <div style="font-size:12px; color:#93c5fd; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:100%;">
             ${lead.email || lead.phone}
           </div>
-          <div style="font-size:10px; color:var(--text-muted);">
+          <div style="font-size:11px; color:var(--text-muted); margin-top:2px;">
             ${lead.city} • ${lead.niche}
           </div>
-          ${isSent ? `<div style="font-size:10px; color:#34d399; font-weight:700; margin-top:4px;">✅ Sent via ${sentInfo.channel === 'gmail' ? 'Gmail' : 'WhatsApp'} (${sentInfo.time})</div>` : ''}
+          ${isSent ? `<div style="font-size:11px; color:#34d399; font-weight:700; margin-top:6px;">✅ Sent via ${sentInfo.channel === 'gmail' ? 'Gmail' : 'WhatsApp'} (${sentInfo.time})</div>` : ''}
         </div>
 
-        <div style="display:flex; flex-direction:column; gap:4px; align-items:flex-end;">
+        <div style="display:flex; flex-direction:column; gap:6px; align-items:flex-end; flex-shrink:0;">
           <div style="display:flex; gap:6px;">
             ${lead.email ? `
               <button onclick="triggerSprintAction('${lead.id}', '${lead.name}', '${lead.clientId}', '${lead.email}', '${lead.phone}', 'gmail')" 
                 class="btn" 
-                style="background:${isSent ? '#475569' : '#ea4335'}; color:#fff; padding:5px 8px; font-size:11px; font-weight:700; border-radius:6px; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
+                style="background:${isSent ? '#475569' : '#ea4335'}; color:#fff; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:68px; justify-content:center; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
                 ${isSent && sentInfo.channel === 'gmail' ? '✓ Sent' : '✉️ Gmail'}
               </button>
             ` : ''}
@@ -880,14 +891,14 @@ function renderSprintLeads(dayNum) {
             ${lead.phone ? `
               <button onclick="triggerSprintAction('${lead.id}', '${lead.name}', '${lead.clientId}', '${lead.email}', '${lead.phone}', 'wa')" 
                 class="btn" 
-                style="background:${isSent ? '#475569' : '#25D366'}; color:#fff; padding:5px 8px; font-size:11px; font-weight:700; border-radius:6px; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
+                style="background:${isSent ? '#475569' : '#25D366'}; color:#fff; padding:8px 12px; font-size:12px; font-weight:700; border-radius:8px; min-height:36px; min-width:68px; justify-content:center; ${isSent ? 'cursor:not-allowed; opacity:0.5;' : ''}">
                 ${isSent && sentInfo.channel === 'wa' ? '✓ Sent' : '💬 WA'}
               </button>
             ` : ''}
           </div>
 
           ${isSent ? `
-            <button onclick="resetSprintLead('${lead.id}')" style="background:none; border:none; color:#64748b; font-size:10px; text-decoration:underline; cursor:pointer;">↺ Undo / Reset</button>
+            <button onclick="resetSprintLead('${lead.id}')" style="background:none; border:none; color:#94a3b8; font-size:11px; text-decoration:underline; cursor:pointer; padding:2px;">↺ Undo / Reset</button>
           ` : ''}
         </div>
       </div>
@@ -979,9 +990,15 @@ function quickLeadAction(businessName, clientId, email, phone, channel) {
     waMessage = `Hi ${businessName} Team,\n\nQuick 30-second live demo of our 24/7 AI Receptionist customized for aesthetic clinics:\n👉 ${voiceUrl}\n\nIt books consultations 24/7 so you never lose high-value patients. We're offering a 7-Day Free Pilot ($0 setup fee) this week if you'd like to test it out!\n\nBest regards,\nSuhail Ahmed`;
   }
 
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
   if (channel === 'gmail') {
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
-    window.open(gmailUrl, '_blank');
+    if (isMobile) {
+      const mailtoUrl = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      window.location.href = mailtoUrl;
+    } else {
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+      window.open(gmailUrl, '_blank');
+    }
   } else if (channel === 'wa') {
     const cleanPhone = (phone || '').replace(/[^0-9]/g, '');
     let waUrl = '';
@@ -990,7 +1007,11 @@ function quickLeadAction(businessName, clientId, email, phone, channel) {
     } else {
       waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(waMessage)}`;
     }
-    window.open(waUrl, '_blank');
+    if (isMobile) {
+      window.location.href = waUrl;
+    } else {
+      window.open(waUrl, '_blank');
+    }
   }
 }
 

@@ -546,6 +546,38 @@
       "role": "model",
       "text": "Hello! Our comprehensive Invisalign packages start from £2,400 with 0% interest financing available from just £99/month. Professional Laser Whitening is also on a special offer at £350. Would you like to check available slots for a free preliminary smile scan?",
       "timestamp": "2026-10-17T20:04:08.055Z"
+    },
+    {
+      "id": "msg-1792267654658-j7mi",
+      "client_id": "dental-au",
+      "session_id": "voice-call-ute31l",
+      "role": "user",
+      "text": "Hi",
+      "timestamp": "2026-10-17T20:07:34.658Z"
+    },
+    {
+      "id": "msg-1792267654673-qab7",
+      "client_id": "dental-au",
+      "session_id": "voice-call-ute31l",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:07:34.673Z"
+    },
+    {
+      "id": "msg-1792267671060-qmte",
+      "client_id": "dental-au",
+      "session_id": "voice-call-ute31l",
+      "role": "user",
+      "text": "Time",
+      "timestamp": "2026-10-17T20:07:51.060Z"
+    },
+    {
+      "id": "msg-1792267671072-xzo5",
+      "client_id": "dental-au",
+      "session_id": "voice-call-ute31l",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:07:51.072Z"
     }
   ],
   "settings": {

@@ -536,3 +536,152 @@ textarea.form-control {
   padding: 6px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
+
+/* ========================================================
+   COMPREHENSIVE MOBILE RESPONSIVE ENGINE (iOS & Android)
+   ======================================================== */
+
+@media (max-width: 768px) {
+  /* Global Layout */
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    padding: 14px 10px;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Navbar */
+  .navbar {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .brand-text h1 {
+    font-size: 16px;
+  }
+
+  .brand-text p {
+    font-size: 11px;
+  }
+
+  .nav-actions {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-actions .btn {
+    flex: 1 1 auto;
+    font-size: 12px;
+    padding: 8px 12px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .stat-card {
+    padding: 16px;
+  }
+
+  .stat-value {
+    font-size: 26px;
+  }
+
+  /* WhatsApp Phone Mockup (demo-lab.html) */
+  .demo-viewport {
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 6px 0;
+    width: 100%;
+  }
+
+  .phone-mockup {
+    width: 100%;
+    max-width: 420px;
+    height: auto;
+    min-height: 560px;
+    border-radius: 24px;
+    padding: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .phone-notch {
+    display: none;
+  }
+
+  .phone-screen {
+    border-radius: 18px;
+    min-height: 540px;
+  }
+
+  .phone-header {
+    padding: 16px 12px;
+  }
+
+  .phone-chat-body {
+    padding: 12px;
+    min-height: 380px;
+  }
+
+  .phone-bubble {
+    max-width: 90%;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .phone-input-bar {
+    padding: 8px;
+  }
+
+  .inspector-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 18px 14px;
+    border-radius: 18px;
+  }
+
+  /* Clients Grid & Cards */
+  .clients-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  /* Leads Table Responsive Scroll */
+  .leads-table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    border-radius: 12px;
+    width: 100%;
+  }
+
+  .leads-table {
+    min-width: 600px;
+  }
+
+  /* Inputs and Buttons */
+  .form-control {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 13px;
+  }
+}
+

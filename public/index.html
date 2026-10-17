@@ -179,15 +179,15 @@
           </button>
         </div>
 
-        <!-- Day Selection Tabs -->
-        <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:8px; margin-bottom:14px;" id="sprintDayTabs">
-          <button onclick="switchSprintDay(1)" id="tabDay1" class="btn" style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:6px 12px; border-radius:8px;">Day 1: 🇺🇸 & 🇦🇪 Dental</button>
-          <button onclick="switchSprintDay(2)" id="tabDay2" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 2: 🇦🇪 Real Estate</button>
-          <button onclick="switchSprintDay(3)" id="tabDay3" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 3: 🇦🇺 Dental Care</button>
-          <button onclick="switchSprintDay(4)" id="tabDay4" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 4: 🇺🇸 MedSpas</button>
-          <button onclick="switchSprintDay(5)" id="tabDay5" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 5: 🇦🇪 Aesthetics</button>
-          <button onclick="switchSprintDay(6)" id="tabDay6" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 6: 🇦🇺 Solar & Trades</button>
-          <button onclick="switchSprintDay(7)" id="tabDay7" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px;">Day 7: 🔄 Follow-ups</button>
+        <!-- Day Selection Tabs (Touch-Scrollable on Mobile) -->
+        <div style="display:flex; gap:6px; overflow-x:auto; padding-bottom:8px; margin-bottom:14px; -webkit-overflow-scrolling:touch; scrollbar-width:none;" id="sprintDayTabs">
+          <button onclick="switchSprintDay(1)" id="tabDay1" class="btn" style="background:#2563eb; color:#fff; font-size:11px; font-weight:700; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 1: 🇺🇸 & 🇦🇪 Dental</button>
+          <button onclick="switchSprintDay(2)" id="tabDay2" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 2: 🇦🇪 Real Estate</button>
+          <button onclick="switchSprintDay(3)" id="tabDay3" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 3: 🇦🇺 Dental Care</button>
+          <button onclick="switchSprintDay(4)" id="tabDay4" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 4: 🇺🇸 MedSpas</button>
+          <button onclick="switchSprintDay(5)" id="tabDay5" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 5: 🇦🇪 Aesthetics</button>
+          <button onclick="switchSprintDay(6)" id="tabDay6" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 6: 🇦🇺 Solar & Trades</button>
+          <button onclick="switchSprintDay(7)" id="tabDay7" class="btn btn-secondary" style="font-size:11px; padding:6px 12px; border-radius:8px; flex-shrink:0; white-space:nowrap;">Day 7: 🔄 Follow-ups</button>
         </div>
 
         <!-- Daily Progress Bar -->

@@ -164,6 +164,87 @@
     .btn-mic-toggle {
       background: #3b82f6;
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 12px 16px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+      }
+      .brand a {
+        justify-content: center;
+      }
+      .nav-actions {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .nav-actions .btn {
+        width: 100%;
+        justify-content: center;
+        font-size: 13px;
+        padding: 10px 14px;
+      }
+      .container {
+        padding: 12px 10px;
+      }
+      .call-screen-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+        padding: 4px 0;
+        width: 100%;
+      }
+      .call-phone-mockup {
+        width: 100%;
+        max-width: 420px;
+        height: auto;
+        min-height: 560px;
+        border-radius: 24px;
+        padding: 10px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      }
+      .call-inner {
+        border-radius: 18px;
+        padding: 24px 14px 20px;
+        min-height: 540px;
+      }
+      .caller-avatar {
+        width: 76px;
+        height: 76px;
+        font-size: 30px;
+        margin-top: 0;
+      }
+      .caller-title {
+        font-size: 19px;
+      }
+      .waveform-box {
+        height: 48px;
+        margin: 12px 0;
+      }
+      .voice-subtitles {
+        max-height: 140px;
+        font-size: 13px;
+        padding: 12px;
+      }
+      .call-controls {
+        margin-top: 6px;
+      }
+      .btn-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+      }
+      .inspector-card {
+        width: 100%;
+        max-width: 420px;
+        padding: 18px 14px;
+        border-radius: 18px;
+      }
+    }
   </style>
 </head>
 <body>
