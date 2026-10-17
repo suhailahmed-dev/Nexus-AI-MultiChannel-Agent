@@ -67,7 +67,8 @@ class VoiceAdapter {
 
       res.json({
         replyText: result.reply,
-        leadCaptured: result.leadCaptured
+        leadCaptured: result.leadCaptured,
+        appointment: result.appointment || null
       });
     } catch (e) {
       console.error("Browser Voice Exchange Error:", e);

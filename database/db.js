@@ -167,6 +167,7 @@ class Database {
       urgency: lead.urgency || 'Medium',
       summary: lead.summary || '',
       requires_human: lead.requires_human || false,
+      appointment: lead.appointment || null,
       created_at: new Date().toISOString()
     };
     data.leads.unshift(newLead);

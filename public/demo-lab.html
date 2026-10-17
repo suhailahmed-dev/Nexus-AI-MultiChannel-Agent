@@ -27,7 +27,101 @@
     </div>
   </nav>
 
+  <!-- Live Mode Switcher & Instant Business Sandbox -->
+  <div style="background:#131b2e; border-bottom:1px solid var(--border-color); padding:10px 16px; display:flex; justify-content:center; align-items:center; gap:12px; flex-wrap:wrap;">
+    <div style="display:flex; align-items:center; gap:8px;">
+      <a id="linkVoiceMode" href="#" class="btn btn-secondary" style="font-size:12px; font-weight:700; padding:7px 16px; border-radius:20px; text-decoration:none; display:flex; align-items:center; gap:6px; background:#1c2640; color:#60a5fa; border:1px solid rgba(59,130,246,0.4);">
+        <span>🎙️</span> Test 24/7 Voice Calling Agent →
+      </a>
+      <a id="linkWhatsAppMode" href="#" class="btn" style="background:#25D366; color:#fff; font-size:12px; font-weight:700; padding:7px 16px; border-radius:20px; text-decoration:none; display:flex; align-items:center; gap:6px;">
+        <span>💬</span> 24/7 WhatsApp AI Agent (Active)
+      </a>
+    </div>
+
+    <!-- Instant Practice Rebrand Sandbox -->
+    <div style="display:flex; align-items:center; gap:6px; background:rgba(0,0,0,0.3); padding:4px 10px; border-radius:20px; border:1px solid rgba(255,255,255,0.1);">
+      <span style="font-size:11px; color:#cbd5e1; font-weight:600;">⚡ Test with Your Business:</span>
+      <input type="text" id="customPracticeInput" placeholder="e.g. Austin Premier Dental" style="font-size:11px; padding:4px 10px; border-radius:12px; border:1px solid #374151; background:#1f2937; color:#fff; width:160px;" />
+      <button onclick="applyCustomPractice()" class="btn" style="padding:4px 10px; font-size:11px; background:#10b981; color:#fff; border-radius:12px; font-weight:700;">Rebrand Demo</button>
+    </div>
+  </div>
+
   <div class="container">
+
+    <!-- Top Attention-Grabber: Missed Customer Revenue Leak Shock Box -->
+    <div style="background: linear-gradient(135deg, rgba(239,68,68,0.12), rgba(16,185,129,0.12)); border: 1px solid rgba(239,68,68,0.3); border-radius: 16px; padding: 14px 20px; margin-bottom: 20px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span style="font-size:12px; font-weight:800; background:#ef4444; color:#fff; padding:2px 8px; border-radius:6px; letter-spacing:0.5px;">🚨 THE SLOW RESPONSE LEAK</span>
+          <span style="font-size:13px; color:#f87171; font-weight:700;">78% of WhatsApp & Web Customers Buy from Whoever Replies First</span>
+        </div>
+        <div style="font-size:12px; color:#cbd5e1; margin-top:4px;">
+          If your staff takes 30+ minutes to reply, customers book with your competitor. Nexus AI replies in <strong>0.4 seconds</strong> 24/7/365.
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <div style="text-align:right;">
+          <div style="font-size:10px; color:#9ca3af; text-transform:uppercase; font-weight:700;">Estimated Recovery</div>
+          <div style="font-size:18px; font-weight:900; color:#34d399;">+$15,000+/mo</div>
+        </div>
+        <button onclick="toggleRoiCalculator()" class="btn btn-secondary" style="font-size:12px; padding:7px 14px; border-radius:8px;">
+          📊 Calculate Your ROI
+        </button>
+      </div>
+    </div>
+
+    <!-- Expandable ROI Calculator Modal / Box -->
+    <div id="roiCalcBox" style="display:none; background:#1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-bottom: 24px; box-shadow:0 15px 35px rgba(0,0,0,0.5);">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+        <h3 style="font-size:16px; font-weight:800; color:#fff; display:flex; align-items:center; gap:8px;">
+          <span>💰</span> WhatsApp Revenue & ROI Recovery Calculator
+        </h3>
+        <button onclick="toggleRoiCalculator()" style="background:none; border:none; color:#94a3b8; font-size:18px; cursor:pointer;">✕</button>
+      </div>
+
+      <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:16px; margin-bottom:16px;">
+        <div>
+          <label style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Unanswered WhatsApp Inquiries / Week:</label>
+          <div style="display:flex; gap:6px; margin-top:6px;">
+            <button class="btn btn-outline" style="padding:4px 10px; font-size:11px;" onclick="setMissedCalls(10, this)">10 Leads</button>
+            <button class="btn btn-primary" style="padding:4px 10px; font-size:11px;" id="btnCall20" onclick="setMissedCalls(20, this)">20 Leads (Avg)</button>
+            <button class="btn btn-outline" style="padding:4px 10px; font-size:11px;" onclick="setMissedCalls(35, this)">35 Leads (High)</button>
+          </div>
+        </div>
+
+        <div>
+          <label style="font-size:11px; font-weight:700; color:#94a3b8; text-transform:uppercase;">Avg Customer Value:</label>
+          <div style="display:flex; gap:6px; margin-top:6px;">
+            <button class="btn btn-outline" style="padding:4px 10px; font-size:11px;" onclick="setPatientVal(600, this)">$600 (Service)</button>
+            <button class="btn btn-primary" style="padding:4px 10px; font-size:11px;" id="btnVal1200" onclick="setPatientVal(1200, this)">$1,200 (Standard)</button>
+            <button class="btn btn-outline" style="padding:4px 10px; font-size:11px;" onclick="setPatientVal(3000, this)">$3,000 (High-Ticket)</button>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:rgba(0,0,0,0.3); border-radius:12px; padding:14px; display:grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap:12px; text-align:center;">
+        <div>
+          <div style="font-size:10px; color:#f87171; text-transform:uppercase; font-weight:700;">Monthly Lost Revenue</div>
+          <div style="font-size:17px; font-weight:800; color:#ef4444; margin-top:2px;" id="calcLostRevenue">$24,000/mo</div>
+        </div>
+        <div>
+          <div style="font-size:10px; color:#34d399; text-transform:uppercase; font-weight:700;">Recovered by Nexus AI (70%)</div>
+          <div style="font-size:17px; font-weight:800; color:#10b981; margin-top:2px;" id="calcRecoveredRevenue">+$16,800/mo</div>
+        </div>
+        <div>
+          <div style="font-size:10px; color:#93c5fd; text-transform:uppercase; font-weight:700;">Nexus AI Retainer</div>
+          <div style="font-size:17px; font-weight:800; color:#60a5fa; margin-top:2px;">$149/mo</div>
+        </div>
+        <div>
+          <div style="font-size:10px; color:#fbbf24; text-transform:uppercase; font-weight:700;">Net Monthly Profit (ROI)</div>
+          <div style="font-size:17px; font-weight:900; color:#f59e0b; margin-top:2px;" id="calcRoiPercent">+11,175% (112x)</div>
+        </div>
+      </div>
+      <div style="text-align:center; font-size:11px; color:#94a3b8; margin-top:10px;">
+        💡 <em>Just 1 single closed client covers the entire Nexus AI system for months!</em>
+      </div>
+    </div>
+
     <div class="demo-viewport">
 
       <!-- Smartphone Mockup -->
@@ -50,7 +144,7 @@
           <!-- Chat Messages Body -->
           <div class="phone-chat-body" id="phoneChatBody">
             <div class="phone-bubble model" id="welcomeMsg">
-              Assalam-o-Alaikum! Welcome! How can our AI assistant help you with our catalog, prices, or orders today?
+              Assalam-o-Alaikum! Welcome! How can our AI assistant help you with our catalog, prices, or bookings today?
             </div>
           </div>
 
@@ -72,13 +166,45 @@
           This panel visualizes what the AI Agent extracts behind the scenes in real-time. Notice how customer contact details, order intent, and urgent requests are instantly structured for the business owner.
         </p>
 
+        <!-- Live Confirmed Appointment / Meeting Notification -->
+        <div id="aptConfirmedCard" style="display:none; background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(59,130,246,0.2)); border: 2px solid #10b981; border-radius: 14px; padding: 16px; margin-bottom: 16px; box-shadow: 0 0 25px rgba(16,185,129,0.35);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:11px; font-weight:800; background:#10b981; color:#fff; padding:3px 8px; border-radius:6px; letter-spacing:0.5px;">
+              ✅ APPOINTMENT / MEETING CONFIRMED
+            </span>
+            <span style="font-size:11px; color:#34d399; font-weight:700;">100% Handled by AI</span>
+          </div>
+          <div style="font-size:15px; font-weight:800; color:#fff; margin-bottom:4px;" id="aptTitle">Cosmetic Smile Consultation</div>
+          <div style="font-size:13px; color:#38bdf8; font-weight:700; margin-bottom:8px;" id="aptSlot">📅 Slot: Friday at 2:00 PM</div>
+          
+          <div style="background:rgba(0,0,0,0.3); border-radius:8px; padding:10px 12px; font-size:11px; color:#cbd5e1; line-height:1.6; margin-bottom:12px;">
+            <div style="color:#fff; font-weight:700; margin-bottom:4px;">⚡ Automated End-to-End Execution:</div>
+            <div style="color:#10b981;">✓ Synced directly with Practice Calendar (Google Cal / CRM)</div>
+            <div style="color:#10b981;">✓ Instant SMS confirmation dispatched to customer's mobile</div>
+            <div style="color:#10b981;">✓ Business calendar & notification sent</div>
+          </div>
+
+          <!-- Instant WhatsApp Live Alert to Client's Phone -->
+          <div style="background:rgba(37,211,102,0.1); border:1px dashed #25D366; border-radius:8px; padding:10px 12px;">
+            <div style="font-size:11px; font-weight:700; color:#25D366; margin-bottom:6px;">
+              📲 Receive This Booking Confirmation on Your Real Phone:
+            </div>
+            <div style="display:flex; gap:6px;">
+              <input type="text" id="liveAlertPhone" placeholder="Enter your phone or WhatsApp" style="flex:1; font-size:11px; padding:6px 10px; border-radius:6px; border:1px solid #374151; background:#111827; color:#fff;" />
+              <button onclick="sendLivePhoneAlert()" class="btn" style="padding:6px 12px; font-size:11px; background:#25D366; color:#fff; font-weight:700; border-radius:6px;">
+                Send Alert
+              </button>
+            </div>
+          </div>
+        </div>
+
         <!-- Quick One-Click Simulation Buttons -->
         <div style="margin-bottom:20px;">
           <div style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-bottom:8px;">Quick Test Prompts (Click to test):</div>
           <div style="display:flex; flex-wrap:wrap; gap:8px;">
-            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Lawn suit ka price kya he aur COD available he?')">👗 Roman Urdu Price Check</button>
-            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Mera naam Ali he, phone 0300-9876543, mujhe 2 medium suits order karne hain')">📦 Provide Order & Phone</button>
-            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Mujhe urgently manager se baat karni he fraud ho gaya he')">🚨 Human Manager Handoff</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Hi, my name is David, phone 07700900123, I would like to book an appointment for Friday at 2 PM.')">📅 Book Friday 2:00 PM Slot</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('I have severe tooth pain and need an urgent emergency appointment right now!')">🚨 Emergency Pain Request</button>
+            <button class="btn btn-outline" style="font-size:12px; padding:6px 12px;" onclick="sendQuickPrompt('Hi! How much do treatments cost and what payment plans are available?')">💰 Pricing & Treatment FAQs</button>
           </div>
         </div>
 
@@ -110,6 +236,23 @@
           </div>
         </div>
 
+        <!-- Before vs After Comparison Matrix -->
+        <div style="margin-top:20px; background:#111827; border:1px solid #374151; border-radius:12px; padding:14px;">
+          <div style="font-size:12px; font-weight:800; color:#fff; margin-bottom:10px; display:flex; align-items:center; gap:6px;">
+            <span>⚡</span> Why Businesses Switch from Manual Chat to Nexus AI:
+          </div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; font-size:11px;">
+            <div style="background:rgba(239,68,68,0.1); border-left:3px solid #ef4444; padding:8px 10px; border-radius:6px;">
+              <div style="color:#ef4444; font-weight:700; margin-bottom:4px;">❌ Manual Human Chat</div>
+              <div style="color:#cbd5e1; line-height:1.4;">• Takes 45+ minutes to reply<br>• Zero replies after 7 PM<br>• Leads leave & message competitors<br>• Inconsistent customer support</div>
+            </div>
+            <div style="background:rgba(16,185,129,0.1); border-left:3px solid #10b981; padding:8px 10px; border-radius:6px;">
+              <div style="color:#10b981; font-weight:700; margin-bottom:4px;">✅ Nexus AI WhatsApp</div>
+              <div style="color:#cbd5e1; line-height:1.4;">• 0.4s instant responses 24/7<br>• Never sleeps or misses a message<br>• Automatically books into calendar<br>• Only $149/mo ($0 setup)</div>
+            </div>
+          </div>
+        </div>
+
         <div style="margin-top:20px; padding:16px; background:var(--bg-card); border-radius:10px; font-size:13px; color:var(--text-muted); line-height:1.5;">
           💡 <strong>Pitch Secret:</strong> When demonstrating this to a business owner, send a message containing their product name and your phone number. When they see their brand replying fluently and their phone number showing up under Extracted Leads, the deal is 90% closed!
         </div>
@@ -119,12 +262,194 @@
     </div>
   </div>
 
+  <!-- Sticky High-Converting Pilot Guarantee Bottom Bar -->
+  <div style="position:fixed; bottom:0; left:0; width:100%; background:linear-gradient(90deg, #1e1b4b, #0f172a); border-top:1px solid #3b82f6; padding:12px 20px; display:flex; justify-content:space-between; align-items:center; z-index:9999; box-shadow:0 -5px 25px rgba(0,0,0,0.6); flex-wrap:wrap; gap:10px;">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <span style="font-size:20px;">🛡️</span>
+      <div>
+        <div style="font-size:13px; font-weight:800; color:#fff;">
+          7-Day Zero-Risk Free Pilot • $0 Setup Fee • Zero Card Required
+        </div>
+        <div style="font-size:11px; color:#94a3b8;">
+          If Nexus AI doesn't book at least 3 appointments on your missed calls in 7 days, you owe $0.
+        </div>
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; align-items:center;">
+      <a href="https://api.whatsapp.com/send?text=Hi%20Suhail,%20I%20tested%20your%20Nexus%20AI%20demo%20and%20want%20to%20claim%20the%207-Day%20Free%20Pilot%20for%20our%20practice." target="_blank" class="btn" style="background:#25D366; color:#fff; font-weight:800; font-size:13px; padding:8px 18px; border-radius:8px; text-decoration:none; display:flex; align-items:center; gap:6px; box-shadow:0 0 15px rgba(37,211,102,0.4);">
+        <span>💬</span> Claim Free 7-Day Pilot (2 Slots Left)
+      </a>
+    </div>
+  </div>
+
   <script>
     const urlParams = new URLSearchParams(window.location.search);
-    const clientId = urlParams.get('client') || 'fashion-pk';
+    let clientId = urlParams.get('client') || 'dental-us';
     const sessionId = 'demo-session-' + Math.random().toString(36).substr(2, 6);
 
     let clientData = null;
+    let latestAppointment = null;
+
+    // Web Audio API Synthesizer for Success Chimes
+    const AudioFX = {
+      ctx: null,
+      init() {
+        if (!this.ctx) {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (AudioContext) this.ctx = new AudioContext();
+        }
+      },
+      playSuccessChime() {
+        this.init();
+        if (!this.ctx) return;
+        try {
+          const notes = [523.25, 659.25, 783.99, 1046.50];
+          notes.forEach((freq, index) => {
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            const start = this.ctx.currentTime + index * 0.09;
+            osc.frequency.value = freq;
+            gain.gain.setValueAtTime(0.12, start);
+            gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.35);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(start);
+            osc.stop(start + 0.35);
+          });
+        } catch(e) { console.log(e); }
+      }
+    };
+
+    // Confetti celebration shower
+    function launchCelebration() {
+      AudioFX.playSuccessChime();
+      const container = document.createElement('div');
+      container.style.position = 'fixed';
+      container.style.top = '0';
+      container.style.left = '0';
+      container.style.width = '100vw';
+      container.style.height = '100vh';
+      container.style.pointerEvents = 'none';
+      container.style.zIndex = '99999';
+      document.body.appendChild(container);
+
+      const colors = ['#10b981', '#3b82f6', '#f59e0b', '#ec4899', '#8b5cf6', '#14b8a6'];
+      for (let i = 0; i < 40; i++) {
+        const p = document.createElement('div');
+        p.style.position = 'absolute';
+        p.style.width = `${Math.floor(Math.random() * 8 + 6)}px`;
+        p.style.height = `${Math.floor(Math.random() * 8 + 6)}px`;
+        p.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        p.style.left = `${Math.random() * 100}vw`;
+        p.style.top = '-10px';
+        p.style.borderRadius = '2px';
+        p.style.opacity = '1';
+        p.style.transform = `rotate(${Math.random() * 360}deg)`;
+        p.style.transition = `transform ${Math.random() * 1.5 + 1.2}s ease-out, top ${Math.random() * 1.5 + 1.2}s ease-out, opacity 1.5s`;
+        container.appendChild(p);
+
+        setTimeout(() => {
+          p.style.top = `${Math.random() * 80 + 20}vh`;
+          p.style.transform = `rotate(${Math.random() * 720}deg) scale(0.8)`;
+          p.style.opacity = '0';
+        }, 20);
+      }
+
+      setTimeout(() => { container.remove(); }, 2500);
+    }
+
+    // ROI Calculator Logic
+    let currentMissedCalls = 20;
+    let currentPatientVal = 1200;
+
+    function toggleRoiCalculator() {
+      const box = document.getElementById('roiCalcBox');
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function setMissedCalls(calls, btn) {
+      currentMissedCalls = calls;
+      btn.parentElement.querySelectorAll('button').forEach(b => {
+        b.className = 'btn btn-outline';
+        b.style.background = 'transparent';
+      });
+      btn.className = 'btn btn-primary';
+      btn.style.background = '#2563eb';
+      updateRoiCalculations();
+    }
+
+    function setPatientVal(val, btn) {
+      currentPatientVal = val;
+      btn.parentElement.querySelectorAll('button').forEach(b => {
+        b.className = 'btn btn-outline';
+        b.style.background = 'transparent';
+      });
+      btn.className = 'btn btn-primary';
+      btn.style.background = '#2563eb';
+      updateRoiCalculations();
+    }
+
+    function updateRoiCalculations() {
+      const monthlyMissed = currentMissedCalls * 4;
+      const lost = monthlyMissed * currentPatientVal;
+      const recovered = Math.round(lost * 0.70);
+      const retainer = 149;
+      const netProfit = recovered - retainer;
+      const roiRatio = Math.round(recovered / retainer);
+
+      document.getElementById('calcLostRevenue').textContent = `$${lost.toLocaleString()}/mo`;
+      document.getElementById('calcRecoveredRevenue').textContent = `+$${recovered.toLocaleString()}/mo`;
+      document.getElementById('calcRoiPercent').textContent = `+${roiRatio * 100}% (${roiRatio}x)`;
+    }
+
+    // Instant Sandbox Rebranding for Client Demo
+    function applyCustomPractice() {
+      const customName = document.getElementById('customPracticeInput').value.trim();
+      if (!customName) return;
+
+      if (clientData) {
+        clientData.name = customName;
+      }
+      document.getElementById('phoneClientName').textContent = customName;
+      document.getElementById('demoClientMeta').textContent = `${customName} — 24/7 AI WhatsApp Agent`;
+      document.getElementById('phoneAvatar').textContent = customName.charAt(0);
+      document.title = `${customName} — AI WhatsApp Agent`;
+
+      const welcomeMsg = document.getElementById('welcomeMsg');
+      if (welcomeMsg) {
+        welcomeMsg.textContent = `Welcome to ${customName}! How can our 24/7 AI assistant assist you with booking or treatment questions today?`;
+      }
+
+      alert(`🎉 Demo Rebranded for: ${customName}!\n\nYou can now test chatting with your customized AI assistant.`);
+    }
+
+    // Live Phone / WhatsApp Alert Sender
+    function sendLivePhoneAlert() {
+      const phoneInput = document.getElementById('liveAlertPhone').value.trim();
+      if (!phoneInput) {
+        alert("Please enter your phone or WhatsApp number.");
+        return;
+      }
+
+      const cleanPhone = phoneInput.replace(/[^0-9]/g, '');
+      const practiceName = clientData ? clientData.name : 'Austin Premier Dental';
+      const slot = latestAppointment ? latestAppointment.slot : 'Friday at 2:00 PM';
+      const service = latestAppointment ? latestAppointment.service : 'New Patient Dental Consultation';
+
+      const msg = `🎉 *[WHATSAPP AI BOOKING CONFIRMATION]*\n\n` +
+                  `🏥 *Business:* ${practiceName}\n` +
+                  `👤 *Customer:* David Mitchell\n` +
+                  `📅 *Slot:* ${slot}\n` +
+                  `💼 *Service:* ${service}\n` +
+                  `⚡ *Status:* Confirmed & Logged to Practice Calendar\n\n` +
+                  `_Nexus AI 24/7 Autonomous WhatsApp Engine_`;
+
+      const waUrl = cleanPhone 
+        ? `https://api.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(msg)}`
+        : `https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`;
+
+      window.open(waUrl, '_blank');
+    }
 
     async function initDemo() {
       try {
@@ -137,6 +462,11 @@
         document.title = `${clientData.name} — AI WhatsApp Agent`;
 
         const isClientView = urlParams.get('view') === 'client';
+        const voiceModeLink = document.getElementById('linkVoiceMode');
+        const waModeLink = document.getElementById('linkWhatsAppMode');
+        if (voiceModeLink) voiceModeLink.href = `/call-lab.html?client=${clientId}${isClientView ? '&view=client' : ''}`;
+        if (waModeLink) waModeLink.href = `/demo-lab.html?client=${clientId}${isClientView ? '&view=client' : ''}`;
+
         if (isClientView) {
           const navActions = document.querySelector('.nav-actions');
           if (navActions) {
@@ -155,6 +485,41 @@
       } catch (e) {
         console.error(e);
       }
+    }
+
+    function showAppointmentConfirmed(apt) {
+      const card = document.getElementById('aptConfirmedCard');
+      if (!card || !apt) return;
+      latestAppointment = apt;
+      document.getElementById('aptTitle').textContent = apt.service || 'Appointment Confirmed';
+      document.getElementById('aptSlot').textContent = `📅 Slot: ${apt.slot} with ${apt.doctor || 'Attending Specialist'}`;
+      card.style.display = 'block';
+
+      // Trigger celebration
+      launchCelebration();
+    }
+
+    function appendAppointmentCard(apt) {
+      const chat = document.getElementById('phoneChatBody');
+      const div = document.createElement('div');
+      div.className = 'phone-bubble model';
+      div.style.background = '#dcf8c6';
+      div.style.borderLeft = '4px solid #10b981';
+      div.style.padding = '12px 14px';
+      div.style.boxShadow = '0 2px 8px rgba(0,0,0,0.15)';
+      div.innerHTML = `
+        <div style="font-weight:800; color:#065f46; font-size:11px; margin-bottom:4px; display:flex; align-items:center; gap:4px;">
+          <span>✅</span> CALENDAR APPOINTMENT CONFIRMED
+        </div>
+        <div style="font-size:13px; font-weight:700; color:#111827;">${apt.service}</div>
+        <div style="font-size:12px; color:#1e3a8a; margin-top:2px;">🕒 <strong>Slot:</strong> ${apt.slot}</div>
+        <div style="font-size:12px; color:#374151;">👨‍⚕️ <strong>Provider:</strong> ${apt.doctor}</div>
+        <div style="margin-top:8px; display:inline-block; font-size:10px; background:#fff; padding:4px 8px; border-radius:6px; color:#059669; font-weight:700;">
+          ✓ Added to Practice Calendar & SMS Dispatched
+        </div>
+      `;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
     }
 
     async function handleSend() {
@@ -183,6 +548,10 @@
 
         if (data.leadCaptured) {
           updateInspector(data.leadCaptured);
+        }
+        if (data.appointment) {
+          showAppointmentConfirmed(data.appointment);
+          appendAppointmentCard(data.appointment);
         }
       } catch (err) {
         loader.textContent = "Error: Unable to connect to agent.";

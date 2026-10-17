@@ -94,6 +94,66 @@
   ],
   "leads": [
     {
+      "id": "lead-1792268280773",
+      "client_id": "dental-us",
+      "customer_name": "Anonymous Visitor",
+      "customer_phone": "N/A",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (TODAY (Urgent Priority Slot - In 45 mins))",
+      "urgency": "Critical",
+      "summary": "I have severe tooth pain and need an emergency appointment right now",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "TODAY (Urgent Priority Slot - In 45 mins)",
+        "service": "Emergency Toothache Relief & X-Rays",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "Patient / Client",
+        "phone": "Confirmed on Record",
+        "timestamp": "01:18 am"
+      },
+      "created_at": "2026-10-17T20:18:00.773Z"
+    },
+    {
+      "id": "lead-1792268271384",
+      "client_id": "dental-us",
+      "customer_name": "David",
+      "customer_phone": "07700900123",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (This Friday at 2:00 PM)",
+      "urgency": "High",
+      "summary": "Hi my name is David, phone 07700900123, I would like to book for Friday at 2 PM",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "This Friday at 2:00 PM",
+        "service": "Cosmetic Smile & Treatment Consultation",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Austin Premier Dental & Implants",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David",
+        "phone": "07700900123",
+        "timestamp": "01:17 am"
+      },
+      "created_at": "2026-10-17T20:17:51.384Z"
+    },
+    {
+      "id": "lead-1792268207750",
+      "client_id": "dental-us",
+      "customer_name": "David",
+      "customer_phone": "07700900123",
+      "customer_email": "N/A",
+      "intent": "Appointment Requested",
+      "urgency": "High",
+      "summary": "Hi, my name is David, phone 07700900123, I would like to book an appointment for Friday at 2 PM.",
+      "requires_human": false,
+      "created_at": "2026-10-17T20:16:47.750Z"
+    },
+    {
       "id": "lead-1792098516646",
       "client_id": "dental-uk",
       "customer_name": "David",
@@ -578,6 +638,166 @@
       "role": "model",
       "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
       "timestamp": "2026-10-17T20:07:51.072Z"
+    },
+    {
+      "id": "msg-1792267931264-i5gv",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-8w271d",
+      "role": "user",
+      "text": "Tumre adress",
+      "timestamp": "2026-10-17T20:12:11.264Z"
+    },
+    {
+      "id": "msg-1792267931275-yd5p",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-8w271d",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:12:11.275Z"
+    },
+    {
+      "id": "msg-1792267959137-ptwz",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-8w271d",
+      "role": "user",
+      "text": "Wah",
+      "timestamp": "2026-10-17T20:12:39.137Z"
+    },
+    {
+      "id": "msg-1792267959153-3f4d",
+      "client_id": "dental-dxb",
+      "session_id": "voice-call-8w271d",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:12:39.153Z"
+    },
+    {
+      "id": "msg-1792268082426-5gkw",
+      "client_id": "dental-us",
+      "session_id": "voice-call-vhswx0",
+      "role": "user",
+      "text": "Appointment Time today",
+      "timestamp": "2026-10-17T20:14:42.426Z"
+    },
+    {
+      "id": "msg-1792268082438-505i",
+      "client_id": "dental-us",
+      "session_id": "voice-call-vhswx0",
+      "role": "model",
+      "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-17T20:14:42.438Z"
+    },
+    {
+      "id": "msg-1792268101637-wi7l",
+      "client_id": "dental-us",
+      "session_id": "voice-call-vhswx0",
+      "role": "user",
+      "text": "Afternoon",
+      "timestamp": "2026-10-17T20:15:01.637Z"
+    },
+    {
+      "id": "msg-1792268101647-2oah",
+      "client_id": "dental-us",
+      "session_id": "voice-call-vhswx0",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:15:01.647Z"
+    },
+    {
+      "id": "msg-1792268195823-ieir",
+      "client_id": "dental-us",
+      "session_id": "demo-session-j1f7ys",
+      "role": "user",
+      "text": "Hi",
+      "timestamp": "2026-10-17T20:16:35.823Z"
+    },
+    {
+      "id": "msg-1792268195835-zy6u",
+      "client_id": "dental-us",
+      "session_id": "demo-session-j1f7ys",
+      "role": "model",
+      "text": "Welcome to Harley Street Smiles Clinic London. I am your AI Patient Care coordinator. How may we assist with your smile makeover, teeth whitening, or dental checkup today?",
+      "timestamp": "2026-10-17T20:16:35.835Z"
+    },
+    {
+      "id": "msg-1792268207715-7jm8",
+      "client_id": "dental-us",
+      "session_id": "demo-session-j1f7ys",
+      "role": "user",
+      "text": "Hi, my name is David, phone 07700900123, I would like to book an appointment for Friday at 2 PM.",
+      "timestamp": "2026-10-17T20:16:47.715Z"
+    },
+    {
+      "id": "msg-1792268207740-jvpc",
+      "client_id": "dental-us",
+      "session_id": "demo-session-j1f7ys",
+      "role": "model",
+      "text": "Wonderful! To reserve your consultation with our lead cosmetic dentist at Harley Street, please share your **Full Name**, **Mobile Number**, and whether morning or afternoon suits you best.",
+      "timestamp": "2026-10-17T20:16:47.740Z"
+    },
+    {
+      "id": "msg-1792268270527-0d5o",
+      "client_id": "dental-us",
+      "session_id": "test-apt",
+      "role": "user",
+      "text": "Hi my name is David, phone 07700900123, I would like to book for Friday at 2 PM",
+      "timestamp": "2026-10-17T20:17:50.527Z"
+    },
+    {
+      "id": "msg-1792268271357-bnor",
+      "client_id": "dental-us",
+      "session_id": "test-apt",
+      "role": "model",
+      "text": "🎉 Wonderful! Your appointment is officially confirmed for **This Friday at 2:00 PM** with Dr. Mitchell & Clinical Team at Austin Premier Dental & Implants.\n\n✅ **Instant Automation Completed:**\n• Added directly to Clinic Calendar & EHR system\n• Confirmation SMS & calendar invite dispatched to 07700900123\n• Clinical team briefed\n\nWe look forward to welcoming you!",
+      "timestamp": "2026-10-17T20:17:51.357Z"
+    },
+    {
+      "id": "msg-1792268280748-3qkw",
+      "client_id": "dental-us",
+      "session_id": "test-voice-apt",
+      "role": "user",
+      "text": "I have severe tooth pain and need an emergency appointment right now",
+      "timestamp": "2026-10-17T20:18:00.748Z"
+    },
+    {
+      "id": "msg-1792268280760-luob",
+      "client_id": "dental-us",
+      "session_id": "test-voice-apt",
+      "role": "model",
+      "text": "🚨 I understand you are in urgent pain! I have immediately expedited an Emergency Relief Slot for you: **TODAY (Urgent Priority Slot - In 45 mins)** with Dr. Mitchell & Clinical Team at Austin Premier Dental & Implants.\n\n✅ **Instant Automation Completed:**\n• Attending Doctor alerted for urgent triage\n• Emergency slot locked on clinic schedule\n• Confirmation SMS with direct clinic directions dispatched\n\nPlease head in, our medical team is prepared for your arrival!",
+      "timestamp": "2026-10-17T20:18:00.760Z"
+    },
+    {
+      "id": "msg-1792268510606-6yq7",
+      "client_id": "dental-au",
+      "session_id": "demo-session-ey830e",
+      "role": "user",
+      "text": "Hi",
+      "timestamp": "2026-10-17T20:21:50.606Z"
+    },
+    {
+      "id": "msg-1792268510619-89fp",
+      "client_id": "dental-au",
+      "session_id": "demo-session-ey830e",
+      "role": "model",
+      "text": "Welcome to Sydney Harbourside Dental Care. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
+      "timestamp": "2026-10-17T20:21:50.619Z"
+    },
+    {
+      "id": "msg-1792268514838-r2kd",
+      "client_id": "dental-au",
+      "session_id": "demo-session-ey830e",
+      "role": "user",
+      "text": "Yes",
+      "timestamp": "2026-10-17T20:21:54.838Z"
+    },
+    {
+      "id": "msg-1792268514849-od2n",
+      "client_id": "dental-au",
+      "session_id": "demo-session-ey830e",
+      "role": "model",
+      "text": "Welcome to Sydney Harbourside Dental Care. I am your 24/7 AI Patient Care Coordinator. How may we assist with your smile makeover, teeth whitening, emergency toothache, or routine checkup today?",
+      "timestamp": "2026-10-17T20:21:54.849Z"
     }
   ],
   "settings": {
