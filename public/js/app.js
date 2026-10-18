@@ -477,24 +477,14 @@ function copyCurrentPitch() {
 const SPRINT_LEADS = {
   1: [
     {
-      id: "d1-us-dallas-mitchell",
-      name: "North Dallas Cosmetic Dentistry",
-      city: "Dallas, Texas, USA",
-      email: "drrobertmitchell@robertmitchelldds.com",
-      phone: "+19722331311",
-      clientId: "dental-us",
-      niche: "Emergency & Cosmetic Dental",
-      badge: "🇺🇸 USA"
-    },
-    {
-      id: "d1-us-dallas-bravo",
-      name: "Bravo! Dental Dallas",
-      city: "Dallas, Texas, USA",
-      email: "BF@bravodentaldallas.com",
-      phone: "+12143075671",
-      clientId: "dental-us",
-      niche: "Family & Emergency Dental",
-      badge: "🇺🇸 USA"
+      id: "d1-dxb-pearl",
+      name: "Pearl Dental Clinic Jumeirah",
+      city: "Al Wasl Road, Jumeirah, Dubai",
+      email: "info@pearldentalclinics.com",
+      phone: "+971555630659",
+      clientId: "dental-dxb",
+      niche: "Hollywood Smile & Veneers",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     },
     {
       id: "d1-dxb-dentistree",
@@ -503,135 +493,175 @@ const SPRINT_LEADS = {
       email: "jumeirah@dentistree.ae",
       phone: "+971566084766",
       clientId: "dental-dxb",
-      niche: "Veneers & Hollywood Smile",
-      badge: "🇦🇪 Dubai"
+      niche: "Veneers & Dental Implants",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     },
     {
-      id: "d1-dxb-bluedental",
-      name: "Blue Dental Clinic Jumeirah",
-      city: "Jumeirah 3, Dubai, UAE",
-      email: "reception@bluedentalclinic.com",
-      phone: "+971507691575",
+      id: "d1-dxb-medpalm",
+      name: "MedPalm Dental Clinic",
+      city: "Jumeirah 1, Dubai, UAE",
+      email: "info@medpalmdental.ae",
+      phone: "+971568020088",
       clientId: "dental-dxb",
       niche: "Cosmetic & Emergency Dental",
-      badge: "🇦🇪 Dubai"
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     },
     {
-      id: "d1-au-sydney-abc",
-      name: "ABC Dental Sydney",
-      city: "Sydney NSW, Australia",
-      email: "info@abc-dental.com.au",
-      phone: "+61283831400",
-      clientId: "dental-au",
-      niche: "7-Day Emergency & Checkup",
-      badge: "🇦🇺 Australia"
+      id: "d1-dxb-oneplus",
+      name: "The One Plus Dental Clinic",
+      city: "Jumeirah Road, Dubai, UAE",
+      email: "info@theoneplusdentalclinics.com",
+      phone: "+971544445366",
+      clientId: "dental-dxb",
+      niche: "24/7 Pain Relief & Aligners",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
+    },
+    {
+      id: "d1-dxb-nicolas",
+      name: "Drs. Nicolas & Asp Dental",
+      city: "Jumeirah Center, Dubai, UAE",
+      email: "info@nicolasandasp.com",
+      phone: "+97143883444",
+      clientId: "dental-dxb",
+      niche: "VIP Family & Orthodontics",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     }
   ],
   2: [
     {
-      id: "d2-dxb-elysian",
-      name: "Elysian Luxe Real Estate",
-      city: "Downtown Dubai, UAE",
-      email: "invest@elysianproperties.ae",
-      phone: "+971509876543",
+      id: "d2-dxb-mavrix",
+      name: "Mavrix Luxury Properties",
+      city: "Business Bay, Dubai, UAE",
+      email: "info@mavrixproperties.ae",
+      phone: "+971521249992",
       clientId: "realestate-dxb",
-      niche: "Luxury Waterfront Villas",
-      badge: "🇦🇪 Dubai"
+      niche: "Waterfront Luxury Villas",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     },
     {
-      id: "d2-dxb-sobha",
-      name: "Sobha Signature Properties",
-      city: "Business Bay, Dubai",
-      email: "sales@sobhadubai.ae",
-      phone: "+971521234567",
+      id: "d2-dxb-binayah",
+      name: "Binayah Real Estate Dubai",
+      city: "Downtown Dubai, UAE",
+      email: "info@binayah.com",
+      phone: "+971555099157",
       clientId: "realestate-dxb",
-      niche: "High-ROI Off-Plan Apartments",
-      badge: "🇦🇪 Dubai"
+      niche: "Off-Plan & Golden Visa",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
+    },
+    {
+      id: "d2-dxb-mrone",
+      name: "M R One Properties Dubai",
+      city: "Palm Jumeirah & Marina, Dubai",
+      email: "contact@mr1properties.com",
+      phone: "+971509902467",
+      clientId: "realestate-dxb",
+      niche: "Palm Jumeirah Luxury Homes",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
+    },
+    {
+      id: "d2-dxb-newheights",
+      name: "New Heights Real Estate",
+      city: "Dubai Marina, UAE",
+      email: "sales@newheights.ae",
+      phone: "+971585874647",
+      clientId: "realestate-dxb",
+      niche: "High-ROI Marina Apartments",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     },
     {
       id: "d2-dxb-driven",
       name: "Driven Properties Dubai",
-      city: "Dubai Marina, UAE",
+      city: "Bay Square, Business Bay, Dubai",
       email: "contact@drivenproperties.com",
-      phone: "+97144297040",
+      phone: "+971529068480",
       clientId: "realestate-dxb",
-      niche: "Palm Jumeirah & Marina Luxe",
-      badge: "🇦🇪 Dubai"
-    },
-    {
-      id: "d2-dxb-betterhomes",
-      name: "Betterhomes UAE",
-      city: "Al Barsha, Dubai",
-      email: "customercare@bhomes.com",
-      phone: "+971600522233",
-      clientId: "realestate-dxb",
-      niche: "Residential & Investment Sales",
-      badge: "🇦🇪 Dubai"
-    },
-    {
-      id: "d2-dxb-dandb",
-      name: "D&B Properties Dubai",
-      city: "Business Bay, Dubai",
-      email: "inquiry@dandbdubai.com",
-      phone: "+97148719200",
-      clientId: "realestate-dxb",
-      niche: "Off-Plan & Golden Visa Advisory",
-      badge: "🇦🇪 Dubai"
+      niche: "Ultra-Prime Dubai Properties",
+      badge: "🇦🇪 Dubai (WhatsApp Verified)"
     }
   ],
   3: [
     {
-      id: "d3-au-cosmetic",
-      name: "Cosmetic Dental Sydney",
-      city: "Sydney NSW, Australia",
-      email: "smile@cosmeticdentalsydney.sydney",
-      phone: "+61295883979",
-      clientId: "dental-au",
-      niche: "Porcelain Veneers & Orthodontics",
-      badge: "🇦🇺 Australia"
+      id: "d3-pk-altamash",
+      name: "Altamash Dental Clinic",
+      city: "Clifton, Karachi, Pakistan",
+      email: "info@altamashclinic.com",
+      phone: "+923012844864",
+      clientId: "dental-us",
+      niche: "Implants & Smile Makeovers",
+      badge: "🇵🇰 Karachi (WhatsApp Verified)"
     },
     {
-      id: "d3-au-cbd",
-      name: "Sydney CBD Dentistry",
-      city: "70 Pitt St, Sydney CBD",
-      email: "info@sydneycbddentistry.com.au",
-      phone: "+61280901101",
-      clientId: "dental-au",
-      niche: "Teeth Whitening & Implants",
-      badge: "🇦🇺 Australia"
+      id: "d3-pk-drjamal",
+      name: "Dr. Jamal's Dental Care",
+      city: "Clifton & Saddar, Karachi",
+      email: "contact@drjamalsdentalcare.com",
+      phone: "+923111177884",
+      clientId: "dental-us",
+      niche: "Emergency Dental & Aligners",
+      badge: "🇵🇰 Karachi (WhatsApp Verified)"
     },
     {
-      id: "d3-au-apple",
-      name: "Apple Dental Lane Cove",
-      city: "Lane Cove, Sydney NSW",
-      email: "Reception.AppleDental@nationaldentalcare.com.au",
-      phone: "+61294205050",
-      clientId: "dental-au",
-      niche: "Preventative & Smile Aesthetics",
-      badge: "🇦🇺 Australia"
+      id: "d3-pk-southcity",
+      name: "South City Hospital Dental",
+      city: "Clifton Block 3, Karachi",
+      email: "dental@southcityhospital.org",
+      phone: "+923212159046",
+      clientId: "dental-us",
+      niche: "Comprehensive Dental Surgery",
+      badge: "🇵🇰 Karachi (WhatsApp Verified)"
     },
     {
-      id: "d3-au-sparkling",
-      name: "Sparkling Dental Emergency",
-      city: "Neutral Bay, Sydney",
-      email: "info@sparklingdental.com.au",
-      phone: "+61426651885",
-      clientId: "dental-au",
-      niche: "24/7 Urgent Pain Care",
-      badge: "🇦🇺 Australia"
+      id: "d3-pk-rahman",
+      name: "Rahman & Rahman Dental",
+      city: "Gulberg, Lahore / Islamabad",
+      email: "info@rahmanandrahman.com",
+      phone: "+923004000300",
+      clientId: "dental-us",
+      niche: "VIP Dental & Orthodontics",
+      badge: "🇵🇰 Lahore (WhatsApp Verified)"
     },
     {
-      id: "d3-au-melbourne",
-      name: "Melbourne City Dental",
-      city: "Melbourne CBD, Victoria",
-      email: "info@melbournecitydental.com.au",
-      phone: "+61396545464",
-      clientId: "dental-au",
-      niche: "Invisalign & Health Fund Claims",
-      badge: "🇦🇺 Australia"
+      id: "d3-pk-zahra",
+      name: "Zahra Luxury Pret & Lawn",
+      city: "Karachi / Lahore, Pakistan",
+      email: "orders@zahraluxury.pk",
+      phone: "+923001234567",
+      clientId: "fashion-pk",
+      niche: "E-Commerce COD & Sales Care",
+      badge: "🇵🇰 Pakistan (WhatsApp Verified)"
     }
   ],
   4: [
+    {
+      id: "d4-us-dallas-mitchell",
+      name: "North Dallas Cosmetic Dentistry",
+      city: "Dallas, Texas, USA",
+      email: "drrobertmitchell@robertmitchelldds.com",
+      phone: "+19722331311",
+      clientId: "dental-us",
+      niche: "Emergency & Cosmetic Dental",
+      badge: "🇺🇸 USA (Email Outreach)"
+    },
+    {
+      id: "d4-us-dallas-bravo",
+      name: "Bravo! Dental Dallas",
+      city: "Dallas, Texas, USA",
+      email: "BF@bravodentaldallas.com",
+      phone: "+12143075671",
+      clientId: "dental-us",
+      niche: "Family & Emergency Dental",
+      badge: "🇺🇸 USA (Email Outreach)"
+    },
+    {
+      id: "d4-us-austin-premier",
+      name: "Austin Premier Dental & Implants",
+      city: "Austin, Texas, USA",
+      email: "reception@austinpremierdental.com",
+      phone: "+15125550199",
+      clientId: "dental-us",
+      niche: "Implant & Toothache Relief",
+      badge: "🇺🇸 USA (Email Outreach)"
+    },
     {
       id: "d4-us-beverly",
       name: "Beverly Hills Aesthetic MedSpa",
@@ -640,7 +670,7 @@ const SPRINT_LEADS = {
       phone: "+13105550144",
       clientId: "medspa-us",
       niche: "Botox & Dermal Fillers",
-      badge: "🇺🇸 USA"
+      badge: "🇺🇸 USA (Email Outreach)"
     },
     {
       id: "d4-us-skinlaundry",

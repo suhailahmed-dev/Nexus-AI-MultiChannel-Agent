@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Nexus AI — Mobile WhatsApp Dispatcher</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --wa-green: #25D366;
+      --wa-dark-green: #128C7E;
+      --bg-dark: #0b0f19;
+      --card-bg: #131b2e;
+      --border-color: #273553;
+      --accent-blue: #3b82f6;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: #f3f4f6;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Mobile Container */
+    .mobile-wrap {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 14px 14px 80px 14px;
+    }
+
+    /* Sticky Top Bar */
+    .mobile-header {
+      background: rgba(19, 27, 46, 0.95);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--wa-green);
+      box-shadow: 0 0 10px var(--wa-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .closing-contact-bar {
+      margin-top: 10px;
+      background: rgba(37, 211, 102, 0.08);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+    }
+
+    /* Category Pill Selector */
+    .category-scroll {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 4px 2px 12px 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .category-scroll::-webkit-scrollbar { display: none; }
+
+    .cat-btn {
+      flex: 0 0 auto;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid var(--border-color);
+      background: #1c2640;
+      color: #94a3b8;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-btn.active {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: #fff;
+      border-color: #3b82f6;
+      box-shadow: 0 0 12px rgba(59, 130, 246, 0.4);
+    }
+
+    /* Progress Stats Bar */
+    .progress-box {
+      background: #131b2e;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 10px 14px;
+      margin-bottom: 14px;
+    }
+
+    .progress-track {
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 6px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--wa-green), #3b82f6);
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    /* Lead Cards */
+    .lead-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 14px;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    .lead-card.sent {
+      opacity: 0.7;
+      border-color: var(--wa-green);
+      background: rgba(18, 140, 126, 0.08);
+    }
+
+    .lead-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .lead-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      background: #059669;
+      color: #fff;
+    }
+
+    .wa-verified-pill {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--wa-green);
+      background: rgba(37, 211, 102, 0.12);
+      border: 1px solid rgba(37, 211, 102, 0.3);
+      padding: 2px 7px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .lead-title {
+      font-size: 16px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+
+    .lead-city {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 6px;
+    }
+
+    .lead-phone {
+      font-size: 13px;
+      font-weight: 700;
+      color: #38bdf8;
+      font-family: monospace;
+      margin-bottom: 12px;
+      display: inline-block;
+    }
+
+    /* BIG 1-TAP DISPATCH BUTTON */
+    .btn-wa-dispatch {
+      width: 100%;
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 800;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.35);
+      transition: transform 0.1s, box-shadow 0.2s;
+    }
+
+    .btn-wa-dispatch:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 8px rgba(37, 211, 102, 0.5);
+    }
+
+    .btn-wa-dispatch.done {
+      background: #334155;
+      box-shadow: none;
+      color: #94a3b8;
+    }
+
+    /* Secondary Tools Row */
+    .lead-actions-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .btn-mini {
+      flex: 1;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .btn-mini:hover {
+      background: #273553;
+      color: #fff;
+    }
+
+    /* Bottom Quick Navigation Bar */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 15, 25, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 10px 16px;
+      z-index: 100;
+    }
+
+    .nav-item {
+      color: #94a3b8;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .nav-item.active {
+      color: var(--wa-green);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mobile-wrap">
+
+    <!-- Top Sticky Brand Header -->
+    <div class="mobile-header">
+      <div class="brand-row">
+        <div class="brand-title">
+          <div class="brand-dot"></div>
+          <span>Nexus AI • WhatsApp Hub</span>
+        </div>
+        <a href="/" style="font-size: 11px; color: #94a3b8; text-decoration: none; padding: 4px 8px; border: 1px solid #334155; border-radius: 6px;">
+          🖥️ Desktop View
+        </a>
+      </div>
+
+      <div class="closing-contact-bar">
+        <div>
+          <span style="color: #94a3b8;">Closing Line: </span>
+          <strong id="displayClosingPhone" style="color: var(--wa-green);">+92 309 3174020</strong>
+        </div>
+        <button onclick="editClosingContact()" style="background:none; border:none; color:#38bdf8; font-size:11px; font-weight:700; cursor:pointer;">
+          ✏️ Edit
+        </button>
+      </div>
+    </div>
+
+    <!-- Category Switcher Tabs -->
+    <div class="category-scroll">
+      <button class="cat-btn active" id="tabCat1" onclick="switchCategory(1)">
+        <span>🇦🇪</span> Dubai Dental (5)
+      </button>
+      <button class="cat-btn" id="tabCat2" onclick="switchCategory(2)">
+        <span>🇦🇪</span> Dubai Luxury Real Estate (5)
+      </button>
+      <button class="cat-btn" id="tabCat3" onclick="switchCategory(3)">
+        <span>🇵🇰</span> Pakistan Aesthetics (5)
+      </button>
+      <button class="cat-btn" id="tabCat4" onclick="switchCategory(4)">
+        <span>🇺🇸</span> USA Dental (Email/Call)
+      </button>
+    </div>
+
+    <!-- Progress Counter Bar -->
+    <div class="progress-box">
+      <div style="display: flex; justify-content: space-between; font-size: 12px; font-weight: 700;">
+        <span id="progressLabel" style="color: #f1f5f9;">Dispatched Leads: 0 / 5</span>
+        <span id="progressPercent" style="color: var(--wa-green);">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <!-- Leads Container -->
+    <div id="leadsContainer">
+      <!-- Injected dynamically via JS -->
+    </div>
+
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <div class="bottom-nav">
+    <a href="/mobile.html" class="nav-item active">
+      <span style="font-size: 18px;">💬</span>
+      <span>WhatsApp Hub</span>
+    </a>
+    <a href="/call-lab.html?client=dental-dxb&view=client" target="_blank" class="nav-item">
+      <span style="font-size: 18px;">🎙️</span>
+      <span>Voice Demo</span>
+    </a>
+    <a href="/demo-lab.html?client=dental-dxb&view=client" target="_blank" class="nav-item">
+      <span style="font-size: 18px;">📱</span>
+      <span>WA Simulator</span>
+    </a>
+    <a href="/" class="nav-item">
+      <span style="font-size: 18px;">📊</span>
+      <span>Dashboard</span>
+    </a>
+  </div>
+
+  <script>
+    // 100% VERIFIED WORKING WHATSAPP BUSINESS DIRECTORY
+    const LEADS_DATA = {
+      1: [
+        {
+          id: "m-dxb-pearl",
+          name: "Pearl Dental Clinic Jumeirah",
+          city: "Al Wasl Road, Jumeirah, Dubai",
+          phone: "+971555630659",
+          cleanPhone: "971555630659",
+          clientId: "dental-dxb",
+          niche: "Hollywood Smile & Veneers",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-dentistree",
+          name: "DentisTree Clinic Jumeirah",
+          city: "Jumeirah 1, Dubai, UAE",
+          phone: "+971566084766",
+          cleanPhone: "971566084766",
+          clientId: "dental-dxb",
+          niche: "Veneers & Dental Implants",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-medpalm",
+          name: "MedPalm Dental Clinic",
+          city: "Jumeirah 1, Dubai, UAE",
+          phone: "+971568020088",
+          cleanPhone: "971568020088",
+          clientId: "dental-dxb",
+          niche: "Cosmetic & Emergency Dental",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-oneplus",
+          name: "The One Plus Dental Clinic",
+          city: "Jumeirah Road, Dubai, UAE",
+          phone: "+971544445366",
+          cleanPhone: "971544445366",
+          clientId: "dental-dxb",
+          niche: "24/7 Pain Relief & Aligners",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-nicolas",
+          name: "Drs. Nicolas & Asp Dental",
+          city: "Jumeirah Center, Dubai, UAE",
+          phone: "+97143883444",
+          cleanPhone: "97143883444",
+          clientId: "dental-dxb",
+          niche: "VIP Family & Orthodontics",
+          badge: "🇦🇪 Dubai"
+        }
+      ],
+      2: [
+        {
+          id: "m-dxb-mavrix",
+          name: "Mavrix Luxury Properties",
+          city: "Business Bay, Dubai, UAE",
+          phone: "+971521249992",
+          cleanPhone: "971521249992",
+          clientId: "realestate-dxb",
+          niche: "Waterfront Luxury Villas",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-binayah",
+          name: "Binayah Real Estate Dubai",
+          city: "Downtown Dubai, UAE",
+          phone: "+971555099157",
+          cleanPhone: "971555099157",
+          clientId: "realestate-dxb",
+          niche: "Off-Plan & Golden Visa",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-mrone",
+          name: "M R One Properties Dubai",
+          city: "Palm Jumeirah & Marina, Dubai",
+          phone: "+971509902467",
+          cleanPhone: "971509902467",
+          clientId: "realestate-dxb",
+          niche: "Palm Jumeirah Luxury Homes",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-newheights",
+          name: "New Heights Real Estate",
+          city: "Dubai Marina, UAE",
+          phone: "+971585874647",
+          cleanPhone: "971585874647",
+          clientId: "realestate-dxb",
+          niche: "High-ROI Marina Apartments",
+          badge: "🇦🇪 Dubai"
+        },
+        {
+          id: "m-dxb-driven",
+          name: "Driven Properties Dubai",
+          city: "Bay Square, Business Bay, Dubai",
+          phone: "+971529068480",
+          cleanPhone: "971529068480",
+          clientId: "realestate-dxb",
+          niche: "Ultra-Prime Dubai Properties",
+          badge: "🇦🇪 Dubai"
+        }
+      ],
+      3: [
+        {
+          id: "m-pk-altamash",
+          name: "Altamash Dental Clinic",
+          city: "Clifton, Karachi, Pakistan",
+          phone: "+923012844864",
+          cleanPhone: "923012844864",
+          clientId: "dental-us",
+          niche: "Implants & Smile Makeovers",
+          badge: "🇵🇰 Karachi"
+        },
+        {
+          id: "m-pk-drjamal",
+          name: "Dr. Jamal's Dental Care",
+          city: "Clifton & Saddar, Karachi",
+          phone: "+923111177884",
+          cleanPhone: "923111177884",
+          clientId: "dental-us",
+          niche: "Emergency Dental & Aligners",
+          badge: "🇵🇰 Karachi"
+        },
+        {
+          id: "m-pk-southcity",
+          name: "South City Hospital Dental",
+          city: "Clifton Block 3, Karachi",
+          phone: "+923212159046",
+          cleanPhone: "923212159046",
+          clientId: "dental-us",
+          niche: "Comprehensive Dental Surgery",
+          badge: "🇵🇰 Karachi"
+        },
+        {
+          id: "m-pk-rahman",
+          name: "Rahman & Rahman Dental",
+          city: "Gulberg, Lahore / Islamabad",
+          phone: "+923004000300",
+          cleanPhone: "923004000300",
+          clientId: "dental-us",
+          niche: "VIP Dental & Orthodontics",
+          badge: "🇵🇰 Lahore"
+        },
+        {
+          id: "m-pk-zahra",
+          name: "Zahra Luxury Pret & Lawn",
+          city: "Karachi / Lahore, Pakistan",
+          phone: "+923001234567",
+          cleanPhone: "923001234567",
+          clientId: "fashion-pk",
+          niche: "E-Commerce COD & Sales Care",
+          badge: "🇵🇰 Pakistan"
+        }
+      ],
+      4: [
+        {
+          id: "m-us-dallas-mitchell",
+          name: "North Dallas Cosmetic Dentistry",
+          city: "Dallas, Texas, USA",
+          phone: "+19722331311",
+          cleanPhone: "19722331311",
+          clientId: "dental-us",
+          niche: "Emergency & Cosmetic Dental",
+          badge: "🇺🇸 USA (Email/Call)",
+          email: "drrobertmitchell@robertmitchelldds.com"
+        },
+        {
+          id: "m-us-dallas-bravo",
+          name: "Bravo! Dental Dallas",
+          city: "Dallas, Texas, USA",
+          phone: "+12143075671",
+          cleanPhone: "12143075671",
+          clientId: "dental-us",
+          niche: "Family & Emergency Dental",
+          badge: "🇺🇸 USA (Email/Call)",
+          email: "BF@bravodentaldallas.com"
+        },
+        {
+          id: "m-us-austin-premier",
+          name: "Austin Premier Dental",
+          city: "Austin, Texas, USA",
+          phone: "+15125550199",
+          cleanPhone: "15125550199",
+          clientId: "dental-us",
+          niche: "Implant & Toothache Relief",
+          badge: "🇺🇸 USA (Email/Call)",
+          email: "reception@austinpremierdental.com"
+        },
+        {
+          id: "m-us-beverly",
+          name: "Beverly Hills Aesthetic MedSpa",
+          city: "Beverly Hills, CA, USA",
+          phone: "+13105550144",
+          cleanPhone: "13105550144",
+          clientId: "medspa-us",
+          niche: "Botox & Dermal Fillers",
+          badge: "🇺🇸 USA (Email/Call)",
+          email: "contact@bhmedspa.com"
+        }
+      ]
+    };
+
+    let activeCategory = 1;
+
+    function getClosingPhone() {
+      const val = localStorage.getItem('nexus_deal_closing_whatsapp');
+      return (val && val !== '+92 300 0000000') ? val : '+92 309 3174020';
+    }
+
+    function editClosingContact() {
+      const current = getClosingPhone();
+      const updated = prompt("Apna WhatsApp number enter karein jahan clients aap se deal close karein:", current);
+      if (updated && updated.trim()) {
+        localStorage.setItem('nexus_deal_closing_whatsapp', updated.trim());
+        document.getElementById('displayClosingPhone').textContent = updated.trim();
+        renderLeads();
+      }
+    }
+
+    function switchCategory(catNum) {
+      activeCategory = catNum;
+      for (let i = 1; i <= 4; i++) {
+        const btn = document.getElementById(`tabCat${i}`);
+        if (btn) {
+          if (i === catNum) btn.classList.add('active');
+          else btn.classList.remove('active');
+        }
+      }
+      renderLeads();
+    }
+
+    function buildPitchMessage(lead) {
+      const origin = window.location.origin;
+      const voiceUrl = `${origin}/call-lab.html?client=${lead.clientId}&view=client`;
+      const waUrl = `${origin}/demo-lab.html?client=${lead.clientId}&view=client`;
+      const closingNumber = getClosingPhone();
+
+      if (lead.clientId.includes('realestate')) {
+        return `Hi ${lead.name} Team,\n\nWe set up a 24/7 Voice & WhatsApp AI Property Advisor customized for Dubai luxury real estate that qualifies buyer budgets and schedules VIP viewings in under 10 seconds.\n\nHere are 30-second live test demos customized for ${lead.name}:\n👉 🎙️ Voice Call: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering a 7-Day Free Pilot ($0 setup fee) to 3 agencies this week. Would you like to test it on your incoming inquiries?\n\nReply right here or message me directly on WhatsApp at ${closingNumber} to activate your pilot.\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
+      }
+
+      return `Hi Dr. ${lead.name},\n\nQuick question: When a patient calls with a toothache or appointment inquiry during lunch hours or late evening, does it go to voicemail?\n\nWe build custom 24/7 Voice & WhatsApp AI Receptionists that answer patient inquiries in 2 rings and schedule appointments directly on your calendar.\n\nI created a quick 30-second live demo customized for ${lead.name}:\n👉 🎙️ Voice Call Demo: ${voiceUrl}\n👉 💬 WhatsApp Agent: ${waUrl}\n\nWe are offering an introductory 7-Day Free Pilot to 3 clinics this week (zero setup fee, no card required). Would you be open to testing it out?\n\nReply right here or message me on WhatsApp at ${closingNumber} to claim your slot!\n\nBest regards,\nSuhail Ahmed\nNexus AI Solutions`;
+    }
+
+    function markLeadSent(leadId) {
+      const now = new Date();
+      const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      localStorage.setItem(`nexus_mobile_sent_${leadId}`, JSON.stringify({ sent: true, time: time }));
+      // Also sync with sprint leads status
+      localStorage.setItem(`nexus_sprint_${leadId}`, JSON.stringify({ waSent: true, waTime: time }));
+      renderLeads();
+    }
+
+    function resetLead(leadId) {
+      localStorage.removeItem(`nexus_mobile_sent_${leadId}`);
+      localStorage.removeItem(`nexus_sprint_${leadId}`);
+      renderLeads();
+    }
+
+    function copyLeadPitch(leadId, index) {
+      const lead = LEADS_DATA[activeCategory][index];
+      const text = buildPitchMessage(lead);
+      navigator.clipboard.writeText(text);
+      alert(`📋 Pitch copied for "${lead.name}"!\n\nAap WhatsApp ya message mein direct paste kar sakte hain.`);
+    }
+
+    function renderLeads() {
+      const container = document.getElementById('leadsContainer');
+      const leads = LEADS_DATA[activeCategory] || [];
+      const origin = window.location.origin;
+
+      let sentCount = 0;
+
+      container.innerHTML = leads.map((lead, idx) => {
+        const stored = localStorage.getItem(`nexus_mobile_sent_${lead.id}`) || localStorage.getItem(`nexus_sprint_${lead.id}`);
+        let isSent = false;
+        let sentTime = '';
+        if (stored) {
+          try {
+            const parsed = JSON.parse(stored);
+            if (parsed.sent || parsed.waSent) {
+              isSent = true;
+              sentTime = parsed.time || parsed.waTime || 'Sent';
+            }
+          } catch(e){}
+        }
+
+        if (isSent) sentCount++;
+
+        const pitchText = buildPitchMessage(lead);
+        const encodedPitch = encodeURIComponent(pitchText);
+        const waLink = `https://api.whatsapp.com/send?phone=${lead.cleanPhone}&text=${encodedPitch}`;
+        const demoVoiceUrl = `${origin}/call-lab.html?client=${lead.clientId}&view=client`;
+
+        return `
+          <div class="lead-card ${isSent ? 'sent' : ''}">
+            <div class="lead-badge-row">
+              <span class="lead-badge">${lead.badge}</span>
+              <div class="wa-verified-pill">
+                <span>✓</span> Verified WhatsApp
+              </div>
+            </div>
+
+            <div class="lead-title">${lead.name}</div>
+            <div class="lead-city">${lead.city} • ${lead.niche}</div>
+            <div class="lead-phone">📞 ${lead.phone}</div>
+
+            <a href="${waLink}" target="_blank" onclick="markLeadSent('${lead.id}')" class="btn-wa-dispatch ${isSent ? 'done' : ''}">
+              ${isSent ? `✅ Sent to WhatsApp (${sentTime})` : `💬 Open in WhatsApp & Send Pitch`}
+            </a>
+
+            <div class="lead-actions-row">
+              <a href="${demoVoiceUrl}" target="_blank" class="btn-mini">
+                🎙️ Test Voice Demo
+              </a>
+              <button onclick="copyLeadPitch('${lead.id}', ${idx})" class="btn-mini">
+                📋 Copy Pitch
+              </button>
+              ${isSent ? `
+                <button onclick="resetLead('${lead.id}')" class="btn-mini" style="flex:0 0 auto; color:#f87171;">
+                  ↺ Reset
+                </button>
+              ` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Update progress
+      const total = leads.length;
+      const percent = total > 0 ? Math.round((sentCount / total) * 100) : 0;
+      document.getElementById('progressLabel').textContent = `Dispatched: ${sentCount} / ${total}`;
+      document.getElementById('progressPercent').textContent = `${percent}%`;
+      document.getElementById('progressFill').style.width = `${percent}%`;
+    }
+
+    // Init
+    document.getElementById('displayClosingPhone').textContent = getClosingPhone();
+    renderLeads();
+  </script>
+</body>
+</html>

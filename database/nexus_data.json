@@ -94,6 +94,30 @@
   ],
   "leads": [
     {
+      "id": "lead-1792273669312",
+      "client_id": "dental-au",
+      "customer_name": "David Mitchell",
+      "customer_phone": "+92 3093174020",
+      "customer_email": "N/A",
+      "intent": "Appointment Confirmed (This Friday at 2:00 PM)",
+      "urgency": "High",
+      "summary": "+92 3093174020",
+      "requires_human": false,
+      "appointment": {
+        "status": "CONFIRMED & SYNCED",
+        "slot": "This Friday at 2:00 PM",
+        "service": "New Patient Comprehensive Smile & Dental Exam",
+        "doctor": "Dr. Mitchell & Clinical Team",
+        "clinic": "Sydney Harbourside Dental Care",
+        "calendar_synced": true,
+        "sms_dispatched": true,
+        "patient_name": "David Mitchell",
+        "phone": "+92 3093174020",
+        "timestamp": "02:47 am"
+      },
+      "created_at": "2026-10-17T21:47:49.312Z"
+    },
+    {
       "id": "lead-1792270279157",
       "client_id": "dental-us",
       "customer_name": "David",
@@ -1206,6 +1230,86 @@
       "role": "model",
       "text": "Assalam-o-Alaikum! Welcome to **Jumeirah Pearl Dental Clinic Dubai**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated booking queue.\n\nPlease select how we can best assist you right now (reply with a number or tap an option below):\n\n1️⃣ 📅 **Book an Appointment / Consultation**\n2️⃣ 🚨 **Emergency Tooth Pain / Urgent Relief**\n3️⃣ 💰 **Pricing & Special Promotional Offers**\n4️⃣ 👨‍⚕️ **Speak with Clinic Staff / Insurance Help**",
       "timestamp": "2026-10-17T20:59:56.300Z"
+    },
+    {
+      "id": "msg-1792273594759-xh3s",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "user",
+      "text": "333",
+      "timestamp": "2026-10-17T21:46:34.759Z"
+    },
+    {
+      "id": "msg-1792273594793-ilwg",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "model",
+      "text": "Assalam-o-Alaikum! Welcome to **Sydney Harbourside Dental Care**! 👋\n\nTo guarantee you receive priority care with **zero waiting time**, our office operates on an automated booking queue.\n\nPlease select how we can best assist you right now (reply with a number or tap an option below):\n\n1️⃣ 📅 **Book an Appointment / Consultation**\n2️⃣ 🚨 **Emergency Tooth Pain / Urgent Relief**\n3️⃣ 💰 **Pricing & Special Promotional Offers**\n4️⃣ 👨‍⚕️ **Speak with Clinic Staff / Insurance Help**",
+      "timestamp": "2026-10-17T21:46:34.793Z"
+    },
+    {
+      "id": "msg-1792273618015-pytk",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "user",
+      "text": "3",
+      "timestamp": "2026-10-17T21:46:58.015Z"
+    },
+    {
+      "id": "msg-1792273618037-ctav",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "model",
+      "text": "💰 **Transparent Pricing & Current Offers at Sydney Harbourside Dental Care:**\n\n• New Patient Exam & Digital X-Rays: $89 (Regular $250)\n• Professional Laser Whitening: $299 Special\n• Invisalign Clear Braces: From $3,200 ($99/mo 0% interest)\n• We accept Delta, Cigna, MetLife, Aetna & all major PPOs!\n\n💡 *To lock in these promotional rates with zero waiting time, appointments are prioritized. Which slot works best for your visit?*",
+      "timestamp": "2026-10-17T21:46:58.037Z"
+    },
+    {
+      "id": "msg-1792273634429-kp49",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "user",
+      "text": "Emergency Today",
+      "timestamp": "2026-10-17T21:47:14.430Z"
+    },
+    {
+      "id": "msg-1792273634446-eclb",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "model",
+      "text": "🚨 **EMERGENCY TRIAGE ACTIVATED**\n\nI understand you are experiencing severe tooth pain! We have reserved an **Urgent Priority Slot: TODAY (Within 45 mins)** at Sydney Harbourside Dental Care.\n\nTo hold this emergency slot on the schedule and notify the on-call doctor, please provide your Name & Phone (or tap Quick Confirm below):",
+      "timestamp": "2026-10-17T21:47:14.446Z"
+    },
+    {
+      "id": "msg-1792273669196-qrlz",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "user",
+      "text": "+92 3093174020",
+      "timestamp": "2026-10-17T21:47:49.196Z"
+    },
+    {
+      "id": "msg-1792273669290-gmfa",
+      "client_id": "dental-au",
+      "session_id": "voice-call-jijd9h",
+      "role": "model",
+      "text": "🎉 **APPOINTMENT OFFICIALLY CONFIRMED!**\n\n🏥 **Clinic:** Sydney Harbourside Dental Care\n👤 **Patient:** David Mitchell\n📅 **Scheduled Slot:** This Friday at 2:00 PM\n👨‍⚕️ **Provider:** Dr. Mitchell & Clinical Team\n\n⚡ **Automated Backend Actions Completed:**\n• Added directly into Practice Calendar (Google Calendar / Dentrix)\n• Instant SMS confirmation with clinic directions dispatched to +92 3093174020\n• Attending medical staff schedule synchronized\n\n_We look forward to welcoming you! If you need to reschedule, reply to this chat anytime._",
+      "timestamp": "2026-10-17T21:47:49.290Z"
+    },
+    {
+      "id": "msg-1792273787212-esd8",
+      "client_id": "dental-au",
+      "session_id": "demo-session-gpepar",
+      "role": "user",
+      "text": "2",
+      "timestamp": "2026-10-17T21:49:47.212Z"
+    },
+    {
+      "id": "msg-1792273787232-68d9",
+      "client_id": "dental-au",
+      "session_id": "demo-session-gpepar",
+      "role": "model",
+      "text": "🚨 **EMERGENCY TRIAGE ACTIVATED**\n\nI understand you are experiencing severe tooth pain! We have reserved an **Urgent Priority Slot: TODAY (Within 45 mins)** at Sydney Harbourside Dental Care.\n\nTo hold this emergency slot on the schedule and notify the on-call doctor, please provide your Name & Phone (or tap Quick Confirm below):",
+      "timestamp": "2026-10-17T21:49:47.232Z"
     }
   ],
   "settings": {
